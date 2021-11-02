@@ -17,48 +17,48 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// NewSchedulerGetProviderAppointmentsParams creates a new SchedulerGetProviderAppointmentsParams object,
+// NewSchedulerGetAppointmentsParams creates a new SchedulerGetAppointmentsParams object,
 // with the default timeout for this client.
 //
 // Default values are not hydrated, since defaults are normally applied by the API server side.
 //
 // To enforce default values in parameter, use SetDefaults or WithDefaults.
-func NewSchedulerGetProviderAppointmentsParams() *SchedulerGetProviderAppointmentsParams {
-	return &SchedulerGetProviderAppointmentsParams{
+func NewSchedulerGetAppointmentsParams() *SchedulerGetAppointmentsParams {
+	return &SchedulerGetAppointmentsParams{
 		timeout: cr.DefaultTimeout,
 	}
 }
 
-// NewSchedulerGetProviderAppointmentsParamsWithTimeout creates a new SchedulerGetProviderAppointmentsParams object
+// NewSchedulerGetAppointmentsParamsWithTimeout creates a new SchedulerGetAppointmentsParams object
 // with the ability to set a timeout on a request.
-func NewSchedulerGetProviderAppointmentsParamsWithTimeout(timeout time.Duration) *SchedulerGetProviderAppointmentsParams {
-	return &SchedulerGetProviderAppointmentsParams{
+func NewSchedulerGetAppointmentsParamsWithTimeout(timeout time.Duration) *SchedulerGetAppointmentsParams {
+	return &SchedulerGetAppointmentsParams{
 		timeout: timeout,
 	}
 }
 
-// NewSchedulerGetProviderAppointmentsParamsWithContext creates a new SchedulerGetProviderAppointmentsParams object
+// NewSchedulerGetAppointmentsParamsWithContext creates a new SchedulerGetAppointmentsParams object
 // with the ability to set a context for a request.
-func NewSchedulerGetProviderAppointmentsParamsWithContext(ctx context.Context) *SchedulerGetProviderAppointmentsParams {
-	return &SchedulerGetProviderAppointmentsParams{
+func NewSchedulerGetAppointmentsParamsWithContext(ctx context.Context) *SchedulerGetAppointmentsParams {
+	return &SchedulerGetAppointmentsParams{
 		Context: ctx,
 	}
 }
 
-// NewSchedulerGetProviderAppointmentsParamsWithHTTPClient creates a new SchedulerGetProviderAppointmentsParams object
+// NewSchedulerGetAppointmentsParamsWithHTTPClient creates a new SchedulerGetAppointmentsParams object
 // with the ability to set a custom HTTPClient for a request.
-func NewSchedulerGetProviderAppointmentsParamsWithHTTPClient(client *http.Client) *SchedulerGetProviderAppointmentsParams {
-	return &SchedulerGetProviderAppointmentsParams{
+func NewSchedulerGetAppointmentsParamsWithHTTPClient(client *http.Client) *SchedulerGetAppointmentsParams {
+	return &SchedulerGetAppointmentsParams{
 		HTTPClient: client,
 	}
 }
 
-/* SchedulerGetProviderAppointmentsParams contains all the parameters to send to the API endpoint
-   for the scheduler get provider appointments operation.
+/* SchedulerGetAppointmentsParams contains all the parameters to send to the API endpoint
+   for the scheduler get appointments operation.
 
    Typically these are written to a http.Request.
 */
-type SchedulerGetProviderAppointmentsParams struct {
+type SchedulerGetAppointmentsParams struct {
 
 	// AppointmentActive.
 	AppointmentActive *bool
@@ -328,7 +328,7 @@ type SchedulerGetProviderAppointmentsParams struct {
 	PatientRefID *string
 
 	// ProviderID.
-	ProviderID string
+	ProviderID *string
 
 	// ProviderRefID.
 	ProviderRefID *string
@@ -344,848 +344,848 @@ type SchedulerGetProviderAppointmentsParams struct {
 	HTTPClient *http.Client
 }
 
-// WithDefaults hydrates default values in the scheduler get provider appointments params (not the query body).
+// WithDefaults hydrates default values in the scheduler get appointments params (not the query body).
 //
 // All values with no default are reset to their zero value.
-func (o *SchedulerGetProviderAppointmentsParams) WithDefaults() *SchedulerGetProviderAppointmentsParams {
+func (o *SchedulerGetAppointmentsParams) WithDefaults() *SchedulerGetAppointmentsParams {
 	o.SetDefaults()
 	return o
 }
 
-// SetDefaults hydrates default values in the scheduler get provider appointments params (not the query body).
+// SetDefaults hydrates default values in the scheduler get appointments params (not the query body).
 //
 // All values with no default are reset to their zero value.
-func (o *SchedulerGetProviderAppointmentsParams) SetDefaults() {
+func (o *SchedulerGetAppointmentsParams) SetDefaults() {
 	// no default values defined for this parameter
 }
 
-// WithTimeout adds the timeout to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithTimeout(timeout time.Duration) *SchedulerGetProviderAppointmentsParams {
+// WithTimeout adds the timeout to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithTimeout(timeout time.Duration) *SchedulerGetAppointmentsParams {
 	o.SetTimeout(timeout)
 	return o
 }
 
-// SetTimeout adds the timeout to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetTimeout(timeout time.Duration) {
+// SetTimeout adds the timeout to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetTimeout(timeout time.Duration) {
 	o.timeout = timeout
 }
 
-// WithContext adds the context to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithContext(ctx context.Context) *SchedulerGetProviderAppointmentsParams {
+// WithContext adds the context to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithContext(ctx context.Context) *SchedulerGetAppointmentsParams {
 	o.SetContext(ctx)
 	return o
 }
 
-// SetContext adds the context to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetContext(ctx context.Context) {
+// SetContext adds the context to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetContext(ctx context.Context) {
 	o.Context = ctx
 }
 
-// WithHTTPClient adds the HTTPClient to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithHTTPClient(client *http.Client) *SchedulerGetProviderAppointmentsParams {
+// WithHTTPClient adds the HTTPClient to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithHTTPClient(client *http.Client) *SchedulerGetAppointmentsParams {
 	o.SetHTTPClient(client)
 	return o
 }
 
-// SetHTTPClient adds the HTTPClient to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetHTTPClient(client *http.Client) {
+// SetHTTPClient adds the HTTPClient to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithAppointmentActive adds the appointmentActive to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentActive(appointmentActive *bool) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentActive adds the appointmentActive to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentActive(appointmentActive *bool) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentActive(appointmentActive)
 	return o
 }
 
-// SetAppointmentActive adds the appointmentActive to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentActive(appointmentActive *bool) {
+// SetAppointmentActive adds the appointmentActive to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentActive(appointmentActive *bool) {
 	o.AppointmentActive = appointmentActive
 }
 
-// WithAppointmentCreatedAt adds the appointmentCreatedAt to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentCreatedAt(appointmentCreatedAt *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentCreatedAt adds the appointmentCreatedAt to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentCreatedAt(appointmentCreatedAt *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentCreatedAt(appointmentCreatedAt)
 	return o
 }
 
-// SetAppointmentCreatedAt adds the appointmentCreatedAt to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentCreatedAt(appointmentCreatedAt *string) {
+// SetAppointmentCreatedAt adds the appointmentCreatedAt to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentCreatedAt(appointmentCreatedAt *string) {
 	o.AppointmentCreatedAt = appointmentCreatedAt
 }
 
-// WithAppointmentCreatedBy adds the appointmentCreatedBy to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentCreatedBy(appointmentCreatedBy *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentCreatedBy adds the appointmentCreatedBy to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentCreatedBy(appointmentCreatedBy *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentCreatedBy(appointmentCreatedBy)
 	return o
 }
 
-// SetAppointmentCreatedBy adds the appointmentCreatedBy to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentCreatedBy(appointmentCreatedBy *string) {
+// SetAppointmentCreatedBy adds the appointmentCreatedBy to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentCreatedBy(appointmentCreatedBy *string) {
 	o.AppointmentCreatedBy = appointmentCreatedBy
 }
 
-// WithAppointmentDuration adds the appointmentDuration to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentDuration(appointmentDuration *int32) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentDuration adds the appointmentDuration to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentDuration(appointmentDuration *int32) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentDuration(appointmentDuration)
 	return o
 }
 
-// SetAppointmentDuration adds the appointmentDuration to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentDuration(appointmentDuration *int32) {
+// SetAppointmentDuration adds the appointmentDuration to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentDuration(appointmentDuration *int32) {
 	o.AppointmentDuration = appointmentDuration
 }
 
-// WithAppointmentEndAt adds the appointmentEndAt to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentEndAt(appointmentEndAt *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentEndAt adds the appointmentEndAt to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentEndAt(appointmentEndAt *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentEndAt(appointmentEndAt)
 	return o
 }
 
-// SetAppointmentEndAt adds the appointmentEndAt to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentEndAt(appointmentEndAt *string) {
+// SetAppointmentEndAt adds the appointmentEndAt to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentEndAt(appointmentEndAt *string) {
 	o.AppointmentEndAt = appointmentEndAt
 }
 
-// WithAppointmentID adds the appointmentID to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentID(appointmentID *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentID adds the appointmentID to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentID(appointmentID *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentID(appointmentID)
 	return o
 }
 
-// SetAppointmentID adds the appointmentId to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentID(appointmentID *string) {
+// SetAppointmentID adds the appointmentId to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentID(appointmentID *string) {
 	o.AppointmentID = appointmentID
 }
 
-// WithAppointmentInPerson adds the appointmentInPerson to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentInPerson(appointmentInPerson *bool) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentInPerson adds the appointmentInPerson to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentInPerson(appointmentInPerson *bool) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentInPerson(appointmentInPerson)
 	return o
 }
 
-// SetAppointmentInPerson adds the appointmentInPerson to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentInPerson(appointmentInPerson *bool) {
+// SetAppointmentInPerson adds the appointmentInPerson to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentInPerson(appointmentInPerson *bool) {
 	o.AppointmentInPerson = appointmentInPerson
 }
 
-// WithAppointmentOrganizationID adds the appointmentOrganizationID to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentOrganizationID(appointmentOrganizationID *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentOrganizationID adds the appointmentOrganizationID to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentOrganizationID(appointmentOrganizationID *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentOrganizationID(appointmentOrganizationID)
 	return o
 }
 
-// SetAppointmentOrganizationID adds the appointmentOrganizationId to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentOrganizationID(appointmentOrganizationID *string) {
+// SetAppointmentOrganizationID adds the appointmentOrganizationId to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentOrganizationID(appointmentOrganizationID *string) {
 	o.AppointmentOrganizationID = appointmentOrganizationID
 }
 
-// WithAppointmentPatientActive adds the appointmentPatientActive to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentPatientActive(appointmentPatientActive *bool) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentPatientActive adds the appointmentPatientActive to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentPatientActive(appointmentPatientActive *bool) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentPatientActive(appointmentPatientActive)
 	return o
 }
 
-// SetAppointmentPatientActive adds the appointmentPatientActive to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentPatientActive(appointmentPatientActive *bool) {
+// SetAppointmentPatientActive adds the appointmentPatientActive to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentPatientActive(appointmentPatientActive *bool) {
 	o.AppointmentPatientActive = appointmentPatientActive
 }
 
-// WithAppointmentPatientCreatedAt adds the appointmentPatientCreatedAt to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentPatientCreatedAt(appointmentPatientCreatedAt *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentPatientCreatedAt adds the appointmentPatientCreatedAt to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentPatientCreatedAt(appointmentPatientCreatedAt *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentPatientCreatedAt(appointmentPatientCreatedAt)
 	return o
 }
 
-// SetAppointmentPatientCreatedAt adds the appointmentPatientCreatedAt to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentPatientCreatedAt(appointmentPatientCreatedAt *string) {
+// SetAppointmentPatientCreatedAt adds the appointmentPatientCreatedAt to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentPatientCreatedAt(appointmentPatientCreatedAt *string) {
 	o.AppointmentPatientCreatedAt = appointmentPatientCreatedAt
 }
 
-// WithAppointmentPatientCreatedBy adds the appointmentPatientCreatedBy to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentPatientCreatedBy(appointmentPatientCreatedBy *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentPatientCreatedBy adds the appointmentPatientCreatedBy to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentPatientCreatedBy(appointmentPatientCreatedBy *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentPatientCreatedBy(appointmentPatientCreatedBy)
 	return o
 }
 
-// SetAppointmentPatientCreatedBy adds the appointmentPatientCreatedBy to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentPatientCreatedBy(appointmentPatientCreatedBy *string) {
+// SetAppointmentPatientCreatedBy adds the appointmentPatientCreatedBy to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentPatientCreatedBy(appointmentPatientCreatedBy *string) {
 	o.AppointmentPatientCreatedBy = appointmentPatientCreatedBy
 }
 
-// WithAppointmentPatientDataTypeURL adds the appointmentPatientDataTypeURL to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentPatientDataTypeURL(appointmentPatientDataTypeURL *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentPatientDataTypeURL adds the appointmentPatientDataTypeURL to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentPatientDataTypeURL(appointmentPatientDataTypeURL *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentPatientDataTypeURL(appointmentPatientDataTypeURL)
 	return o
 }
 
-// SetAppointmentPatientDataTypeURL adds the appointmentPatientDataTypeUrl to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentPatientDataTypeURL(appointmentPatientDataTypeURL *string) {
+// SetAppointmentPatientDataTypeURL adds the appointmentPatientDataTypeUrl to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentPatientDataTypeURL(appointmentPatientDataTypeURL *string) {
 	o.AppointmentPatientDataTypeURL = appointmentPatientDataTypeURL
 }
 
-// WithAppointmentPatientDataValue adds the appointmentPatientDataValue to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentPatientDataValue(appointmentPatientDataValue *strfmt.Base64) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentPatientDataValue adds the appointmentPatientDataValue to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentPatientDataValue(appointmentPatientDataValue *strfmt.Base64) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentPatientDataValue(appointmentPatientDataValue)
 	return o
 }
 
-// SetAppointmentPatientDataValue adds the appointmentPatientDataValue to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentPatientDataValue(appointmentPatientDataValue *strfmt.Base64) {
+// SetAppointmentPatientDataValue adds the appointmentPatientDataValue to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentPatientDataValue(appointmentPatientDataValue *strfmt.Base64) {
 	o.AppointmentPatientDataValue = appointmentPatientDataValue
 }
 
-// WithAppointmentPatientGivenName adds the appointmentPatientGivenName to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentPatientGivenName(appointmentPatientGivenName *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentPatientGivenName adds the appointmentPatientGivenName to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentPatientGivenName(appointmentPatientGivenName *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentPatientGivenName(appointmentPatientGivenName)
 	return o
 }
 
-// SetAppointmentPatientGivenName adds the appointmentPatientGivenName to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentPatientGivenName(appointmentPatientGivenName *string) {
+// SetAppointmentPatientGivenName adds the appointmentPatientGivenName to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentPatientGivenName(appointmentPatientGivenName *string) {
 	o.AppointmentPatientGivenName = appointmentPatientGivenName
 }
 
-// WithAppointmentPatientID adds the appointmentPatientID to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentPatientID(appointmentPatientID *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentPatientID adds the appointmentPatientID to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentPatientID(appointmentPatientID *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentPatientID(appointmentPatientID)
 	return o
 }
 
-// SetAppointmentPatientID adds the appointmentPatientId to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentPatientID(appointmentPatientID *string) {
+// SetAppointmentPatientID adds the appointmentPatientId to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentPatientID(appointmentPatientID *string) {
 	o.AppointmentPatientID = appointmentPatientID
 }
 
-// WithAppointmentPatientOrgID adds the appointmentPatientOrgID to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentPatientOrgID(appointmentPatientOrgID *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentPatientOrgID adds the appointmentPatientOrgID to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentPatientOrgID(appointmentPatientOrgID *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentPatientOrgID(appointmentPatientOrgID)
 	return o
 }
 
-// SetAppointmentPatientOrgID adds the appointmentPatientOrgId to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentPatientOrgID(appointmentPatientOrgID *string) {
+// SetAppointmentPatientOrgID adds the appointmentPatientOrgId to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentPatientOrgID(appointmentPatientOrgID *string) {
 	o.AppointmentPatientOrgID = appointmentPatientOrgID
 }
 
-// WithAppointmentPatientPrefix adds the appointmentPatientPrefix to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentPatientPrefix(appointmentPatientPrefix *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentPatientPrefix adds the appointmentPatientPrefix to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentPatientPrefix(appointmentPatientPrefix *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentPatientPrefix(appointmentPatientPrefix)
 	return o
 }
 
-// SetAppointmentPatientPrefix adds the appointmentPatientPrefix to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentPatientPrefix(appointmentPatientPrefix *string) {
+// SetAppointmentPatientPrefix adds the appointmentPatientPrefix to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentPatientPrefix(appointmentPatientPrefix *string) {
 	o.AppointmentPatientPrefix = appointmentPatientPrefix
 }
 
-// WithAppointmentPatientRefID adds the appointmentPatientRefID to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentPatientRefID(appointmentPatientRefID *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentPatientRefID adds the appointmentPatientRefID to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentPatientRefID(appointmentPatientRefID *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentPatientRefID(appointmentPatientRefID)
 	return o
 }
 
-// SetAppointmentPatientRefID adds the appointmentPatientRefId to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentPatientRefID(appointmentPatientRefID *string) {
+// SetAppointmentPatientRefID adds the appointmentPatientRefId to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentPatientRefID(appointmentPatientRefID *string) {
 	o.AppointmentPatientRefID = appointmentPatientRefID
 }
 
-// WithAppointmentPatientSuffix adds the appointmentPatientSuffix to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentPatientSuffix(appointmentPatientSuffix *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentPatientSuffix adds the appointmentPatientSuffix to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentPatientSuffix(appointmentPatientSuffix *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentPatientSuffix(appointmentPatientSuffix)
 	return o
 }
 
-// SetAppointmentPatientSuffix adds the appointmentPatientSuffix to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentPatientSuffix(appointmentPatientSuffix *string) {
+// SetAppointmentPatientSuffix adds the appointmentPatientSuffix to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentPatientSuffix(appointmentPatientSuffix *string) {
 	o.AppointmentPatientSuffix = appointmentPatientSuffix
 }
 
-// WithAppointmentPatientSurname adds the appointmentPatientSurname to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentPatientSurname(appointmentPatientSurname *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentPatientSurname adds the appointmentPatientSurname to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentPatientSurname(appointmentPatientSurname *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentPatientSurname(appointmentPatientSurname)
 	return o
 }
 
-// SetAppointmentPatientSurname adds the appointmentPatientSurname to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentPatientSurname(appointmentPatientSurname *string) {
+// SetAppointmentPatientSurname adds the appointmentPatientSurname to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentPatientSurname(appointmentPatientSurname *string) {
 	o.AppointmentPatientSurname = appointmentPatientSurname
 }
 
-// WithAppointmentPatientUpdatedAt adds the appointmentPatientUpdatedAt to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentPatientUpdatedAt(appointmentPatientUpdatedAt *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentPatientUpdatedAt adds the appointmentPatientUpdatedAt to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentPatientUpdatedAt(appointmentPatientUpdatedAt *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentPatientUpdatedAt(appointmentPatientUpdatedAt)
 	return o
 }
 
-// SetAppointmentPatientUpdatedAt adds the appointmentPatientUpdatedAt to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentPatientUpdatedAt(appointmentPatientUpdatedAt *string) {
+// SetAppointmentPatientUpdatedAt adds the appointmentPatientUpdatedAt to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentPatientUpdatedAt(appointmentPatientUpdatedAt *string) {
 	o.AppointmentPatientUpdatedAt = appointmentPatientUpdatedAt
 }
 
-// WithAppointmentPatientUpdatedBy adds the appointmentPatientUpdatedBy to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentPatientUpdatedBy(appointmentPatientUpdatedBy *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentPatientUpdatedBy adds the appointmentPatientUpdatedBy to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentPatientUpdatedBy(appointmentPatientUpdatedBy *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentPatientUpdatedBy(appointmentPatientUpdatedBy)
 	return o
 }
 
-// SetAppointmentPatientUpdatedBy adds the appointmentPatientUpdatedBy to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentPatientUpdatedBy(appointmentPatientUpdatedBy *string) {
+// SetAppointmentPatientUpdatedBy adds the appointmentPatientUpdatedBy to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentPatientUpdatedBy(appointmentPatientUpdatedBy *string) {
 	o.AppointmentPatientUpdatedBy = appointmentPatientUpdatedBy
 }
 
-// WithAppointmentProviderActive adds the appointmentProviderActive to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentProviderActive(appointmentProviderActive *bool) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentProviderActive adds the appointmentProviderActive to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentProviderActive(appointmentProviderActive *bool) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentProviderActive(appointmentProviderActive)
 	return o
 }
 
-// SetAppointmentProviderActive adds the appointmentProviderActive to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentProviderActive(appointmentProviderActive *bool) {
+// SetAppointmentProviderActive adds the appointmentProviderActive to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentProviderActive(appointmentProviderActive *bool) {
 	o.AppointmentProviderActive = appointmentProviderActive
 }
 
-// WithAppointmentProviderCreatedAt adds the appointmentProviderCreatedAt to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentProviderCreatedAt(appointmentProviderCreatedAt *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentProviderCreatedAt adds the appointmentProviderCreatedAt to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentProviderCreatedAt(appointmentProviderCreatedAt *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentProviderCreatedAt(appointmentProviderCreatedAt)
 	return o
 }
 
-// SetAppointmentProviderCreatedAt adds the appointmentProviderCreatedAt to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentProviderCreatedAt(appointmentProviderCreatedAt *string) {
+// SetAppointmentProviderCreatedAt adds the appointmentProviderCreatedAt to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentProviderCreatedAt(appointmentProviderCreatedAt *string) {
 	o.AppointmentProviderCreatedAt = appointmentProviderCreatedAt
 }
 
-// WithAppointmentProviderCreatedBy adds the appointmentProviderCreatedBy to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentProviderCreatedBy(appointmentProviderCreatedBy *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentProviderCreatedBy adds the appointmentProviderCreatedBy to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentProviderCreatedBy(appointmentProviderCreatedBy *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentProviderCreatedBy(appointmentProviderCreatedBy)
 	return o
 }
 
-// SetAppointmentProviderCreatedBy adds the appointmentProviderCreatedBy to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentProviderCreatedBy(appointmentProviderCreatedBy *string) {
+// SetAppointmentProviderCreatedBy adds the appointmentProviderCreatedBy to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentProviderCreatedBy(appointmentProviderCreatedBy *string) {
 	o.AppointmentProviderCreatedBy = appointmentProviderCreatedBy
 }
 
-// WithAppointmentProviderGender adds the appointmentProviderGender to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentProviderGender(appointmentProviderGender *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentProviderGender adds the appointmentProviderGender to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentProviderGender(appointmentProviderGender *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentProviderGender(appointmentProviderGender)
 	return o
 }
 
-// SetAppointmentProviderGender adds the appointmentProviderGender to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentProviderGender(appointmentProviderGender *string) {
+// SetAppointmentProviderGender adds the appointmentProviderGender to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentProviderGender(appointmentProviderGender *string) {
 	o.AppointmentProviderGender = appointmentProviderGender
 }
 
-// WithAppointmentProviderGivenName adds the appointmentProviderGivenName to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentProviderGivenName(appointmentProviderGivenName *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentProviderGivenName adds the appointmentProviderGivenName to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentProviderGivenName(appointmentProviderGivenName *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentProviderGivenName(appointmentProviderGivenName)
 	return o
 }
 
-// SetAppointmentProviderGivenName adds the appointmentProviderGivenName to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentProviderGivenName(appointmentProviderGivenName *string) {
+// SetAppointmentProviderGivenName adds the appointmentProviderGivenName to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentProviderGivenName(appointmentProviderGivenName *string) {
 	o.AppointmentProviderGivenName = appointmentProviderGivenName
 }
 
-// WithAppointmentProviderID adds the appointmentProviderID to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentProviderID(appointmentProviderID *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentProviderID adds the appointmentProviderID to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentProviderID(appointmentProviderID *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentProviderID(appointmentProviderID)
 	return o
 }
 
-// SetAppointmentProviderID adds the appointmentProviderId to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentProviderID(appointmentProviderID *string) {
+// SetAppointmentProviderID adds the appointmentProviderId to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentProviderID(appointmentProviderID *string) {
 	o.AppointmentProviderID = appointmentProviderID
 }
 
-// WithAppointmentProviderOrgID adds the appointmentProviderOrgID to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentProviderOrgID(appointmentProviderOrgID *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentProviderOrgID adds the appointmentProviderOrgID to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentProviderOrgID(appointmentProviderOrgID *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentProviderOrgID(appointmentProviderOrgID)
 	return o
 }
 
-// SetAppointmentProviderOrgID adds the appointmentProviderOrgId to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentProviderOrgID(appointmentProviderOrgID *string) {
+// SetAppointmentProviderOrgID adds the appointmentProviderOrgId to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentProviderOrgID(appointmentProviderOrgID *string) {
 	o.AppointmentProviderOrgID = appointmentProviderOrgID
 }
 
-// WithAppointmentProviderPrefix adds the appointmentProviderPrefix to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentProviderPrefix(appointmentProviderPrefix *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentProviderPrefix adds the appointmentProviderPrefix to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentProviderPrefix(appointmentProviderPrefix *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentProviderPrefix(appointmentProviderPrefix)
 	return o
 }
 
-// SetAppointmentProviderPrefix adds the appointmentProviderPrefix to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentProviderPrefix(appointmentProviderPrefix *string) {
+// SetAppointmentProviderPrefix adds the appointmentProviderPrefix to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentProviderPrefix(appointmentProviderPrefix *string) {
 	o.AppointmentProviderPrefix = appointmentProviderPrefix
 }
 
-// WithAppointmentProviderRefID adds the appointmentProviderRefID to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentProviderRefID(appointmentProviderRefID *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentProviderRefID adds the appointmentProviderRefID to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentProviderRefID(appointmentProviderRefID *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentProviderRefID(appointmentProviderRefID)
 	return o
 }
 
-// SetAppointmentProviderRefID adds the appointmentProviderRefId to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentProviderRefID(appointmentProviderRefID *string) {
+// SetAppointmentProviderRefID adds the appointmentProviderRefId to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentProviderRefID(appointmentProviderRefID *string) {
 	o.AppointmentProviderRefID = appointmentProviderRefID
 }
 
-// WithAppointmentProviderRole adds the appointmentProviderRole to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentProviderRole(appointmentProviderRole *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentProviderRole adds the appointmentProviderRole to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentProviderRole(appointmentProviderRole *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentProviderRole(appointmentProviderRole)
 	return o
 }
 
-// SetAppointmentProviderRole adds the appointmentProviderRole to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentProviderRole(appointmentProviderRole *string) {
+// SetAppointmentProviderRole adds the appointmentProviderRole to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentProviderRole(appointmentProviderRole *string) {
 	o.AppointmentProviderRole = appointmentProviderRole
 }
 
-// WithAppointmentProviderSuffix adds the appointmentProviderSuffix to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentProviderSuffix(appointmentProviderSuffix *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentProviderSuffix adds the appointmentProviderSuffix to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentProviderSuffix(appointmentProviderSuffix *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentProviderSuffix(appointmentProviderSuffix)
 	return o
 }
 
-// SetAppointmentProviderSuffix adds the appointmentProviderSuffix to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentProviderSuffix(appointmentProviderSuffix *string) {
+// SetAppointmentProviderSuffix adds the appointmentProviderSuffix to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentProviderSuffix(appointmentProviderSuffix *string) {
 	o.AppointmentProviderSuffix = appointmentProviderSuffix
 }
 
-// WithAppointmentProviderSurname adds the appointmentProviderSurname to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentProviderSurname(appointmentProviderSurname *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentProviderSurname adds the appointmentProviderSurname to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentProviderSurname(appointmentProviderSurname *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentProviderSurname(appointmentProviderSurname)
 	return o
 }
 
-// SetAppointmentProviderSurname adds the appointmentProviderSurname to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentProviderSurname(appointmentProviderSurname *string) {
+// SetAppointmentProviderSurname adds the appointmentProviderSurname to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentProviderSurname(appointmentProviderSurname *string) {
 	o.AppointmentProviderSurname = appointmentProviderSurname
 }
 
-// WithAppointmentProviderTimezoneAbbreviation adds the appointmentProviderTimezoneAbbreviation to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentProviderTimezoneAbbreviation(appointmentProviderTimezoneAbbreviation *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentProviderTimezoneAbbreviation adds the appointmentProviderTimezoneAbbreviation to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentProviderTimezoneAbbreviation(appointmentProviderTimezoneAbbreviation *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentProviderTimezoneAbbreviation(appointmentProviderTimezoneAbbreviation)
 	return o
 }
 
-// SetAppointmentProviderTimezoneAbbreviation adds the appointmentProviderTimezoneAbbreviation to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentProviderTimezoneAbbreviation(appointmentProviderTimezoneAbbreviation *string) {
+// SetAppointmentProviderTimezoneAbbreviation adds the appointmentProviderTimezoneAbbreviation to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentProviderTimezoneAbbreviation(appointmentProviderTimezoneAbbreviation *string) {
 	o.AppointmentProviderTimezoneAbbreviation = appointmentProviderTimezoneAbbreviation
 }
 
-// WithAppointmentProviderTimezoneDst adds the appointmentProviderTimezoneDst to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentProviderTimezoneDst(appointmentProviderTimezoneDst *bool) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentProviderTimezoneDst adds the appointmentProviderTimezoneDst to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentProviderTimezoneDst(appointmentProviderTimezoneDst *bool) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentProviderTimezoneDst(appointmentProviderTimezoneDst)
 	return o
 }
 
-// SetAppointmentProviderTimezoneDst adds the appointmentProviderTimezoneDst to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentProviderTimezoneDst(appointmentProviderTimezoneDst *bool) {
+// SetAppointmentProviderTimezoneDst adds the appointmentProviderTimezoneDst to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentProviderTimezoneDst(appointmentProviderTimezoneDst *bool) {
 	o.AppointmentProviderTimezoneDst = appointmentProviderTimezoneDst
 }
 
-// WithAppointmentProviderTimezoneGmtOffset adds the appointmentProviderTimezoneGmtOffset to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentProviderTimezoneGmtOffset(appointmentProviderTimezoneGmtOffset *int32) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentProviderTimezoneGmtOffset adds the appointmentProviderTimezoneGmtOffset to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentProviderTimezoneGmtOffset(appointmentProviderTimezoneGmtOffset *int32) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentProviderTimezoneGmtOffset(appointmentProviderTimezoneGmtOffset)
 	return o
 }
 
-// SetAppointmentProviderTimezoneGmtOffset adds the appointmentProviderTimezoneGmtOffset to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentProviderTimezoneGmtOffset(appointmentProviderTimezoneGmtOffset *int32) {
+// SetAppointmentProviderTimezoneGmtOffset adds the appointmentProviderTimezoneGmtOffset to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentProviderTimezoneGmtOffset(appointmentProviderTimezoneGmtOffset *int32) {
 	o.AppointmentProviderTimezoneGmtOffset = appointmentProviderTimezoneGmtOffset
 }
 
-// WithAppointmentProviderTimezoneID adds the appointmentProviderTimezoneID to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentProviderTimezoneID(appointmentProviderTimezoneID *int32) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentProviderTimezoneID adds the appointmentProviderTimezoneID to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentProviderTimezoneID(appointmentProviderTimezoneID *int32) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentProviderTimezoneID(appointmentProviderTimezoneID)
 	return o
 }
 
-// SetAppointmentProviderTimezoneID adds the appointmentProviderTimezoneId to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentProviderTimezoneID(appointmentProviderTimezoneID *int32) {
+// SetAppointmentProviderTimezoneID adds the appointmentProviderTimezoneId to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentProviderTimezoneID(appointmentProviderTimezoneID *int32) {
 	o.AppointmentProviderTimezoneID = appointmentProviderTimezoneID
 }
 
-// WithAppointmentProviderTimezoneTimeStart adds the appointmentProviderTimezoneTimeStart to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentProviderTimezoneTimeStart(appointmentProviderTimezoneTimeStart *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentProviderTimezoneTimeStart adds the appointmentProviderTimezoneTimeStart to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentProviderTimezoneTimeStart(appointmentProviderTimezoneTimeStart *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentProviderTimezoneTimeStart(appointmentProviderTimezoneTimeStart)
 	return o
 }
 
-// SetAppointmentProviderTimezoneTimeStart adds the appointmentProviderTimezoneTimeStart to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentProviderTimezoneTimeStart(appointmentProviderTimezoneTimeStart *string) {
+// SetAppointmentProviderTimezoneTimeStart adds the appointmentProviderTimezoneTimeStart to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentProviderTimezoneTimeStart(appointmentProviderTimezoneTimeStart *string) {
 	o.AppointmentProviderTimezoneTimeStart = appointmentProviderTimezoneTimeStart
 }
 
-// WithAppointmentProviderTimezoneZoneCountryCode adds the appointmentProviderTimezoneZoneCountryCode to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentProviderTimezoneZoneCountryCode(appointmentProviderTimezoneZoneCountryCode *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentProviderTimezoneZoneCountryCode adds the appointmentProviderTimezoneZoneCountryCode to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentProviderTimezoneZoneCountryCode(appointmentProviderTimezoneZoneCountryCode *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentProviderTimezoneZoneCountryCode(appointmentProviderTimezoneZoneCountryCode)
 	return o
 }
 
-// SetAppointmentProviderTimezoneZoneCountryCode adds the appointmentProviderTimezoneZoneCountryCode to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentProviderTimezoneZoneCountryCode(appointmentProviderTimezoneZoneCountryCode *string) {
+// SetAppointmentProviderTimezoneZoneCountryCode adds the appointmentProviderTimezoneZoneCountryCode to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentProviderTimezoneZoneCountryCode(appointmentProviderTimezoneZoneCountryCode *string) {
 	o.AppointmentProviderTimezoneZoneCountryCode = appointmentProviderTimezoneZoneCountryCode
 }
 
-// WithAppointmentProviderTimezoneZoneID adds the appointmentProviderTimezoneZoneID to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentProviderTimezoneZoneID(appointmentProviderTimezoneZoneID *int32) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentProviderTimezoneZoneID adds the appointmentProviderTimezoneZoneID to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentProviderTimezoneZoneID(appointmentProviderTimezoneZoneID *int32) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentProviderTimezoneZoneID(appointmentProviderTimezoneZoneID)
 	return o
 }
 
-// SetAppointmentProviderTimezoneZoneID adds the appointmentProviderTimezoneZoneId to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentProviderTimezoneZoneID(appointmentProviderTimezoneZoneID *int32) {
+// SetAppointmentProviderTimezoneZoneID adds the appointmentProviderTimezoneZoneId to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentProviderTimezoneZoneID(appointmentProviderTimezoneZoneID *int32) {
 	o.AppointmentProviderTimezoneZoneID = appointmentProviderTimezoneZoneID
 }
 
-// WithAppointmentProviderTimezoneZoneName adds the appointmentProviderTimezoneZoneName to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentProviderTimezoneZoneName(appointmentProviderTimezoneZoneName *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentProviderTimezoneZoneName adds the appointmentProviderTimezoneZoneName to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentProviderTimezoneZoneName(appointmentProviderTimezoneZoneName *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentProviderTimezoneZoneName(appointmentProviderTimezoneZoneName)
 	return o
 }
 
-// SetAppointmentProviderTimezoneZoneName adds the appointmentProviderTimezoneZoneName to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentProviderTimezoneZoneName(appointmentProviderTimezoneZoneName *string) {
+// SetAppointmentProviderTimezoneZoneName adds the appointmentProviderTimezoneZoneName to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentProviderTimezoneZoneName(appointmentProviderTimezoneZoneName *string) {
 	o.AppointmentProviderTimezoneZoneName = appointmentProviderTimezoneZoneName
 }
 
-// WithAppointmentProviderUpdatedAt adds the appointmentProviderUpdatedAt to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentProviderUpdatedAt(appointmentProviderUpdatedAt *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentProviderUpdatedAt adds the appointmentProviderUpdatedAt to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentProviderUpdatedAt(appointmentProviderUpdatedAt *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentProviderUpdatedAt(appointmentProviderUpdatedAt)
 	return o
 }
 
-// SetAppointmentProviderUpdatedAt adds the appointmentProviderUpdatedAt to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentProviderUpdatedAt(appointmentProviderUpdatedAt *string) {
+// SetAppointmentProviderUpdatedAt adds the appointmentProviderUpdatedAt to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentProviderUpdatedAt(appointmentProviderUpdatedAt *string) {
 	o.AppointmentProviderUpdatedAt = appointmentProviderUpdatedAt
 }
 
-// WithAppointmentProviderUpdatedBy adds the appointmentProviderUpdatedBy to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentProviderUpdatedBy(appointmentProviderUpdatedBy *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentProviderUpdatedBy adds the appointmentProviderUpdatedBy to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentProviderUpdatedBy(appointmentProviderUpdatedBy *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentProviderUpdatedBy(appointmentProviderUpdatedBy)
 	return o
 }
 
-// SetAppointmentProviderUpdatedBy adds the appointmentProviderUpdatedBy to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentProviderUpdatedBy(appointmentProviderUpdatedBy *string) {
+// SetAppointmentProviderUpdatedBy adds the appointmentProviderUpdatedBy to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentProviderUpdatedBy(appointmentProviderUpdatedBy *string) {
 	o.AppointmentProviderUpdatedBy = appointmentProviderUpdatedBy
 }
 
-// WithAppointmentRefID adds the appointmentRefID to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentRefID(appointmentRefID *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentRefID adds the appointmentRefID to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentRefID(appointmentRefID *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentRefID(appointmentRefID)
 	return o
 }
 
-// SetAppointmentRefID adds the appointmentRefId to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentRefID(appointmentRefID *string) {
+// SetAppointmentRefID adds the appointmentRefId to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentRefID(appointmentRefID *string) {
 	o.AppointmentRefID = appointmentRefID
 }
 
-// WithAppointmentScheduleBlockID adds the appointmentScheduleBlockID to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentScheduleBlockID(appointmentScheduleBlockID *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentScheduleBlockID adds the appointmentScheduleBlockID to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentScheduleBlockID(appointmentScheduleBlockID *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentScheduleBlockID(appointmentScheduleBlockID)
 	return o
 }
 
-// SetAppointmentScheduleBlockID adds the appointmentScheduleBlockId to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentScheduleBlockID(appointmentScheduleBlockID *string) {
+// SetAppointmentScheduleBlockID adds the appointmentScheduleBlockId to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentScheduleBlockID(appointmentScheduleBlockID *string) {
 	o.AppointmentScheduleBlockID = appointmentScheduleBlockID
 }
 
-// WithAppointmentScheduleID adds the appointmentScheduleID to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentScheduleID(appointmentScheduleID *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentScheduleID adds the appointmentScheduleID to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentScheduleID(appointmentScheduleID *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentScheduleID(appointmentScheduleID)
 	return o
 }
 
-// SetAppointmentScheduleID adds the appointmentScheduleId to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentScheduleID(appointmentScheduleID *string) {
+// SetAppointmentScheduleID adds the appointmentScheduleId to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentScheduleID(appointmentScheduleID *string) {
 	o.AppointmentScheduleID = appointmentScheduleID
 }
 
-// WithAppointmentServiceActive adds the appointmentServiceActive to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentServiceActive(appointmentServiceActive *bool) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentServiceActive adds the appointmentServiceActive to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentServiceActive(appointmentServiceActive *bool) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentServiceActive(appointmentServiceActive)
 	return o
 }
 
-// SetAppointmentServiceActive adds the appointmentServiceActive to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentServiceActive(appointmentServiceActive *bool) {
+// SetAppointmentServiceActive adds the appointmentServiceActive to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentServiceActive(appointmentServiceActive *bool) {
 	o.AppointmentServiceActive = appointmentServiceActive
 }
 
-// WithAppointmentServiceCreatedAt adds the appointmentServiceCreatedAt to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentServiceCreatedAt(appointmentServiceCreatedAt *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentServiceCreatedAt adds the appointmentServiceCreatedAt to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentServiceCreatedAt(appointmentServiceCreatedAt *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentServiceCreatedAt(appointmentServiceCreatedAt)
 	return o
 }
 
-// SetAppointmentServiceCreatedAt adds the appointmentServiceCreatedAt to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentServiceCreatedAt(appointmentServiceCreatedAt *string) {
+// SetAppointmentServiceCreatedAt adds the appointmentServiceCreatedAt to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentServiceCreatedAt(appointmentServiceCreatedAt *string) {
 	o.AppointmentServiceCreatedAt = appointmentServiceCreatedAt
 }
 
-// WithAppointmentServiceCreatedBy adds the appointmentServiceCreatedBy to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentServiceCreatedBy(appointmentServiceCreatedBy *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentServiceCreatedBy adds the appointmentServiceCreatedBy to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentServiceCreatedBy(appointmentServiceCreatedBy *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentServiceCreatedBy(appointmentServiceCreatedBy)
 	return o
 }
 
-// SetAppointmentServiceCreatedBy adds the appointmentServiceCreatedBy to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentServiceCreatedBy(appointmentServiceCreatedBy *string) {
+// SetAppointmentServiceCreatedBy adds the appointmentServiceCreatedBy to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentServiceCreatedBy(appointmentServiceCreatedBy *string) {
 	o.AppointmentServiceCreatedBy = appointmentServiceCreatedBy
 }
 
-// WithAppointmentServiceDescription adds the appointmentServiceDescription to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentServiceDescription(appointmentServiceDescription *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentServiceDescription adds the appointmentServiceDescription to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentServiceDescription(appointmentServiceDescription *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentServiceDescription(appointmentServiceDescription)
 	return o
 }
 
-// SetAppointmentServiceDescription adds the appointmentServiceDescription to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentServiceDescription(appointmentServiceDescription *string) {
+// SetAppointmentServiceDescription adds the appointmentServiceDescription to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentServiceDescription(appointmentServiceDescription *string) {
 	o.AppointmentServiceDescription = appointmentServiceDescription
 }
 
-// WithAppointmentServiceID adds the appointmentServiceID to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentServiceID(appointmentServiceID *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentServiceID adds the appointmentServiceID to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentServiceID(appointmentServiceID *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentServiceID(appointmentServiceID)
 	return o
 }
 
-// SetAppointmentServiceID adds the appointmentServiceId to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentServiceID(appointmentServiceID *string) {
+// SetAppointmentServiceID adds the appointmentServiceId to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentServiceID(appointmentServiceID *string) {
 	o.AppointmentServiceID = appointmentServiceID
 }
 
-// WithAppointmentServiceName adds the appointmentServiceName to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentServiceName(appointmentServiceName *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentServiceName adds the appointmentServiceName to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentServiceName(appointmentServiceName *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentServiceName(appointmentServiceName)
 	return o
 }
 
-// SetAppointmentServiceName adds the appointmentServiceName to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentServiceName(appointmentServiceName *string) {
+// SetAppointmentServiceName adds the appointmentServiceName to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentServiceName(appointmentServiceName *string) {
 	o.AppointmentServiceName = appointmentServiceName
 }
 
-// WithAppointmentServiceOrgID adds the appointmentServiceOrgID to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentServiceOrgID(appointmentServiceOrgID *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentServiceOrgID adds the appointmentServiceOrgID to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentServiceOrgID(appointmentServiceOrgID *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentServiceOrgID(appointmentServiceOrgID)
 	return o
 }
 
-// SetAppointmentServiceOrgID adds the appointmentServiceOrgId to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentServiceOrgID(appointmentServiceOrgID *string) {
+// SetAppointmentServiceOrgID adds the appointmentServiceOrgId to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentServiceOrgID(appointmentServiceOrgID *string) {
 	o.AppointmentServiceOrgID = appointmentServiceOrgID
 }
 
-// WithAppointmentServiceRefID adds the appointmentServiceRefID to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentServiceRefID(appointmentServiceRefID *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentServiceRefID adds the appointmentServiceRefID to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentServiceRefID(appointmentServiceRefID *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentServiceRefID(appointmentServiceRefID)
 	return o
 }
 
-// SetAppointmentServiceRefID adds the appointmentServiceRefId to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentServiceRefID(appointmentServiceRefID *string) {
+// SetAppointmentServiceRefID adds the appointmentServiceRefId to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentServiceRefID(appointmentServiceRefID *string) {
 	o.AppointmentServiceRefID = appointmentServiceRefID
 }
 
-// WithAppointmentServiceUpdatedAt adds the appointmentServiceUpdatedAt to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentServiceUpdatedAt(appointmentServiceUpdatedAt *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentServiceUpdatedAt adds the appointmentServiceUpdatedAt to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentServiceUpdatedAt(appointmentServiceUpdatedAt *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentServiceUpdatedAt(appointmentServiceUpdatedAt)
 	return o
 }
 
-// SetAppointmentServiceUpdatedAt adds the appointmentServiceUpdatedAt to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentServiceUpdatedAt(appointmentServiceUpdatedAt *string) {
+// SetAppointmentServiceUpdatedAt adds the appointmentServiceUpdatedAt to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentServiceUpdatedAt(appointmentServiceUpdatedAt *string) {
 	o.AppointmentServiceUpdatedAt = appointmentServiceUpdatedAt
 }
 
-// WithAppointmentServiceUpdatedBy adds the appointmentServiceUpdatedBy to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentServiceUpdatedBy(appointmentServiceUpdatedBy *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentServiceUpdatedBy adds the appointmentServiceUpdatedBy to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentServiceUpdatedBy(appointmentServiceUpdatedBy *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentServiceUpdatedBy(appointmentServiceUpdatedBy)
 	return o
 }
 
-// SetAppointmentServiceUpdatedBy adds the appointmentServiceUpdatedBy to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentServiceUpdatedBy(appointmentServiceUpdatedBy *string) {
+// SetAppointmentServiceUpdatedBy adds the appointmentServiceUpdatedBy to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentServiceUpdatedBy(appointmentServiceUpdatedBy *string) {
 	o.AppointmentServiceUpdatedBy = appointmentServiceUpdatedBy
 }
 
-// WithAppointmentStartAt adds the appointmentStartAt to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentStartAt(appointmentStartAt *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentStartAt adds the appointmentStartAt to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentStartAt(appointmentStartAt *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentStartAt(appointmentStartAt)
 	return o
 }
 
-// SetAppointmentStartAt adds the appointmentStartAt to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentStartAt(appointmentStartAt *string) {
+// SetAppointmentStartAt adds the appointmentStartAt to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentStartAt(appointmentStartAt *string) {
 	o.AppointmentStartAt = appointmentStartAt
 }
 
-// WithAppointmentType adds the appointmentType to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentType(appointmentType *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentType adds the appointmentType to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentType(appointmentType *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentType(appointmentType)
 	return o
 }
 
-// SetAppointmentType adds the appointmentType to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentType(appointmentType *string) {
+// SetAppointmentType adds the appointmentType to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentType(appointmentType *string) {
 	o.AppointmentType = appointmentType
 }
 
-// WithAppointmentUpdatedAt adds the appointmentUpdatedAt to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentUpdatedAt(appointmentUpdatedAt *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentUpdatedAt adds the appointmentUpdatedAt to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentUpdatedAt(appointmentUpdatedAt *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentUpdatedAt(appointmentUpdatedAt)
 	return o
 }
 
-// SetAppointmentUpdatedAt adds the appointmentUpdatedAt to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentUpdatedAt(appointmentUpdatedAt *string) {
+// SetAppointmentUpdatedAt adds the appointmentUpdatedAt to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentUpdatedAt(appointmentUpdatedAt *string) {
 	o.AppointmentUpdatedAt = appointmentUpdatedAt
 }
 
-// WithAppointmentUpdatedBy adds the appointmentUpdatedBy to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithAppointmentUpdatedBy(appointmentUpdatedBy *string) *SchedulerGetProviderAppointmentsParams {
+// WithAppointmentUpdatedBy adds the appointmentUpdatedBy to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithAppointmentUpdatedBy(appointmentUpdatedBy *string) *SchedulerGetAppointmentsParams {
 	o.SetAppointmentUpdatedBy(appointmentUpdatedBy)
 	return o
 }
 
-// SetAppointmentUpdatedBy adds the appointmentUpdatedBy to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetAppointmentUpdatedBy(appointmentUpdatedBy *string) {
+// SetAppointmentUpdatedBy adds the appointmentUpdatedBy to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetAppointmentUpdatedBy(appointmentUpdatedBy *string) {
 	o.AppointmentUpdatedBy = appointmentUpdatedBy
 }
 
-// WithID adds the id to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithID(id *string) *SchedulerGetProviderAppointmentsParams {
+// WithID adds the id to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithID(id *string) *SchedulerGetAppointmentsParams {
 	o.SetID(id)
 	return o
 }
 
-// SetID adds the id to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetID(id *string) {
+// SetID adds the id to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetID(id *string) {
 	o.ID = id
 }
 
-// WithIds adds the ids to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithIds(ids []int32) *SchedulerGetProviderAppointmentsParams {
+// WithIds adds the ids to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithIds(ids []int32) *SchedulerGetAppointmentsParams {
 	o.SetIds(ids)
 	return o
 }
 
-// SetIds adds the ids to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetIds(ids []int32) {
+// SetIds adds the ids to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetIds(ids []int32) {
 	o.Ids = ids
 }
 
-// WithLimit adds the limit to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithLimit(limit *int32) *SchedulerGetProviderAppointmentsParams {
+// WithLimit adds the limit to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithLimit(limit *int32) *SchedulerGetAppointmentsParams {
 	o.SetLimit(limit)
 	return o
 }
 
-// SetLimit adds the limit to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetLimit(limit *int32) {
+// SetLimit adds the limit to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetLimit(limit *int32) {
 	o.Limit = limit
 }
 
-// WithOffset adds the offset to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithOffset(offset *int32) *SchedulerGetProviderAppointmentsParams {
+// WithOffset adds the offset to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithOffset(offset *int32) *SchedulerGetAppointmentsParams {
 	o.SetOffset(offset)
 	return o
 }
 
-// SetOffset adds the offset to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetOffset(offset *int32) {
+// SetOffset adds the offset to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetOffset(offset *int32) {
 	o.Offset = offset
 }
 
-// WithOrganizationID adds the organizationID to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithOrganizationID(organizationID *string) *SchedulerGetProviderAppointmentsParams {
+// WithOrganizationID adds the organizationID to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithOrganizationID(organizationID *string) *SchedulerGetAppointmentsParams {
 	o.SetOrganizationID(organizationID)
 	return o
 }
 
-// SetOrganizationID adds the organizationId to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetOrganizationID(organizationID *string) {
+// SetOrganizationID adds the organizationId to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetOrganizationID(organizationID *string) {
 	o.OrganizationID = organizationID
 }
 
-// WithPatientID adds the patientID to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithPatientID(patientID *string) *SchedulerGetProviderAppointmentsParams {
+// WithPatientID adds the patientID to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithPatientID(patientID *string) *SchedulerGetAppointmentsParams {
 	o.SetPatientID(patientID)
 	return o
 }
 
-// SetPatientID adds the patientId to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetPatientID(patientID *string) {
+// SetPatientID adds the patientId to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetPatientID(patientID *string) {
 	o.PatientID = patientID
 }
 
-// WithPatientRefID adds the patientRefID to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithPatientRefID(patientRefID *string) *SchedulerGetProviderAppointmentsParams {
+// WithPatientRefID adds the patientRefID to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithPatientRefID(patientRefID *string) *SchedulerGetAppointmentsParams {
 	o.SetPatientRefID(patientRefID)
 	return o
 }
 
-// SetPatientRefID adds the patientRefId to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetPatientRefID(patientRefID *string) {
+// SetPatientRefID adds the patientRefId to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetPatientRefID(patientRefID *string) {
 	o.PatientRefID = patientRefID
 }
 
-// WithProviderID adds the providerID to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithProviderID(providerID string) *SchedulerGetProviderAppointmentsParams {
+// WithProviderID adds the providerID to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithProviderID(providerID *string) *SchedulerGetAppointmentsParams {
 	o.SetProviderID(providerID)
 	return o
 }
 
-// SetProviderID adds the providerId to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetProviderID(providerID string) {
+// SetProviderID adds the providerId to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetProviderID(providerID *string) {
 	o.ProviderID = providerID
 }
 
-// WithProviderRefID adds the providerRefID to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithProviderRefID(providerRefID *string) *SchedulerGetProviderAppointmentsParams {
+// WithProviderRefID adds the providerRefID to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithProviderRefID(providerRefID *string) *SchedulerGetAppointmentsParams {
 	o.SetProviderRefID(providerRefID)
 	return o
 }
 
-// SetProviderRefID adds the providerRefId to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetProviderRefID(providerRefID *string) {
+// SetProviderRefID adds the providerRefId to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetProviderRefID(providerRefID *string) {
 	o.ProviderRefID = providerRefID
 }
 
-// WithRangeFrom adds the rangeFrom to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithRangeFrom(rangeFrom *string) *SchedulerGetProviderAppointmentsParams {
+// WithRangeFrom adds the rangeFrom to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithRangeFrom(rangeFrom *string) *SchedulerGetAppointmentsParams {
 	o.SetRangeFrom(rangeFrom)
 	return o
 }
 
-// SetRangeFrom adds the rangeFrom to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetRangeFrom(rangeFrom *string) {
+// SetRangeFrom adds the rangeFrom to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetRangeFrom(rangeFrom *string) {
 	o.RangeFrom = rangeFrom
 }
 
-// WithRangeTo adds the rangeTo to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) WithRangeTo(rangeTo *string) *SchedulerGetProviderAppointmentsParams {
+// WithRangeTo adds the rangeTo to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) WithRangeTo(rangeTo *string) *SchedulerGetAppointmentsParams {
 	o.SetRangeTo(rangeTo)
 	return o
 }
 
-// SetRangeTo adds the rangeTo to the scheduler get provider appointments params
-func (o *SchedulerGetProviderAppointmentsParams) SetRangeTo(rangeTo *string) {
+// SetRangeTo adds the rangeTo to the scheduler get appointments params
+func (o *SchedulerGetAppointmentsParams) SetRangeTo(rangeTo *string) {
 	o.RangeTo = rangeTo
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *SchedulerGetProviderAppointmentsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
+func (o *SchedulerGetAppointmentsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	if err := r.SetTimeout(o.timeout); err != nil {
 		return err
@@ -2342,9 +2342,21 @@ func (o *SchedulerGetProviderAppointmentsParams) WriteToRequest(r runtime.Client
 		}
 	}
 
-	// path param provider_id
-	if err := r.SetPathParam("provider_id", o.ProviderID); err != nil {
-		return err
+	if o.ProviderID != nil {
+
+		// query param provider_id
+		var qrProviderID string
+
+		if o.ProviderID != nil {
+			qrProviderID = *o.ProviderID
+		}
+		qProviderID := qrProviderID
+		if qProviderID != "" {
+
+			if err := r.SetQueryParam("provider_id", qProviderID); err != nil {
+				return err
+			}
+		}
 	}
 
 	if o.ProviderRefID != nil {
@@ -2404,8 +2416,8 @@ func (o *SchedulerGetProviderAppointmentsParams) WriteToRequest(r runtime.Client
 	return nil
 }
 
-// bindParamSchedulerGetProviderAppointments binds the parameter ids
-func (o *SchedulerGetProviderAppointmentsParams) bindParamIds(formats strfmt.Registry) []string {
+// bindParamSchedulerGetAppointments binds the parameter ids
+func (o *SchedulerGetAppointmentsParams) bindParamIds(formats strfmt.Registry) []string {
 	idsIR := o.Ids
 
 	var idsIC []string

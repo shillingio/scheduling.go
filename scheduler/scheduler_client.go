@@ -34,9 +34,13 @@ type ClientService interface {
 
 	SchedulerDeleteAppointment(params *SchedulerDeleteAppointmentParams, opts ...ClientOption) (*SchedulerDeleteAppointmentOK, error)
 
+	SchedulerGetAppointments(params *SchedulerGetAppointmentsParams, opts ...ClientOption) (*SchedulerGetAppointmentsOK, error)
+
 	SchedulerGetCountries(params *SchedulerGetCountriesParams, opts ...ClientOption) (*SchedulerGetCountriesOK, error)
 
 	SchedulerGetPatient(params *SchedulerGetPatientParams, opts ...ClientOption) (*SchedulerGetPatientOK, error)
+
+	SchedulerGetPatientAppointments(params *SchedulerGetPatientAppointmentsParams, opts ...ClientOption) (*SchedulerGetPatientAppointmentsOK, error)
 
 	SchedulerGetPatients(params *SchedulerGetPatientsParams, opts ...ClientOption) (*SchedulerGetPatientsOK, error)
 
@@ -177,6 +181,43 @@ func (a *Client) SchedulerDeleteAppointment(params *SchedulerDeleteAppointmentPa
 }
 
 /*
+  SchedulerGetAppointments scheduler get appointments API
+*/
+func (a *Client) SchedulerGetAppointments(params *SchedulerGetAppointmentsParams, opts ...ClientOption) (*SchedulerGetAppointmentsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSchedulerGetAppointmentsParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "Scheduler_GetAppointments",
+		Method:             "GET",
+		PathPattern:        "/v1/appointments",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SchedulerGetAppointmentsReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*SchedulerGetAppointmentsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*SchedulerGetAppointmentsDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+}
+
+/*
   SchedulerGetCountries scheduler get countries API
 */
 func (a *Client) SchedulerGetCountries(params *SchedulerGetCountriesParams, opts ...ClientOption) (*SchedulerGetCountriesOK, error) {
@@ -247,6 +288,43 @@ func (a *Client) SchedulerGetPatient(params *SchedulerGetPatientParams, opts ...
 	}
 	// unexpected success response
 	unexpectedSuccess := result.(*SchedulerGetPatientDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+}
+
+/*
+  SchedulerGetPatientAppointments scheduler get patient appointments API
+*/
+func (a *Client) SchedulerGetPatientAppointments(params *SchedulerGetPatientAppointmentsParams, opts ...ClientOption) (*SchedulerGetPatientAppointmentsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSchedulerGetPatientAppointmentsParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "Scheduler_GetPatientAppointments",
+		Method:             "GET",
+		PathPattern:        "/v1/patients/{patient_id}/appointments",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SchedulerGetPatientAppointmentsReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*SchedulerGetPatientAppointmentsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*SchedulerGetPatientAppointmentsDefault)
 	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 

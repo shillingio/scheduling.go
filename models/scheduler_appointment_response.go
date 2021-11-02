@@ -31,6 +31,12 @@ type SchedulerAppointmentResponse struct {
 	// offset
 	Offset int32 `json:"offset,omitempty"`
 
+	// patient
+	Patient *SchedulingPatient `json:"patient,omitempty"`
+
+	// provider
+	Provider *SchedulingProvider `json:"provider,omitempty"`
+
 	// total
 	Total int32 `json:"total,omitempty"`
 }
@@ -44,6 +50,14 @@ func (m *SchedulerAppointmentResponse) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateAppointments(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePatient(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateProvider(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -98,6 +112,44 @@ func (m *SchedulerAppointmentResponse) validateAppointments(formats strfmt.Regis
 	return nil
 }
 
+func (m *SchedulerAppointmentResponse) validatePatient(formats strfmt.Registry) error {
+	if swag.IsZero(m.Patient) { // not required
+		return nil
+	}
+
+	if m.Patient != nil {
+		if err := m.Patient.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("patient")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("patient")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *SchedulerAppointmentResponse) validateProvider(formats strfmt.Registry) error {
+	if swag.IsZero(m.Provider) { // not required
+		return nil
+	}
+
+	if m.Provider != nil {
+		if err := m.Provider.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("provider")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("provider")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 // ContextValidate validate this scheduler appointment response based on the context it is used
 func (m *SchedulerAppointmentResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
@@ -107,6 +159,14 @@ func (m *SchedulerAppointmentResponse) ContextValidate(ctx context.Context, form
 	}
 
 	if err := m.contextValidateAppointments(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePatient(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateProvider(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -147,6 +207,38 @@ func (m *SchedulerAppointmentResponse) contextValidateAppointments(ctx context.C
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *SchedulerAppointmentResponse) contextValidatePatient(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Patient != nil {
+		if err := m.Patient.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("patient")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("patient")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *SchedulerAppointmentResponse) contextValidateProvider(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Provider != nil {
+		if err := m.Provider.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("provider")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("provider")
+			}
+			return err
+		}
 	}
 
 	return nil
