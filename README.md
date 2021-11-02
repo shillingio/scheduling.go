@@ -81,16 +81,22 @@ go get github.com/shillingio/scheduling.go
 
 ##### Create an Appointment
 ```go
+  var (
+    apptID       = "<appointment ID from the availability search results>"
+    refID        = "<your internal reference ID>"
+    patientRefID = "<your internal patient reference ID>"
+  )
+  
   ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
   defer cancel()
 
   resp, err := api.Client.Scheduler.SchedulerCreateAppointment(&scheduler.SchedulerCreateAppointmentParams{
     Body: &models.SchedulingAppointment{
-      ID:    "<appointment ID from the availability search results>", // shilling reservation UUID
-      RefID: "<your internal reference ID>",                         // your reference ID
+      ID:    apptID, // shilling reservation UUID
+      RefID: refID,  // your reference ID
       Patient: &models.SchedulingPatient{
-        ID:    "",                              // shilling UUID (if not using ref id)
-        RefID: "<your internal reference ID>",  // your reference ID
+        ID:    "",            // shilling UUID (if not using ref id)
+        RefID: patientRefID,  // your reference ID
       },
     },
     Context: ctx,
