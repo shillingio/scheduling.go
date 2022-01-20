@@ -23,6 +23,9 @@ type SchedulingAppointment struct {
 	// active
 	Active bool `json:"active,omitempty"`
 
+	// country
+	Country string `json:"country,omitempty"`
+
 	// created at
 	CreatedAt string `json:"created_at,omitempty"`
 
@@ -41,11 +44,20 @@ type SchedulingAppointment struct {
 	// If the appointment is in-person and not online
 	InPerson bool `json:"in_person,omitempty"`
 
+	// language
+	Language string `json:"language,omitempty"`
+
 	// organization id
 	OrganizationID string `json:"organization_id,omitempty"`
 
+	// padding
+	Padding bool `json:"padding,omitempty"`
+
 	// Patient the appointment is with
 	Patient *SchedulingPatient `json:"patient,omitempty"`
+
+	// pending
+	Pending bool `json:"pending,omitempty"`
 
 	// Provider the appointment is with
 	Provider *SchedulingProvider `json:"provider,omitempty"`
@@ -68,8 +80,17 @@ type SchedulingAppointment struct {
 	// The start time of the appointment (RFC3339)
 	StartAt string `json:"start_at,omitempty"`
 
+	// state
+	State string `json:"state,omitempty"`
+
+	// status
+	Status string `json:"status,omitempty"`
+
 	// type
 	Type string `json:"type,omitempty"`
+
+	// unavailable
+	Unavailable bool `json:"unavailable,omitempty"`
 
 	// updated at
 	UpdatedAt string `json:"updated_at,omitempty"`

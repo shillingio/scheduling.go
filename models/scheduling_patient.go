@@ -8,7 +8,6 @@ package models
 import (
 	"context"
 
-	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -29,7 +28,7 @@ type SchedulingPatient struct {
 	CreatedBy string `json:"created_by,omitempty"`
 
 	// data
-	Data *ProtobufAny `json:"data,omitempty"`
+	Data interface{} `json:"data,omitempty"`
 
 	// given name
 	GivenName string `json:"given_name,omitempty"`
@@ -61,64 +60,11 @@ type SchedulingPatient struct {
 
 // Validate validates this scheduling patient
 func (m *SchedulingPatient) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateData(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
 	return nil
 }
 
-func (m *SchedulingPatient) validateData(formats strfmt.Registry) error {
-	if swag.IsZero(m.Data) { // not required
-		return nil
-	}
-
-	if m.Data != nil {
-		if err := m.Data.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("data")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("data")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-// ContextValidate validate this scheduling patient based on the context it is used
+// ContextValidate validates this scheduling patient based on context it is used
 func (m *SchedulingPatient) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidateData(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *SchedulingPatient) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Data != nil {
-		if err := m.Data.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("data")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("data")
-			}
-			return err
-		}
-	}
-
 	return nil
 }
 

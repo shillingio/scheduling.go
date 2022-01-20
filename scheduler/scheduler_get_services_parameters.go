@@ -76,8 +76,19 @@ type SchedulerGetServicesParams struct {
 	// Format: int32
 	Offset *int32
 
+	// OrganizationID.
+	OrganizationID *string
+
 	// ServiceActive.
 	ServiceActive *bool
+
+	// ServiceConfigDurations.
+	ServiceConfigDurations []int32
+
+	// ServiceConfigFixedDuration.
+	//
+	// Format: int32
+	ServiceConfigFixedDuration *int32
 
 	// ServiceCreatedAt.
 	ServiceCreatedAt *string
@@ -203,6 +214,17 @@ func (o *SchedulerGetServicesParams) SetOffset(offset *int32) {
 	o.Offset = offset
 }
 
+// WithOrganizationID adds the organizationID to the scheduler get services params
+func (o *SchedulerGetServicesParams) WithOrganizationID(organizationID *string) *SchedulerGetServicesParams {
+	o.SetOrganizationID(organizationID)
+	return o
+}
+
+// SetOrganizationID adds the organizationId to the scheduler get services params
+func (o *SchedulerGetServicesParams) SetOrganizationID(organizationID *string) {
+	o.OrganizationID = organizationID
+}
+
 // WithServiceActive adds the serviceActive to the scheduler get services params
 func (o *SchedulerGetServicesParams) WithServiceActive(serviceActive *bool) *SchedulerGetServicesParams {
 	o.SetServiceActive(serviceActive)
@@ -212,6 +234,28 @@ func (o *SchedulerGetServicesParams) WithServiceActive(serviceActive *bool) *Sch
 // SetServiceActive adds the serviceActive to the scheduler get services params
 func (o *SchedulerGetServicesParams) SetServiceActive(serviceActive *bool) {
 	o.ServiceActive = serviceActive
+}
+
+// WithServiceConfigDurations adds the serviceConfigDurations to the scheduler get services params
+func (o *SchedulerGetServicesParams) WithServiceConfigDurations(serviceConfigDurations []int32) *SchedulerGetServicesParams {
+	o.SetServiceConfigDurations(serviceConfigDurations)
+	return o
+}
+
+// SetServiceConfigDurations adds the serviceConfigDurations to the scheduler get services params
+func (o *SchedulerGetServicesParams) SetServiceConfigDurations(serviceConfigDurations []int32) {
+	o.ServiceConfigDurations = serviceConfigDurations
+}
+
+// WithServiceConfigFixedDuration adds the serviceConfigFixedDuration to the scheduler get services params
+func (o *SchedulerGetServicesParams) WithServiceConfigFixedDuration(serviceConfigFixedDuration *int32) *SchedulerGetServicesParams {
+	o.SetServiceConfigFixedDuration(serviceConfigFixedDuration)
+	return o
+}
+
+// SetServiceConfigFixedDuration adds the serviceConfigFixedDuration to the scheduler get services params
+func (o *SchedulerGetServicesParams) SetServiceConfigFixedDuration(serviceConfigFixedDuration *int32) {
+	o.ServiceConfigFixedDuration = serviceConfigFixedDuration
 }
 
 // WithServiceCreatedAt adds the serviceCreatedAt to the scheduler get services params
@@ -383,6 +427,23 @@ func (o *SchedulerGetServicesParams) WriteToRequest(r runtime.ClientRequest, reg
 		}
 	}
 
+	if o.OrganizationID != nil {
+
+		// query param organization_id
+		var qrOrganizationID string
+
+		if o.OrganizationID != nil {
+			qrOrganizationID = *o.OrganizationID
+		}
+		qOrganizationID := qrOrganizationID
+		if qOrganizationID != "" {
+
+			if err := r.SetQueryParam("organization_id", qOrganizationID); err != nil {
+				return err
+			}
+		}
+	}
+
 	if o.ServiceActive != nil {
 
 		// query param service.active
@@ -395,6 +456,34 @@ func (o *SchedulerGetServicesParams) WriteToRequest(r runtime.ClientRequest, reg
 		if qServiceActive != "" {
 
 			if err := r.SetQueryParam("service.active", qServiceActive); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.ServiceConfigDurations != nil {
+
+		// binding items for service.config.durations
+		joinedServiceConfigDurations := o.bindParamServiceConfigDurations(reg)
+
+		// query array param service.config.durations
+		if err := r.SetQueryParam("service.config.durations", joinedServiceConfigDurations...); err != nil {
+			return err
+		}
+	}
+
+	if o.ServiceConfigFixedDuration != nil {
+
+		// query param service.config.fixed_duration
+		var qrServiceConfigFixedDuration int32
+
+		if o.ServiceConfigFixedDuration != nil {
+			qrServiceConfigFixedDuration = *o.ServiceConfigFixedDuration
+		}
+		qServiceConfigFixedDuration := swag.FormatInt32(qrServiceConfigFixedDuration)
+		if qServiceConfigFixedDuration != "" {
+
+			if err := r.SetQueryParam("service.config.fixed_duration", qServiceConfigFixedDuration); err != nil {
 				return err
 			}
 		}
@@ -574,4 +663,21 @@ func (o *SchedulerGetServicesParams) bindParamIds(formats strfmt.Registry) []str
 	idsIS := swag.JoinByFormat(idsIC, "multi")
 
 	return idsIS
+}
+
+// bindParamSchedulerGetServices binds the parameter service.config.durations
+func (o *SchedulerGetServicesParams) bindParamServiceConfigDurations(formats strfmt.Registry) []string {
+	serviceConfigDurationsIR := o.ServiceConfigDurations
+
+	var serviceConfigDurationsIC []string
+	for _, serviceConfigDurationsIIR := range serviceConfigDurationsIR { // explode []int32
+
+		serviceConfigDurationsIIV := swag.FormatInt32(serviceConfigDurationsIIR) // int32 as string
+		serviceConfigDurationsIC = append(serviceConfigDurationsIC, serviceConfigDurationsIIV)
+	}
+
+	// items.CollectionFormat: "multi"
+	serviceConfigDurationsIS := swag.JoinByFormat(serviceConfigDurationsIC, "multi")
+
+	return serviceConfigDurationsIS
 }

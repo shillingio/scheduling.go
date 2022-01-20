@@ -63,6 +63,9 @@ type SchedulerGetPatientAppointmentsParams struct {
 	// AppointmentActive.
 	AppointmentActive *bool
 
+	// AppointmentCountry.
+	AppointmentCountry *string
+
 	// AppointmentCreatedAt.
 	AppointmentCreatedAt *string
 
@@ -95,8 +98,14 @@ type SchedulerGetPatientAppointmentsParams struct {
 	*/
 	AppointmentInPerson *bool
 
+	// AppointmentLanguage.
+	AppointmentLanguage *string
+
 	// AppointmentOrganizationID.
 	AppointmentOrganizationID *string
+
+	// AppointmentPadding.
+	AppointmentPadding *bool
 
 	// AppointmentPatientActive.
 	AppointmentPatientActive *bool
@@ -106,46 +115,6 @@ type SchedulerGetPatientAppointmentsParams struct {
 
 	// AppointmentPatientCreatedBy.
 	AppointmentPatientCreatedBy *string
-
-	/* AppointmentPatientDataTypeURL.
-
-	     A URL/resource name that uniquely identifies the type of the serialized
-	protocol buffer message. This string must contain at least
-	one "/" character. The last segment of the URL's path must represent
-	the fully qualified name of the type (as in
-	`path/google.protobuf.Duration`). The name should be in a canonical form
-	(e.g., leading "." is not accepted).
-
-	In practice, teams usually precompile into the binary all types that they
-	expect it to use in the context of Any. However, for URLs which use the
-	scheme `http`, `https`, or no scheme, one can optionally set up a type
-	server that maps type URLs to message definitions as follows:
-
-	* If no scheme is provided, `https` is assumed.
-	* An HTTP GET on the URL must yield a [google.protobuf.Type][]
-	  value in binary format, or produce an error.
-	* Applications are allowed to cache lookup results based on the
-	  URL, or have them precompiled into a binary to avoid any
-	  lookup. Therefore, binary compatibility needs to be preserved
-	  on changes to types. (Use versioned type names to manage
-	  breaking changes.)
-
-	Note: this functionality is not currently available in the official
-	protobuf release, and it is not used for type URLs beginning with
-	type.googleapis.com.
-
-	Schemes other than `http`, `https` (or the empty scheme) might be
-	used with implementation specific semantics.
-	*/
-	AppointmentPatientDataTypeURL *string
-
-	/* AppointmentPatientDataValue.
-
-	   Must be a valid serialized protocol buffer of the above specified type.
-
-	   Format: byte
-	*/
-	AppointmentPatientDataValue *strfmt.Base64
 
 	// AppointmentPatientGivenName.
 	AppointmentPatientGivenName *string
@@ -173,6 +142,9 @@ type SchedulerGetPatientAppointmentsParams struct {
 
 	// AppointmentPatientUpdatedBy.
 	AppointmentPatientUpdatedBy *string
+
+	// AppointmentPending.
+	AppointmentPending *bool
 
 	// AppointmentProviderActive.
 	AppointmentProviderActive *bool
@@ -260,6 +232,14 @@ type SchedulerGetPatientAppointmentsParams struct {
 	// AppointmentServiceActive.
 	AppointmentServiceActive *bool
 
+	// AppointmentServiceConfigDurations.
+	AppointmentServiceConfigDurations []int32
+
+	// AppointmentServiceConfigFixedDuration.
+	//
+	// Format: int32
+	AppointmentServiceConfigFixedDuration *int32
+
 	// AppointmentServiceCreatedAt.
 	AppointmentServiceCreatedAt *string
 
@@ -293,8 +273,17 @@ type SchedulerGetPatientAppointmentsParams struct {
 	*/
 	AppointmentStartAt *string
 
+	// AppointmentState.
+	AppointmentState *string
+
+	// AppointmentStatus.
+	AppointmentStatus *string
+
 	// AppointmentType.
 	AppointmentType *string
+
+	// AppointmentUnavailable.
+	AppointmentUnavailable *bool
 
 	// AppointmentUpdatedAt.
 	AppointmentUpdatedAt *string
@@ -403,6 +392,17 @@ func (o *SchedulerGetPatientAppointmentsParams) SetAppointmentActive(appointment
 	o.AppointmentActive = appointmentActive
 }
 
+// WithAppointmentCountry adds the appointmentCountry to the scheduler get patient appointments params
+func (o *SchedulerGetPatientAppointmentsParams) WithAppointmentCountry(appointmentCountry *string) *SchedulerGetPatientAppointmentsParams {
+	o.SetAppointmentCountry(appointmentCountry)
+	return o
+}
+
+// SetAppointmentCountry adds the appointmentCountry to the scheduler get patient appointments params
+func (o *SchedulerGetPatientAppointmentsParams) SetAppointmentCountry(appointmentCountry *string) {
+	o.AppointmentCountry = appointmentCountry
+}
+
 // WithAppointmentCreatedAt adds the appointmentCreatedAt to the scheduler get patient appointments params
 func (o *SchedulerGetPatientAppointmentsParams) WithAppointmentCreatedAt(appointmentCreatedAt *string) *SchedulerGetPatientAppointmentsParams {
 	o.SetAppointmentCreatedAt(appointmentCreatedAt)
@@ -469,6 +469,17 @@ func (o *SchedulerGetPatientAppointmentsParams) SetAppointmentInPerson(appointme
 	o.AppointmentInPerson = appointmentInPerson
 }
 
+// WithAppointmentLanguage adds the appointmentLanguage to the scheduler get patient appointments params
+func (o *SchedulerGetPatientAppointmentsParams) WithAppointmentLanguage(appointmentLanguage *string) *SchedulerGetPatientAppointmentsParams {
+	o.SetAppointmentLanguage(appointmentLanguage)
+	return o
+}
+
+// SetAppointmentLanguage adds the appointmentLanguage to the scheduler get patient appointments params
+func (o *SchedulerGetPatientAppointmentsParams) SetAppointmentLanguage(appointmentLanguage *string) {
+	o.AppointmentLanguage = appointmentLanguage
+}
+
 // WithAppointmentOrganizationID adds the appointmentOrganizationID to the scheduler get patient appointments params
 func (o *SchedulerGetPatientAppointmentsParams) WithAppointmentOrganizationID(appointmentOrganizationID *string) *SchedulerGetPatientAppointmentsParams {
 	o.SetAppointmentOrganizationID(appointmentOrganizationID)
@@ -478,6 +489,17 @@ func (o *SchedulerGetPatientAppointmentsParams) WithAppointmentOrganizationID(ap
 // SetAppointmentOrganizationID adds the appointmentOrganizationId to the scheduler get patient appointments params
 func (o *SchedulerGetPatientAppointmentsParams) SetAppointmentOrganizationID(appointmentOrganizationID *string) {
 	o.AppointmentOrganizationID = appointmentOrganizationID
+}
+
+// WithAppointmentPadding adds the appointmentPadding to the scheduler get patient appointments params
+func (o *SchedulerGetPatientAppointmentsParams) WithAppointmentPadding(appointmentPadding *bool) *SchedulerGetPatientAppointmentsParams {
+	o.SetAppointmentPadding(appointmentPadding)
+	return o
+}
+
+// SetAppointmentPadding adds the appointmentPadding to the scheduler get patient appointments params
+func (o *SchedulerGetPatientAppointmentsParams) SetAppointmentPadding(appointmentPadding *bool) {
+	o.AppointmentPadding = appointmentPadding
 }
 
 // WithAppointmentPatientActive adds the appointmentPatientActive to the scheduler get patient appointments params
@@ -511,28 +533,6 @@ func (o *SchedulerGetPatientAppointmentsParams) WithAppointmentPatientCreatedBy(
 // SetAppointmentPatientCreatedBy adds the appointmentPatientCreatedBy to the scheduler get patient appointments params
 func (o *SchedulerGetPatientAppointmentsParams) SetAppointmentPatientCreatedBy(appointmentPatientCreatedBy *string) {
 	o.AppointmentPatientCreatedBy = appointmentPatientCreatedBy
-}
-
-// WithAppointmentPatientDataTypeURL adds the appointmentPatientDataTypeURL to the scheduler get patient appointments params
-func (o *SchedulerGetPatientAppointmentsParams) WithAppointmentPatientDataTypeURL(appointmentPatientDataTypeURL *string) *SchedulerGetPatientAppointmentsParams {
-	o.SetAppointmentPatientDataTypeURL(appointmentPatientDataTypeURL)
-	return o
-}
-
-// SetAppointmentPatientDataTypeURL adds the appointmentPatientDataTypeUrl to the scheduler get patient appointments params
-func (o *SchedulerGetPatientAppointmentsParams) SetAppointmentPatientDataTypeURL(appointmentPatientDataTypeURL *string) {
-	o.AppointmentPatientDataTypeURL = appointmentPatientDataTypeURL
-}
-
-// WithAppointmentPatientDataValue adds the appointmentPatientDataValue to the scheduler get patient appointments params
-func (o *SchedulerGetPatientAppointmentsParams) WithAppointmentPatientDataValue(appointmentPatientDataValue *strfmt.Base64) *SchedulerGetPatientAppointmentsParams {
-	o.SetAppointmentPatientDataValue(appointmentPatientDataValue)
-	return o
-}
-
-// SetAppointmentPatientDataValue adds the appointmentPatientDataValue to the scheduler get patient appointments params
-func (o *SchedulerGetPatientAppointmentsParams) SetAppointmentPatientDataValue(appointmentPatientDataValue *strfmt.Base64) {
-	o.AppointmentPatientDataValue = appointmentPatientDataValue
 }
 
 // WithAppointmentPatientGivenName adds the appointmentPatientGivenName to the scheduler get patient appointments params
@@ -632,6 +632,17 @@ func (o *SchedulerGetPatientAppointmentsParams) WithAppointmentPatientUpdatedBy(
 // SetAppointmentPatientUpdatedBy adds the appointmentPatientUpdatedBy to the scheduler get patient appointments params
 func (o *SchedulerGetPatientAppointmentsParams) SetAppointmentPatientUpdatedBy(appointmentPatientUpdatedBy *string) {
 	o.AppointmentPatientUpdatedBy = appointmentPatientUpdatedBy
+}
+
+// WithAppointmentPending adds the appointmentPending to the scheduler get patient appointments params
+func (o *SchedulerGetPatientAppointmentsParams) WithAppointmentPending(appointmentPending *bool) *SchedulerGetPatientAppointmentsParams {
+	o.SetAppointmentPending(appointmentPending)
+	return o
+}
+
+// SetAppointmentPending adds the appointmentPending to the scheduler get patient appointments params
+func (o *SchedulerGetPatientAppointmentsParams) SetAppointmentPending(appointmentPending *bool) {
+	o.AppointmentPending = appointmentPending
 }
 
 // WithAppointmentProviderActive adds the appointmentProviderActive to the scheduler get patient appointments params
@@ -920,6 +931,28 @@ func (o *SchedulerGetPatientAppointmentsParams) SetAppointmentServiceActive(appo
 	o.AppointmentServiceActive = appointmentServiceActive
 }
 
+// WithAppointmentServiceConfigDurations adds the appointmentServiceConfigDurations to the scheduler get patient appointments params
+func (o *SchedulerGetPatientAppointmentsParams) WithAppointmentServiceConfigDurations(appointmentServiceConfigDurations []int32) *SchedulerGetPatientAppointmentsParams {
+	o.SetAppointmentServiceConfigDurations(appointmentServiceConfigDurations)
+	return o
+}
+
+// SetAppointmentServiceConfigDurations adds the appointmentServiceConfigDurations to the scheduler get patient appointments params
+func (o *SchedulerGetPatientAppointmentsParams) SetAppointmentServiceConfigDurations(appointmentServiceConfigDurations []int32) {
+	o.AppointmentServiceConfigDurations = appointmentServiceConfigDurations
+}
+
+// WithAppointmentServiceConfigFixedDuration adds the appointmentServiceConfigFixedDuration to the scheduler get patient appointments params
+func (o *SchedulerGetPatientAppointmentsParams) WithAppointmentServiceConfigFixedDuration(appointmentServiceConfigFixedDuration *int32) *SchedulerGetPatientAppointmentsParams {
+	o.SetAppointmentServiceConfigFixedDuration(appointmentServiceConfigFixedDuration)
+	return o
+}
+
+// SetAppointmentServiceConfigFixedDuration adds the appointmentServiceConfigFixedDuration to the scheduler get patient appointments params
+func (o *SchedulerGetPatientAppointmentsParams) SetAppointmentServiceConfigFixedDuration(appointmentServiceConfigFixedDuration *int32) {
+	o.AppointmentServiceConfigFixedDuration = appointmentServiceConfigFixedDuration
+}
+
 // WithAppointmentServiceCreatedAt adds the appointmentServiceCreatedAt to the scheduler get patient appointments params
 func (o *SchedulerGetPatientAppointmentsParams) WithAppointmentServiceCreatedAt(appointmentServiceCreatedAt *string) *SchedulerGetPatientAppointmentsParams {
 	o.SetAppointmentServiceCreatedAt(appointmentServiceCreatedAt)
@@ -1030,6 +1063,28 @@ func (o *SchedulerGetPatientAppointmentsParams) SetAppointmentStartAt(appointmen
 	o.AppointmentStartAt = appointmentStartAt
 }
 
+// WithAppointmentState adds the appointmentState to the scheduler get patient appointments params
+func (o *SchedulerGetPatientAppointmentsParams) WithAppointmentState(appointmentState *string) *SchedulerGetPatientAppointmentsParams {
+	o.SetAppointmentState(appointmentState)
+	return o
+}
+
+// SetAppointmentState adds the appointmentState to the scheduler get patient appointments params
+func (o *SchedulerGetPatientAppointmentsParams) SetAppointmentState(appointmentState *string) {
+	o.AppointmentState = appointmentState
+}
+
+// WithAppointmentStatus adds the appointmentStatus to the scheduler get patient appointments params
+func (o *SchedulerGetPatientAppointmentsParams) WithAppointmentStatus(appointmentStatus *string) *SchedulerGetPatientAppointmentsParams {
+	o.SetAppointmentStatus(appointmentStatus)
+	return o
+}
+
+// SetAppointmentStatus adds the appointmentStatus to the scheduler get patient appointments params
+func (o *SchedulerGetPatientAppointmentsParams) SetAppointmentStatus(appointmentStatus *string) {
+	o.AppointmentStatus = appointmentStatus
+}
+
 // WithAppointmentType adds the appointmentType to the scheduler get patient appointments params
 func (o *SchedulerGetPatientAppointmentsParams) WithAppointmentType(appointmentType *string) *SchedulerGetPatientAppointmentsParams {
 	o.SetAppointmentType(appointmentType)
@@ -1039,6 +1094,17 @@ func (o *SchedulerGetPatientAppointmentsParams) WithAppointmentType(appointmentT
 // SetAppointmentType adds the appointmentType to the scheduler get patient appointments params
 func (o *SchedulerGetPatientAppointmentsParams) SetAppointmentType(appointmentType *string) {
 	o.AppointmentType = appointmentType
+}
+
+// WithAppointmentUnavailable adds the appointmentUnavailable to the scheduler get patient appointments params
+func (o *SchedulerGetPatientAppointmentsParams) WithAppointmentUnavailable(appointmentUnavailable *bool) *SchedulerGetPatientAppointmentsParams {
+	o.SetAppointmentUnavailable(appointmentUnavailable)
+	return o
+}
+
+// SetAppointmentUnavailable adds the appointmentUnavailable to the scheduler get patient appointments params
+func (o *SchedulerGetPatientAppointmentsParams) SetAppointmentUnavailable(appointmentUnavailable *bool) {
+	o.AppointmentUnavailable = appointmentUnavailable
 }
 
 // WithAppointmentUpdatedAt adds the appointmentUpdatedAt to the scheduler get patient appointments params
@@ -1209,6 +1275,23 @@ func (o *SchedulerGetPatientAppointmentsParams) WriteToRequest(r runtime.ClientR
 		}
 	}
 
+	if o.AppointmentCountry != nil {
+
+		// query param appointment.country
+		var qrAppointmentCountry string
+
+		if o.AppointmentCountry != nil {
+			qrAppointmentCountry = *o.AppointmentCountry
+		}
+		qAppointmentCountry := qrAppointmentCountry
+		if qAppointmentCountry != "" {
+
+			if err := r.SetQueryParam("appointment.country", qAppointmentCountry); err != nil {
+				return err
+			}
+		}
+	}
+
 	if o.AppointmentCreatedAt != nil {
 
 		// query param appointment.created_at
@@ -1311,6 +1394,23 @@ func (o *SchedulerGetPatientAppointmentsParams) WriteToRequest(r runtime.ClientR
 		}
 	}
 
+	if o.AppointmentLanguage != nil {
+
+		// query param appointment.language
+		var qrAppointmentLanguage string
+
+		if o.AppointmentLanguage != nil {
+			qrAppointmentLanguage = *o.AppointmentLanguage
+		}
+		qAppointmentLanguage := qrAppointmentLanguage
+		if qAppointmentLanguage != "" {
+
+			if err := r.SetQueryParam("appointment.language", qAppointmentLanguage); err != nil {
+				return err
+			}
+		}
+	}
+
 	if o.AppointmentOrganizationID != nil {
 
 		// query param appointment.organization_id
@@ -1323,6 +1423,23 @@ func (o *SchedulerGetPatientAppointmentsParams) WriteToRequest(r runtime.ClientR
 		if qAppointmentOrganizationID != "" {
 
 			if err := r.SetQueryParam("appointment.organization_id", qAppointmentOrganizationID); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.AppointmentPadding != nil {
+
+		// query param appointment.padding
+		var qrAppointmentPadding bool
+
+		if o.AppointmentPadding != nil {
+			qrAppointmentPadding = *o.AppointmentPadding
+		}
+		qAppointmentPadding := swag.FormatBool(qrAppointmentPadding)
+		if qAppointmentPadding != "" {
+
+			if err := r.SetQueryParam("appointment.padding", qAppointmentPadding); err != nil {
 				return err
 			}
 		}
@@ -1374,40 +1491,6 @@ func (o *SchedulerGetPatientAppointmentsParams) WriteToRequest(r runtime.ClientR
 		if qAppointmentPatientCreatedBy != "" {
 
 			if err := r.SetQueryParam("appointment.patient.created_by", qAppointmentPatientCreatedBy); err != nil {
-				return err
-			}
-		}
-	}
-
-	if o.AppointmentPatientDataTypeURL != nil {
-
-		// query param appointment.patient.data.type_url
-		var qrAppointmentPatientDataTypeURL string
-
-		if o.AppointmentPatientDataTypeURL != nil {
-			qrAppointmentPatientDataTypeURL = *o.AppointmentPatientDataTypeURL
-		}
-		qAppointmentPatientDataTypeURL := qrAppointmentPatientDataTypeURL
-		if qAppointmentPatientDataTypeURL != "" {
-
-			if err := r.SetQueryParam("appointment.patient.data.type_url", qAppointmentPatientDataTypeURL); err != nil {
-				return err
-			}
-		}
-	}
-
-	if o.AppointmentPatientDataValue != nil {
-
-		// query param appointment.patient.data.value
-		var qrAppointmentPatientDataValue strfmt.Base64
-
-		if o.AppointmentPatientDataValue != nil {
-			qrAppointmentPatientDataValue = *o.AppointmentPatientDataValue
-		}
-		qAppointmentPatientDataValue := qrAppointmentPatientDataValue.String()
-		if qAppointmentPatientDataValue != "" {
-
-			if err := r.SetQueryParam("appointment.patient.data.value", qAppointmentPatientDataValue); err != nil {
 				return err
 			}
 		}
@@ -1561,6 +1644,23 @@ func (o *SchedulerGetPatientAppointmentsParams) WriteToRequest(r runtime.ClientR
 		if qAppointmentPatientUpdatedBy != "" {
 
 			if err := r.SetQueryParam("appointment.patient.updated_by", qAppointmentPatientUpdatedBy); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.AppointmentPending != nil {
+
+		// query param appointment.pending
+		var qrAppointmentPending bool
+
+		if o.AppointmentPending != nil {
+			qrAppointmentPending = *o.AppointmentPending
+		}
+		qAppointmentPending := swag.FormatBool(qrAppointmentPending)
+		if qAppointmentPending != "" {
+
+			if err := r.SetQueryParam("appointment.pending", qAppointmentPending); err != nil {
 				return err
 			}
 		}
@@ -2008,6 +2108,34 @@ func (o *SchedulerGetPatientAppointmentsParams) WriteToRequest(r runtime.ClientR
 		}
 	}
 
+	if o.AppointmentServiceConfigDurations != nil {
+
+		// binding items for appointment.service.config.durations
+		joinedAppointmentServiceConfigDurations := o.bindParamAppointmentServiceConfigDurations(reg)
+
+		// query array param appointment.service.config.durations
+		if err := r.SetQueryParam("appointment.service.config.durations", joinedAppointmentServiceConfigDurations...); err != nil {
+			return err
+		}
+	}
+
+	if o.AppointmentServiceConfigFixedDuration != nil {
+
+		// query param appointment.service.config.fixed_duration
+		var qrAppointmentServiceConfigFixedDuration int32
+
+		if o.AppointmentServiceConfigFixedDuration != nil {
+			qrAppointmentServiceConfigFixedDuration = *o.AppointmentServiceConfigFixedDuration
+		}
+		qAppointmentServiceConfigFixedDuration := swag.FormatInt32(qrAppointmentServiceConfigFixedDuration)
+		if qAppointmentServiceConfigFixedDuration != "" {
+
+			if err := r.SetQueryParam("appointment.service.config.fixed_duration", qAppointmentServiceConfigFixedDuration); err != nil {
+				return err
+			}
+		}
+	}
+
 	if o.AppointmentServiceCreatedAt != nil {
 
 		// query param appointment.service.created_at
@@ -2178,6 +2306,40 @@ func (o *SchedulerGetPatientAppointmentsParams) WriteToRequest(r runtime.ClientR
 		}
 	}
 
+	if o.AppointmentState != nil {
+
+		// query param appointment.state
+		var qrAppointmentState string
+
+		if o.AppointmentState != nil {
+			qrAppointmentState = *o.AppointmentState
+		}
+		qAppointmentState := qrAppointmentState
+		if qAppointmentState != "" {
+
+			if err := r.SetQueryParam("appointment.state", qAppointmentState); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.AppointmentStatus != nil {
+
+		// query param appointment.status
+		var qrAppointmentStatus string
+
+		if o.AppointmentStatus != nil {
+			qrAppointmentStatus = *o.AppointmentStatus
+		}
+		qAppointmentStatus := qrAppointmentStatus
+		if qAppointmentStatus != "" {
+
+			if err := r.SetQueryParam("appointment.status", qAppointmentStatus); err != nil {
+				return err
+			}
+		}
+	}
+
 	if o.AppointmentType != nil {
 
 		// query param appointment.type
@@ -2190,6 +2352,23 @@ func (o *SchedulerGetPatientAppointmentsParams) WriteToRequest(r runtime.ClientR
 		if qAppointmentType != "" {
 
 			if err := r.SetQueryParam("appointment.type", qAppointmentType); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.AppointmentUnavailable != nil {
+
+		// query param appointment.unavailable
+		var qrAppointmentUnavailable bool
+
+		if o.AppointmentUnavailable != nil {
+			qrAppointmentUnavailable = *o.AppointmentUnavailable
+		}
+		qAppointmentUnavailable := swag.FormatBool(qrAppointmentUnavailable)
+		if qAppointmentUnavailable != "" {
+
+			if err := r.SetQueryParam("appointment.unavailable", qAppointmentUnavailable); err != nil {
 				return err
 			}
 		}
@@ -2402,6 +2581,23 @@ func (o *SchedulerGetPatientAppointmentsParams) WriteToRequest(r runtime.ClientR
 		return errors.CompositeValidationError(res...)
 	}
 	return nil
+}
+
+// bindParamSchedulerGetPatientAppointments binds the parameter appointment.service.config.durations
+func (o *SchedulerGetPatientAppointmentsParams) bindParamAppointmentServiceConfigDurations(formats strfmt.Registry) []string {
+	appointmentServiceConfigDurationsIR := o.AppointmentServiceConfigDurations
+
+	var appointmentServiceConfigDurationsIC []string
+	for _, appointmentServiceConfigDurationsIIR := range appointmentServiceConfigDurationsIR { // explode []int32
+
+		appointmentServiceConfigDurationsIIV := swag.FormatInt32(appointmentServiceConfigDurationsIIR) // int32 as string
+		appointmentServiceConfigDurationsIC = append(appointmentServiceConfigDurationsIC, appointmentServiceConfigDurationsIIV)
+	}
+
+	// items.CollectionFormat: "multi"
+	appointmentServiceConfigDurationsIS := swag.JoinByFormat(appointmentServiceConfigDurationsIC, "multi")
+
+	return appointmentServiceConfigDurationsIS
 }
 
 // bindParamSchedulerGetPatientAppointments binds the parameter ids

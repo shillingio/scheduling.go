@@ -69,46 +69,6 @@ type SchedulerGetPatientParams struct {
 	// CreatedBy.
 	CreatedBy *string
 
-	/* DataTypeURL.
-
-	     A URL/resource name that uniquely identifies the type of the serialized
-	protocol buffer message. This string must contain at least
-	one "/" character. The last segment of the URL's path must represent
-	the fully qualified name of the type (as in
-	`path/google.protobuf.Duration`). The name should be in a canonical form
-	(e.g., leading "." is not accepted).
-
-	In practice, teams usually precompile into the binary all types that they
-	expect it to use in the context of Any. However, for URLs which use the
-	scheme `http`, `https`, or no scheme, one can optionally set up a type
-	server that maps type URLs to message definitions as follows:
-
-	* If no scheme is provided, `https` is assumed.
-	* An HTTP GET on the URL must yield a [google.protobuf.Type][]
-	  value in binary format, or produce an error.
-	* Applications are allowed to cache lookup results based on the
-	  URL, or have them precompiled into a binary to avoid any
-	  lookup. Therefore, binary compatibility needs to be preserved
-	  on changes to types. (Use versioned type names to manage
-	  breaking changes.)
-
-	Note: this functionality is not currently available in the official
-	protobuf release, and it is not used for type URLs beginning with
-	type.googleapis.com.
-
-	Schemes other than `http`, `https` (or the empty scheme) might be
-	used with implementation specific semantics.
-	*/
-	DataTypeURL *string
-
-	/* DataValue.
-
-	   Must be a valid serialized protocol buffer of the above specified type.
-
-	   Format: byte
-	*/
-	DataValue *strfmt.Base64
-
 	// GivenName.
 	GivenName *string
 
@@ -220,28 +180,6 @@ func (o *SchedulerGetPatientParams) WithCreatedBy(createdBy *string) *SchedulerG
 // SetCreatedBy adds the createdBy to the scheduler get patient params
 func (o *SchedulerGetPatientParams) SetCreatedBy(createdBy *string) {
 	o.CreatedBy = createdBy
-}
-
-// WithDataTypeURL adds the dataTypeURL to the scheduler get patient params
-func (o *SchedulerGetPatientParams) WithDataTypeURL(dataTypeURL *string) *SchedulerGetPatientParams {
-	o.SetDataTypeURL(dataTypeURL)
-	return o
-}
-
-// SetDataTypeURL adds the dataTypeUrl to the scheduler get patient params
-func (o *SchedulerGetPatientParams) SetDataTypeURL(dataTypeURL *string) {
-	o.DataTypeURL = dataTypeURL
-}
-
-// WithDataValue adds the dataValue to the scheduler get patient params
-func (o *SchedulerGetPatientParams) WithDataValue(dataValue *strfmt.Base64) *SchedulerGetPatientParams {
-	o.SetDataValue(dataValue)
-	return o
-}
-
-// SetDataValue adds the dataValue to the scheduler get patient params
-func (o *SchedulerGetPatientParams) SetDataValue(dataValue *strfmt.Base64) {
-	o.DataValue = dataValue
 }
 
 // WithGivenName adds the givenName to the scheduler get patient params
@@ -397,40 +335,6 @@ func (o *SchedulerGetPatientParams) WriteToRequest(r runtime.ClientRequest, reg 
 		if qCreatedBy != "" {
 
 			if err := r.SetQueryParam("created_by", qCreatedBy); err != nil {
-				return err
-			}
-		}
-	}
-
-	if o.DataTypeURL != nil {
-
-		// query param data.type_url
-		var qrDataTypeURL string
-
-		if o.DataTypeURL != nil {
-			qrDataTypeURL = *o.DataTypeURL
-		}
-		qDataTypeURL := qrDataTypeURL
-		if qDataTypeURL != "" {
-
-			if err := r.SetQueryParam("data.type_url", qDataTypeURL); err != nil {
-				return err
-			}
-		}
-	}
-
-	if o.DataValue != nil {
-
-		// query param data.value
-		var qrDataValue strfmt.Base64
-
-		if o.DataValue != nil {
-			qrDataValue = *o.DataValue
-		}
-		qDataValue := qrDataValue.String()
-		if qDataValue != "" {
-
-			if err := r.SetQueryParam("data.value", qDataValue); err != nil {
 				return err
 			}
 		}

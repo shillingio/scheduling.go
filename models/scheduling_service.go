@@ -8,6 +8,7 @@ package models
 import (
 	"context"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -19,6 +20,9 @@ type SchedulingService struct {
 
 	// active
 	Active bool `json:"active,omitempty"`
+
+	// config
+	Config *SchedulingServiceConfig `json:"config,omitempty"`
 
 	// created at
 	CreatedAt string `json:"created_at,omitempty"`
@@ -50,11 +54,64 @@ type SchedulingService struct {
 
 // Validate validates this scheduling service
 func (m *SchedulingService) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateConfig(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
 	return nil
 }
 
-// ContextValidate validates this scheduling service based on context it is used
+func (m *SchedulingService) validateConfig(formats strfmt.Registry) error {
+	if swag.IsZero(m.Config) { // not required
+		return nil
+	}
+
+	if m.Config != nil {
+		if err := m.Config.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("config")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("config")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this scheduling service based on the context it is used
 func (m *SchedulingService) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateConfig(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *SchedulingService) contextValidateConfig(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Config != nil {
+		if err := m.Config.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("config")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("config")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 

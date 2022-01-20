@@ -31,6 +31,9 @@ type SchedulerPatientResponse struct {
 	// patients
 	Patients []*SchedulingPatient `json:"patients"`
 
+	// provider
+	Provider *SchedulingProvider `json:"provider,omitempty"`
+
 	// total
 	Total int32 `json:"total,omitempty"`
 }
@@ -44,6 +47,10 @@ func (m *SchedulerPatientResponse) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validatePatients(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateProvider(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -98,6 +105,25 @@ func (m *SchedulerPatientResponse) validatePatients(formats strfmt.Registry) err
 	return nil
 }
 
+func (m *SchedulerPatientResponse) validateProvider(formats strfmt.Registry) error {
+	if swag.IsZero(m.Provider) { // not required
+		return nil
+	}
+
+	if m.Provider != nil {
+		if err := m.Provider.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("provider")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("provider")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 // ContextValidate validate this scheduler patient response based on the context it is used
 func (m *SchedulerPatientResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
@@ -107,6 +133,10 @@ func (m *SchedulerPatientResponse) ContextValidate(ctx context.Context, formats 
 	}
 
 	if err := m.contextValidatePatients(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateProvider(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -147,6 +177,22 @@ func (m *SchedulerPatientResponse) contextValidatePatients(ctx context.Context, 
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *SchedulerPatientResponse) contextValidateProvider(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Provider != nil {
+		if err := m.Provider.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("provider")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("provider")
+			}
+			return err
+		}
 	}
 
 	return nil

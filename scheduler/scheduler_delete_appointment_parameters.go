@@ -63,6 +63,9 @@ type SchedulerDeleteAppointmentParams struct {
 	// Active.
 	Active *bool
 
+	// Country.
+	Country *string
+
 	// CreatedAt.
 	CreatedAt *string
 
@@ -95,8 +98,14 @@ type SchedulerDeleteAppointmentParams struct {
 	*/
 	InPerson *bool
 
+	// Language.
+	Language *string
+
 	// OrganizationID.
 	OrganizationID *string
+
+	// Padding.
+	Padding *bool
 
 	// PatientActive.
 	PatientActive *bool
@@ -106,46 +115,6 @@ type SchedulerDeleteAppointmentParams struct {
 
 	// PatientCreatedBy.
 	PatientCreatedBy *string
-
-	/* PatientDataTypeURL.
-
-	     A URL/resource name that uniquely identifies the type of the serialized
-	protocol buffer message. This string must contain at least
-	one "/" character. The last segment of the URL's path must represent
-	the fully qualified name of the type (as in
-	`path/google.protobuf.Duration`). The name should be in a canonical form
-	(e.g., leading "." is not accepted).
-
-	In practice, teams usually precompile into the binary all types that they
-	expect it to use in the context of Any. However, for URLs which use the
-	scheme `http`, `https`, or no scheme, one can optionally set up a type
-	server that maps type URLs to message definitions as follows:
-
-	* If no scheme is provided, `https` is assumed.
-	* An HTTP GET on the URL must yield a [google.protobuf.Type][]
-	  value in binary format, or produce an error.
-	* Applications are allowed to cache lookup results based on the
-	  URL, or have them precompiled into a binary to avoid any
-	  lookup. Therefore, binary compatibility needs to be preserved
-	  on changes to types. (Use versioned type names to manage
-	  breaking changes.)
-
-	Note: this functionality is not currently available in the official
-	protobuf release, and it is not used for type URLs beginning with
-	type.googleapis.com.
-
-	Schemes other than `http`, `https` (or the empty scheme) might be
-	used with implementation specific semantics.
-	*/
-	PatientDataTypeURL *string
-
-	/* PatientDataValue.
-
-	   Must be a valid serialized protocol buffer of the above specified type.
-
-	   Format: byte
-	*/
-	PatientDataValue *strfmt.Base64
 
 	// PatientGivenName.
 	PatientGivenName *string
@@ -173,6 +142,9 @@ type SchedulerDeleteAppointmentParams struct {
 
 	// PatientUpdatedBy.
 	PatientUpdatedBy *string
+
+	// Pending.
+	Pending *bool
 
 	// ProviderActive.
 	ProviderActive *bool
@@ -260,6 +232,14 @@ type SchedulerDeleteAppointmentParams struct {
 	// ServiceActive.
 	ServiceActive *bool
 
+	// ServiceConfigDurations.
+	ServiceConfigDurations []int32
+
+	// ServiceConfigFixedDuration.
+	//
+	// Format: int32
+	ServiceConfigFixedDuration *int32
+
 	// ServiceCreatedAt.
 	ServiceCreatedAt *string
 
@@ -293,8 +273,17 @@ type SchedulerDeleteAppointmentParams struct {
 	*/
 	StartAt *string
 
+	// State.
+	State *string
+
+	// Status.
+	Status *string
+
 	// Type.
 	Type *string
+
+	// Unavailable.
+	Unavailable *bool
 
 	// UpdatedAt.
 	UpdatedAt *string
@@ -366,6 +355,17 @@ func (o *SchedulerDeleteAppointmentParams) SetActive(active *bool) {
 	o.Active = active
 }
 
+// WithCountry adds the country to the scheduler delete appointment params
+func (o *SchedulerDeleteAppointmentParams) WithCountry(country *string) *SchedulerDeleteAppointmentParams {
+	o.SetCountry(country)
+	return o
+}
+
+// SetCountry adds the country to the scheduler delete appointment params
+func (o *SchedulerDeleteAppointmentParams) SetCountry(country *string) {
+	o.Country = country
+}
+
 // WithCreatedAt adds the createdAt to the scheduler delete appointment params
 func (o *SchedulerDeleteAppointmentParams) WithCreatedAt(createdAt *string) *SchedulerDeleteAppointmentParams {
 	o.SetCreatedAt(createdAt)
@@ -432,6 +432,17 @@ func (o *SchedulerDeleteAppointmentParams) SetInPerson(inPerson *bool) {
 	o.InPerson = inPerson
 }
 
+// WithLanguage adds the language to the scheduler delete appointment params
+func (o *SchedulerDeleteAppointmentParams) WithLanguage(language *string) *SchedulerDeleteAppointmentParams {
+	o.SetLanguage(language)
+	return o
+}
+
+// SetLanguage adds the language to the scheduler delete appointment params
+func (o *SchedulerDeleteAppointmentParams) SetLanguage(language *string) {
+	o.Language = language
+}
+
 // WithOrganizationID adds the organizationID to the scheduler delete appointment params
 func (o *SchedulerDeleteAppointmentParams) WithOrganizationID(organizationID *string) *SchedulerDeleteAppointmentParams {
 	o.SetOrganizationID(organizationID)
@@ -441,6 +452,17 @@ func (o *SchedulerDeleteAppointmentParams) WithOrganizationID(organizationID *st
 // SetOrganizationID adds the organizationId to the scheduler delete appointment params
 func (o *SchedulerDeleteAppointmentParams) SetOrganizationID(organizationID *string) {
 	o.OrganizationID = organizationID
+}
+
+// WithPadding adds the padding to the scheduler delete appointment params
+func (o *SchedulerDeleteAppointmentParams) WithPadding(padding *bool) *SchedulerDeleteAppointmentParams {
+	o.SetPadding(padding)
+	return o
+}
+
+// SetPadding adds the padding to the scheduler delete appointment params
+func (o *SchedulerDeleteAppointmentParams) SetPadding(padding *bool) {
+	o.Padding = padding
 }
 
 // WithPatientActive adds the patientActive to the scheduler delete appointment params
@@ -474,28 +496,6 @@ func (o *SchedulerDeleteAppointmentParams) WithPatientCreatedBy(patientCreatedBy
 // SetPatientCreatedBy adds the patientCreatedBy to the scheduler delete appointment params
 func (o *SchedulerDeleteAppointmentParams) SetPatientCreatedBy(patientCreatedBy *string) {
 	o.PatientCreatedBy = patientCreatedBy
-}
-
-// WithPatientDataTypeURL adds the patientDataTypeURL to the scheduler delete appointment params
-func (o *SchedulerDeleteAppointmentParams) WithPatientDataTypeURL(patientDataTypeURL *string) *SchedulerDeleteAppointmentParams {
-	o.SetPatientDataTypeURL(patientDataTypeURL)
-	return o
-}
-
-// SetPatientDataTypeURL adds the patientDataTypeUrl to the scheduler delete appointment params
-func (o *SchedulerDeleteAppointmentParams) SetPatientDataTypeURL(patientDataTypeURL *string) {
-	o.PatientDataTypeURL = patientDataTypeURL
-}
-
-// WithPatientDataValue adds the patientDataValue to the scheduler delete appointment params
-func (o *SchedulerDeleteAppointmentParams) WithPatientDataValue(patientDataValue *strfmt.Base64) *SchedulerDeleteAppointmentParams {
-	o.SetPatientDataValue(patientDataValue)
-	return o
-}
-
-// SetPatientDataValue adds the patientDataValue to the scheduler delete appointment params
-func (o *SchedulerDeleteAppointmentParams) SetPatientDataValue(patientDataValue *strfmt.Base64) {
-	o.PatientDataValue = patientDataValue
 }
 
 // WithPatientGivenName adds the patientGivenName to the scheduler delete appointment params
@@ -595,6 +595,17 @@ func (o *SchedulerDeleteAppointmentParams) WithPatientUpdatedBy(patientUpdatedBy
 // SetPatientUpdatedBy adds the patientUpdatedBy to the scheduler delete appointment params
 func (o *SchedulerDeleteAppointmentParams) SetPatientUpdatedBy(patientUpdatedBy *string) {
 	o.PatientUpdatedBy = patientUpdatedBy
+}
+
+// WithPending adds the pending to the scheduler delete appointment params
+func (o *SchedulerDeleteAppointmentParams) WithPending(pending *bool) *SchedulerDeleteAppointmentParams {
+	o.SetPending(pending)
+	return o
+}
+
+// SetPending adds the pending to the scheduler delete appointment params
+func (o *SchedulerDeleteAppointmentParams) SetPending(pending *bool) {
+	o.Pending = pending
 }
 
 // WithProviderActive adds the providerActive to the scheduler delete appointment params
@@ -883,6 +894,28 @@ func (o *SchedulerDeleteAppointmentParams) SetServiceActive(serviceActive *bool)
 	o.ServiceActive = serviceActive
 }
 
+// WithServiceConfigDurations adds the serviceConfigDurations to the scheduler delete appointment params
+func (o *SchedulerDeleteAppointmentParams) WithServiceConfigDurations(serviceConfigDurations []int32) *SchedulerDeleteAppointmentParams {
+	o.SetServiceConfigDurations(serviceConfigDurations)
+	return o
+}
+
+// SetServiceConfigDurations adds the serviceConfigDurations to the scheduler delete appointment params
+func (o *SchedulerDeleteAppointmentParams) SetServiceConfigDurations(serviceConfigDurations []int32) {
+	o.ServiceConfigDurations = serviceConfigDurations
+}
+
+// WithServiceConfigFixedDuration adds the serviceConfigFixedDuration to the scheduler delete appointment params
+func (o *SchedulerDeleteAppointmentParams) WithServiceConfigFixedDuration(serviceConfigFixedDuration *int32) *SchedulerDeleteAppointmentParams {
+	o.SetServiceConfigFixedDuration(serviceConfigFixedDuration)
+	return o
+}
+
+// SetServiceConfigFixedDuration adds the serviceConfigFixedDuration to the scheduler delete appointment params
+func (o *SchedulerDeleteAppointmentParams) SetServiceConfigFixedDuration(serviceConfigFixedDuration *int32) {
+	o.ServiceConfigFixedDuration = serviceConfigFixedDuration
+}
+
 // WithServiceCreatedAt adds the serviceCreatedAt to the scheduler delete appointment params
 func (o *SchedulerDeleteAppointmentParams) WithServiceCreatedAt(serviceCreatedAt *string) *SchedulerDeleteAppointmentParams {
 	o.SetServiceCreatedAt(serviceCreatedAt)
@@ -993,6 +1026,28 @@ func (o *SchedulerDeleteAppointmentParams) SetStartAt(startAt *string) {
 	o.StartAt = startAt
 }
 
+// WithState adds the state to the scheduler delete appointment params
+func (o *SchedulerDeleteAppointmentParams) WithState(state *string) *SchedulerDeleteAppointmentParams {
+	o.SetState(state)
+	return o
+}
+
+// SetState adds the state to the scheduler delete appointment params
+func (o *SchedulerDeleteAppointmentParams) SetState(state *string) {
+	o.State = state
+}
+
+// WithStatus adds the status to the scheduler delete appointment params
+func (o *SchedulerDeleteAppointmentParams) WithStatus(status *string) *SchedulerDeleteAppointmentParams {
+	o.SetStatus(status)
+	return o
+}
+
+// SetStatus adds the status to the scheduler delete appointment params
+func (o *SchedulerDeleteAppointmentParams) SetStatus(status *string) {
+	o.Status = status
+}
+
 // WithType adds the typeVar to the scheduler delete appointment params
 func (o *SchedulerDeleteAppointmentParams) WithType(typeVar *string) *SchedulerDeleteAppointmentParams {
 	o.SetType(typeVar)
@@ -1002,6 +1057,17 @@ func (o *SchedulerDeleteAppointmentParams) WithType(typeVar *string) *SchedulerD
 // SetType adds the type to the scheduler delete appointment params
 func (o *SchedulerDeleteAppointmentParams) SetType(typeVar *string) {
 	o.Type = typeVar
+}
+
+// WithUnavailable adds the unavailable to the scheduler delete appointment params
+func (o *SchedulerDeleteAppointmentParams) WithUnavailable(unavailable *bool) *SchedulerDeleteAppointmentParams {
+	o.SetUnavailable(unavailable)
+	return o
+}
+
+// SetUnavailable adds the unavailable to the scheduler delete appointment params
+func (o *SchedulerDeleteAppointmentParams) SetUnavailable(unavailable *bool) {
+	o.Unavailable = unavailable
 }
 
 // WithUpdatedAt adds the updatedAt to the scheduler delete appointment params
@@ -1046,6 +1112,23 @@ func (o *SchedulerDeleteAppointmentParams) WriteToRequest(r runtime.ClientReques
 		if qActive != "" {
 
 			if err := r.SetQueryParam("active", qActive); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.Country != nil {
+
+		// query param country
+		var qrCountry string
+
+		if o.Country != nil {
+			qrCountry = *o.Country
+		}
+		qCountry := qrCountry
+		if qCountry != "" {
+
+			if err := r.SetQueryParam("country", qCountry); err != nil {
 				return err
 			}
 		}
@@ -1141,6 +1224,23 @@ func (o *SchedulerDeleteAppointmentParams) WriteToRequest(r runtime.ClientReques
 		}
 	}
 
+	if o.Language != nil {
+
+		// query param language
+		var qrLanguage string
+
+		if o.Language != nil {
+			qrLanguage = *o.Language
+		}
+		qLanguage := qrLanguage
+		if qLanguage != "" {
+
+			if err := r.SetQueryParam("language", qLanguage); err != nil {
+				return err
+			}
+		}
+	}
+
 	if o.OrganizationID != nil {
 
 		// query param organization_id
@@ -1153,6 +1253,23 @@ func (o *SchedulerDeleteAppointmentParams) WriteToRequest(r runtime.ClientReques
 		if qOrganizationID != "" {
 
 			if err := r.SetQueryParam("organization_id", qOrganizationID); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.Padding != nil {
+
+		// query param padding
+		var qrPadding bool
+
+		if o.Padding != nil {
+			qrPadding = *o.Padding
+		}
+		qPadding := swag.FormatBool(qrPadding)
+		if qPadding != "" {
+
+			if err := r.SetQueryParam("padding", qPadding); err != nil {
 				return err
 			}
 		}
@@ -1204,40 +1321,6 @@ func (o *SchedulerDeleteAppointmentParams) WriteToRequest(r runtime.ClientReques
 		if qPatientCreatedBy != "" {
 
 			if err := r.SetQueryParam("patient.created_by", qPatientCreatedBy); err != nil {
-				return err
-			}
-		}
-	}
-
-	if o.PatientDataTypeURL != nil {
-
-		// query param patient.data.type_url
-		var qrPatientDataTypeURL string
-
-		if o.PatientDataTypeURL != nil {
-			qrPatientDataTypeURL = *o.PatientDataTypeURL
-		}
-		qPatientDataTypeURL := qrPatientDataTypeURL
-		if qPatientDataTypeURL != "" {
-
-			if err := r.SetQueryParam("patient.data.type_url", qPatientDataTypeURL); err != nil {
-				return err
-			}
-		}
-	}
-
-	if o.PatientDataValue != nil {
-
-		// query param patient.data.value
-		var qrPatientDataValue strfmt.Base64
-
-		if o.PatientDataValue != nil {
-			qrPatientDataValue = *o.PatientDataValue
-		}
-		qPatientDataValue := qrPatientDataValue.String()
-		if qPatientDataValue != "" {
-
-			if err := r.SetQueryParam("patient.data.value", qPatientDataValue); err != nil {
 				return err
 			}
 		}
@@ -1391,6 +1474,23 @@ func (o *SchedulerDeleteAppointmentParams) WriteToRequest(r runtime.ClientReques
 		if qPatientUpdatedBy != "" {
 
 			if err := r.SetQueryParam("patient.updated_by", qPatientUpdatedBy); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.Pending != nil {
+
+		// query param pending
+		var qrPending bool
+
+		if o.Pending != nil {
+			qrPending = *o.Pending
+		}
+		qPending := swag.FormatBool(qrPending)
+		if qPending != "" {
+
+			if err := r.SetQueryParam("pending", qPending); err != nil {
 				return err
 			}
 		}
@@ -1838,6 +1938,34 @@ func (o *SchedulerDeleteAppointmentParams) WriteToRequest(r runtime.ClientReques
 		}
 	}
 
+	if o.ServiceConfigDurations != nil {
+
+		// binding items for service.config.durations
+		joinedServiceConfigDurations := o.bindParamServiceConfigDurations(reg)
+
+		// query array param service.config.durations
+		if err := r.SetQueryParam("service.config.durations", joinedServiceConfigDurations...); err != nil {
+			return err
+		}
+	}
+
+	if o.ServiceConfigFixedDuration != nil {
+
+		// query param service.config.fixed_duration
+		var qrServiceConfigFixedDuration int32
+
+		if o.ServiceConfigFixedDuration != nil {
+			qrServiceConfigFixedDuration = *o.ServiceConfigFixedDuration
+		}
+		qServiceConfigFixedDuration := swag.FormatInt32(qrServiceConfigFixedDuration)
+		if qServiceConfigFixedDuration != "" {
+
+			if err := r.SetQueryParam("service.config.fixed_duration", qServiceConfigFixedDuration); err != nil {
+				return err
+			}
+		}
+	}
+
 	if o.ServiceCreatedAt != nil {
 
 		// query param service.created_at
@@ -2008,6 +2136,40 @@ func (o *SchedulerDeleteAppointmentParams) WriteToRequest(r runtime.ClientReques
 		}
 	}
 
+	if o.State != nil {
+
+		// query param state
+		var qrState string
+
+		if o.State != nil {
+			qrState = *o.State
+		}
+		qState := qrState
+		if qState != "" {
+
+			if err := r.SetQueryParam("state", qState); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.Status != nil {
+
+		// query param status
+		var qrStatus string
+
+		if o.Status != nil {
+			qrStatus = *o.Status
+		}
+		qStatus := qrStatus
+		if qStatus != "" {
+
+			if err := r.SetQueryParam("status", qStatus); err != nil {
+				return err
+			}
+		}
+	}
+
 	if o.Type != nil {
 
 		// query param type
@@ -2020,6 +2182,23 @@ func (o *SchedulerDeleteAppointmentParams) WriteToRequest(r runtime.ClientReques
 		if qType != "" {
 
 			if err := r.SetQueryParam("type", qType); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.Unavailable != nil {
+
+		// query param unavailable
+		var qrUnavailable bool
+
+		if o.Unavailable != nil {
+			qrUnavailable = *o.Unavailable
+		}
+		qUnavailable := swag.FormatBool(qrUnavailable)
+		if qUnavailable != "" {
+
+			if err := r.SetQueryParam("unavailable", qUnavailable); err != nil {
 				return err
 			}
 		}
@@ -2063,4 +2242,21 @@ func (o *SchedulerDeleteAppointmentParams) WriteToRequest(r runtime.ClientReques
 		return errors.CompositeValidationError(res...)
 	}
 	return nil
+}
+
+// bindParamSchedulerDeleteAppointment binds the parameter service.config.durations
+func (o *SchedulerDeleteAppointmentParams) bindParamServiceConfigDurations(formats strfmt.Registry) []string {
+	serviceConfigDurationsIR := o.ServiceConfigDurations
+
+	var serviceConfigDurationsIC []string
+	for _, serviceConfigDurationsIIR := range serviceConfigDurationsIR { // explode []int32
+
+		serviceConfigDurationsIIV := swag.FormatInt32(serviceConfigDurationsIIR) // int32 as string
+		serviceConfigDurationsIC = append(serviceConfigDurationsIC, serviceConfigDurationsIIV)
+	}
+
+	// items.CollectionFormat: "multi"
+	serviceConfigDurationsIS := swag.JoinByFormat(serviceConfigDurationsIC, "multi")
+
+	return serviceConfigDurationsIS
 }

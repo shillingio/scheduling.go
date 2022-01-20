@@ -95,9 +95,7 @@ type SchedulerGetProviderServicesParams struct {
 	ServiceDurations []int32
 
 	// ServiceID.
-	//
-	// Format: int32
-	ServiceID *int32
+	ServiceID *string
 
 	// ServiceInPerson.
 	ServiceInPerson *bool
@@ -182,6 +180,14 @@ type SchedulerGetProviderServicesParams struct {
 	// ServiceServiceActive.
 	ServiceServiceActive *bool
 
+	// ServiceServiceConfigDurations.
+	ServiceServiceConfigDurations []int32
+
+	// ServiceServiceConfigFixedDuration.
+	//
+	// Format: int32
+	ServiceServiceConfigFixedDuration *int32
+
 	// ServiceServiceCreatedAt.
 	ServiceServiceCreatedAt *string
 
@@ -211,6 +217,9 @@ type SchedulerGetProviderServicesParams struct {
 
 	// ServiceStates.
 	ServiceStates []string
+
+	// ServiceTypes.
+	ServiceTypes []string
 
 	// ServiceUpdatedAt.
 	ServiceUpdatedAt *string
@@ -382,13 +391,13 @@ func (o *SchedulerGetProviderServicesParams) SetServiceDurations(serviceDuration
 }
 
 // WithServiceID adds the serviceID to the scheduler get provider services params
-func (o *SchedulerGetProviderServicesParams) WithServiceID(serviceID *int32) *SchedulerGetProviderServicesParams {
+func (o *SchedulerGetProviderServicesParams) WithServiceID(serviceID *string) *SchedulerGetProviderServicesParams {
 	o.SetServiceID(serviceID)
 	return o
 }
 
 // SetServiceID adds the serviceId to the scheduler get provider services params
-func (o *SchedulerGetProviderServicesParams) SetServiceID(serviceID *int32) {
+func (o *SchedulerGetProviderServicesParams) SetServiceID(serviceID *string) {
 	o.ServiceID = serviceID
 }
 
@@ -667,6 +676,28 @@ func (o *SchedulerGetProviderServicesParams) SetServiceServiceActive(serviceServ
 	o.ServiceServiceActive = serviceServiceActive
 }
 
+// WithServiceServiceConfigDurations adds the serviceServiceConfigDurations to the scheduler get provider services params
+func (o *SchedulerGetProviderServicesParams) WithServiceServiceConfigDurations(serviceServiceConfigDurations []int32) *SchedulerGetProviderServicesParams {
+	o.SetServiceServiceConfigDurations(serviceServiceConfigDurations)
+	return o
+}
+
+// SetServiceServiceConfigDurations adds the serviceServiceConfigDurations to the scheduler get provider services params
+func (o *SchedulerGetProviderServicesParams) SetServiceServiceConfigDurations(serviceServiceConfigDurations []int32) {
+	o.ServiceServiceConfigDurations = serviceServiceConfigDurations
+}
+
+// WithServiceServiceConfigFixedDuration adds the serviceServiceConfigFixedDuration to the scheduler get provider services params
+func (o *SchedulerGetProviderServicesParams) WithServiceServiceConfigFixedDuration(serviceServiceConfigFixedDuration *int32) *SchedulerGetProviderServicesParams {
+	o.SetServiceServiceConfigFixedDuration(serviceServiceConfigFixedDuration)
+	return o
+}
+
+// SetServiceServiceConfigFixedDuration adds the serviceServiceConfigFixedDuration to the scheduler get provider services params
+func (o *SchedulerGetProviderServicesParams) SetServiceServiceConfigFixedDuration(serviceServiceConfigFixedDuration *int32) {
+	o.ServiceServiceConfigFixedDuration = serviceServiceConfigFixedDuration
+}
+
 // WithServiceServiceCreatedAt adds the serviceServiceCreatedAt to the scheduler get provider services params
 func (o *SchedulerGetProviderServicesParams) WithServiceServiceCreatedAt(serviceServiceCreatedAt *string) *SchedulerGetProviderServicesParams {
 	o.SetServiceServiceCreatedAt(serviceServiceCreatedAt)
@@ -775,6 +806,17 @@ func (o *SchedulerGetProviderServicesParams) WithServiceStates(serviceStates []s
 // SetServiceStates adds the serviceStates to the scheduler get provider services params
 func (o *SchedulerGetProviderServicesParams) SetServiceStates(serviceStates []string) {
 	o.ServiceStates = serviceStates
+}
+
+// WithServiceTypes adds the serviceTypes to the scheduler get provider services params
+func (o *SchedulerGetProviderServicesParams) WithServiceTypes(serviceTypes []string) *SchedulerGetProviderServicesParams {
+	o.SetServiceTypes(serviceTypes)
+	return o
+}
+
+// SetServiceTypes adds the serviceTypes to the scheduler get provider services params
+func (o *SchedulerGetProviderServicesParams) SetServiceTypes(serviceTypes []string) {
+	o.ServiceTypes = serviceTypes
 }
 
 // WithServiceUpdatedAt adds the serviceUpdatedAt to the scheduler get provider services params
@@ -956,12 +998,12 @@ func (o *SchedulerGetProviderServicesParams) WriteToRequest(r runtime.ClientRequ
 	if o.ServiceID != nil {
 
 		// query param service.id
-		var qrServiceID int32
+		var qrServiceID string
 
 		if o.ServiceID != nil {
 			qrServiceID = *o.ServiceID
 		}
-		qServiceID := swag.FormatInt32(qrServiceID)
+		qServiceID := qrServiceID
 		if qServiceID != "" {
 
 			if err := r.SetQueryParam("service.id", qServiceID); err != nil {
@@ -1389,6 +1431,34 @@ func (o *SchedulerGetProviderServicesParams) WriteToRequest(r runtime.ClientRequ
 		}
 	}
 
+	if o.ServiceServiceConfigDurations != nil {
+
+		// binding items for service.service.config.durations
+		joinedServiceServiceConfigDurations := o.bindParamServiceServiceConfigDurations(reg)
+
+		// query array param service.service.config.durations
+		if err := r.SetQueryParam("service.service.config.durations", joinedServiceServiceConfigDurations...); err != nil {
+			return err
+		}
+	}
+
+	if o.ServiceServiceConfigFixedDuration != nil {
+
+		// query param service.service.config.fixed_duration
+		var qrServiceServiceConfigFixedDuration int32
+
+		if o.ServiceServiceConfigFixedDuration != nil {
+			qrServiceServiceConfigFixedDuration = *o.ServiceServiceConfigFixedDuration
+		}
+		qServiceServiceConfigFixedDuration := swag.FormatInt32(qrServiceServiceConfigFixedDuration)
+		if qServiceServiceConfigFixedDuration != "" {
+
+			if err := r.SetQueryParam("service.service.config.fixed_duration", qServiceServiceConfigFixedDuration); err != nil {
+				return err
+			}
+		}
+	}
+
 	if o.ServiceServiceCreatedAt != nil {
 
 		// query param service.service.created_at
@@ -1553,6 +1623,17 @@ func (o *SchedulerGetProviderServicesParams) WriteToRequest(r runtime.ClientRequ
 		}
 	}
 
+	if o.ServiceTypes != nil {
+
+		// binding items for service.types
+		joinedServiceTypes := o.bindParamServiceTypes(reg)
+
+		// query array param service.types
+		if err := r.SetQueryParam("service.types", joinedServiceTypes...); err != nil {
+			return err
+		}
+	}
+
 	if o.ServiceUpdatedAt != nil {
 
 		// query param service.updated_at
@@ -1644,6 +1725,23 @@ func (o *SchedulerGetProviderServicesParams) bindParamServiceLanguages(formats s
 	return serviceLanguagesIS
 }
 
+// bindParamSchedulerGetProviderServices binds the parameter service.service.config.durations
+func (o *SchedulerGetProviderServicesParams) bindParamServiceServiceConfigDurations(formats strfmt.Registry) []string {
+	serviceServiceConfigDurationsIR := o.ServiceServiceConfigDurations
+
+	var serviceServiceConfigDurationsIC []string
+	for _, serviceServiceConfigDurationsIIR := range serviceServiceConfigDurationsIR { // explode []int32
+
+		serviceServiceConfigDurationsIIV := swag.FormatInt32(serviceServiceConfigDurationsIIR) // int32 as string
+		serviceServiceConfigDurationsIC = append(serviceServiceConfigDurationsIC, serviceServiceConfigDurationsIIV)
+	}
+
+	// items.CollectionFormat: "multi"
+	serviceServiceConfigDurationsIS := swag.JoinByFormat(serviceServiceConfigDurationsIC, "multi")
+
+	return serviceServiceConfigDurationsIS
+}
+
 // bindParamSchedulerGetProviderServices binds the parameter service.states
 func (o *SchedulerGetProviderServicesParams) bindParamServiceStates(formats strfmt.Registry) []string {
 	serviceStatesIR := o.ServiceStates
@@ -1659,4 +1757,21 @@ func (o *SchedulerGetProviderServicesParams) bindParamServiceStates(formats strf
 	serviceStatesIS := swag.JoinByFormat(serviceStatesIC, "multi")
 
 	return serviceStatesIS
+}
+
+// bindParamSchedulerGetProviderServices binds the parameter service.types
+func (o *SchedulerGetProviderServicesParams) bindParamServiceTypes(formats strfmt.Registry) []string {
+	serviceTypesIR := o.ServiceTypes
+
+	var serviceTypesIC []string
+	for _, serviceTypesIIR := range serviceTypesIR { // explode []string
+
+		serviceTypesIIV := serviceTypesIIR // string as string
+		serviceTypesIC = append(serviceTypesIC, serviceTypesIIV)
+	}
+
+	// items.CollectionFormat: "multi"
+	serviceTypesIS := swag.JoinByFormat(serviceTypesIC, "multi")
+
+	return serviceTypesIS
 }

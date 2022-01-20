@@ -76,6 +76,9 @@ type SchedulerGetPatientsParams struct {
 	// Format: int32
 	Offset *int32
 
+	// OrganizationID.
+	OrganizationID *string
+
 	// PatientActive.
 	PatientActive *bool
 
@@ -84,46 +87,6 @@ type SchedulerGetPatientsParams struct {
 
 	// PatientCreatedBy.
 	PatientCreatedBy *string
-
-	/* PatientDataTypeURL.
-
-	     A URL/resource name that uniquely identifies the type of the serialized
-	protocol buffer message. This string must contain at least
-	one "/" character. The last segment of the URL's path must represent
-	the fully qualified name of the type (as in
-	`path/google.protobuf.Duration`). The name should be in a canonical form
-	(e.g., leading "." is not accepted).
-
-	In practice, teams usually precompile into the binary all types that they
-	expect it to use in the context of Any. However, for URLs which use the
-	scheme `http`, `https`, or no scheme, one can optionally set up a type
-	server that maps type URLs to message definitions as follows:
-
-	* If no scheme is provided, `https` is assumed.
-	* An HTTP GET on the URL must yield a [google.protobuf.Type][]
-	  value in binary format, or produce an error.
-	* Applications are allowed to cache lookup results based on the
-	  URL, or have them precompiled into a binary to avoid any
-	  lookup. Therefore, binary compatibility needs to be preserved
-	  on changes to types. (Use versioned type names to manage
-	  breaking changes.)
-
-	Note: this functionality is not currently available in the official
-	protobuf release, and it is not used for type URLs beginning with
-	type.googleapis.com.
-
-	Schemes other than `http`, `https` (or the empty scheme) might be
-	used with implementation specific semantics.
-	*/
-	PatientDataTypeURL *string
-
-	/* PatientDataValue.
-
-	   Must be a valid serialized protocol buffer of the above specified type.
-
-	   Format: byte
-	*/
-	PatientDataValue *strfmt.Base64
 
 	// PatientGivenName.
 	PatientGivenName *string
@@ -151,6 +114,9 @@ type SchedulerGetPatientsParams struct {
 
 	// PatientUpdatedBy.
 	PatientUpdatedBy *string
+
+	// ProviderID.
+	ProviderID *string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -249,6 +215,17 @@ func (o *SchedulerGetPatientsParams) SetOffset(offset *int32) {
 	o.Offset = offset
 }
 
+// WithOrganizationID adds the organizationID to the scheduler get patients params
+func (o *SchedulerGetPatientsParams) WithOrganizationID(organizationID *string) *SchedulerGetPatientsParams {
+	o.SetOrganizationID(organizationID)
+	return o
+}
+
+// SetOrganizationID adds the organizationId to the scheduler get patients params
+func (o *SchedulerGetPatientsParams) SetOrganizationID(organizationID *string) {
+	o.OrganizationID = organizationID
+}
+
 // WithPatientActive adds the patientActive to the scheduler get patients params
 func (o *SchedulerGetPatientsParams) WithPatientActive(patientActive *bool) *SchedulerGetPatientsParams {
 	o.SetPatientActive(patientActive)
@@ -280,28 +257,6 @@ func (o *SchedulerGetPatientsParams) WithPatientCreatedBy(patientCreatedBy *stri
 // SetPatientCreatedBy adds the patientCreatedBy to the scheduler get patients params
 func (o *SchedulerGetPatientsParams) SetPatientCreatedBy(patientCreatedBy *string) {
 	o.PatientCreatedBy = patientCreatedBy
-}
-
-// WithPatientDataTypeURL adds the patientDataTypeURL to the scheduler get patients params
-func (o *SchedulerGetPatientsParams) WithPatientDataTypeURL(patientDataTypeURL *string) *SchedulerGetPatientsParams {
-	o.SetPatientDataTypeURL(patientDataTypeURL)
-	return o
-}
-
-// SetPatientDataTypeURL adds the patientDataTypeUrl to the scheduler get patients params
-func (o *SchedulerGetPatientsParams) SetPatientDataTypeURL(patientDataTypeURL *string) {
-	o.PatientDataTypeURL = patientDataTypeURL
-}
-
-// WithPatientDataValue adds the patientDataValue to the scheduler get patients params
-func (o *SchedulerGetPatientsParams) WithPatientDataValue(patientDataValue *strfmt.Base64) *SchedulerGetPatientsParams {
-	o.SetPatientDataValue(patientDataValue)
-	return o
-}
-
-// SetPatientDataValue adds the patientDataValue to the scheduler get patients params
-func (o *SchedulerGetPatientsParams) SetPatientDataValue(patientDataValue *strfmt.Base64) {
-	o.PatientDataValue = patientDataValue
 }
 
 // WithPatientGivenName adds the patientGivenName to the scheduler get patients params
@@ -403,6 +358,17 @@ func (o *SchedulerGetPatientsParams) SetPatientUpdatedBy(patientUpdatedBy *strin
 	o.PatientUpdatedBy = patientUpdatedBy
 }
 
+// WithProviderID adds the providerID to the scheduler get patients params
+func (o *SchedulerGetPatientsParams) WithProviderID(providerID *string) *SchedulerGetPatientsParams {
+	o.SetProviderID(providerID)
+	return o
+}
+
+// SetProviderID adds the providerId to the scheduler get patients params
+func (o *SchedulerGetPatientsParams) SetProviderID(providerID *string) {
+	o.ProviderID = providerID
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *SchedulerGetPatientsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -473,6 +439,23 @@ func (o *SchedulerGetPatientsParams) WriteToRequest(r runtime.ClientRequest, reg
 		}
 	}
 
+	if o.OrganizationID != nil {
+
+		// query param organization_id
+		var qrOrganizationID string
+
+		if o.OrganizationID != nil {
+			qrOrganizationID = *o.OrganizationID
+		}
+		qOrganizationID := qrOrganizationID
+		if qOrganizationID != "" {
+
+			if err := r.SetQueryParam("organization_id", qOrganizationID); err != nil {
+				return err
+			}
+		}
+	}
+
 	if o.PatientActive != nil {
 
 		// query param patient.active
@@ -519,40 +502,6 @@ func (o *SchedulerGetPatientsParams) WriteToRequest(r runtime.ClientRequest, reg
 		if qPatientCreatedBy != "" {
 
 			if err := r.SetQueryParam("patient.created_by", qPatientCreatedBy); err != nil {
-				return err
-			}
-		}
-	}
-
-	if o.PatientDataTypeURL != nil {
-
-		// query param patient.data.type_url
-		var qrPatientDataTypeURL string
-
-		if o.PatientDataTypeURL != nil {
-			qrPatientDataTypeURL = *o.PatientDataTypeURL
-		}
-		qPatientDataTypeURL := qrPatientDataTypeURL
-		if qPatientDataTypeURL != "" {
-
-			if err := r.SetQueryParam("patient.data.type_url", qPatientDataTypeURL); err != nil {
-				return err
-			}
-		}
-	}
-
-	if o.PatientDataValue != nil {
-
-		// query param patient.data.value
-		var qrPatientDataValue strfmt.Base64
-
-		if o.PatientDataValue != nil {
-			qrPatientDataValue = *o.PatientDataValue
-		}
-		qPatientDataValue := qrPatientDataValue.String()
-		if qPatientDataValue != "" {
-
-			if err := r.SetQueryParam("patient.data.value", qPatientDataValue); err != nil {
 				return err
 			}
 		}
@@ -706,6 +655,23 @@ func (o *SchedulerGetPatientsParams) WriteToRequest(r runtime.ClientRequest, reg
 		if qPatientUpdatedBy != "" {
 
 			if err := r.SetQueryParam("patient.updated_by", qPatientUpdatedBy); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.ProviderID != nil {
+
+		// query param provider_id
+		var qrProviderID string
+
+		if o.ProviderID != nil {
+			qrProviderID = *o.ProviderID
+		}
+		qProviderID := qrProviderID
+		if qProviderID != "" {
+
+			if err := r.SetQueryParam("provider_id", qProviderID); err != nil {
 				return err
 			}
 		}

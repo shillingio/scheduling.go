@@ -10,7 +10,6 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -133,7 +132,7 @@ type SchedulerUpdatePatientBody struct {
 	CreatedBy string `json:"created_by,omitempty"`
 
 	// data
-	Data *models.ProtobufAny `json:"data,omitempty"`
+	Data interface{} `json:"data,omitempty"`
 
 	// given name
 	GivenName string `json:"given_name,omitempty"`
@@ -162,64 +161,11 @@ type SchedulerUpdatePatientBody struct {
 
 // Validate validates this scheduler update patient body
 func (o *SchedulerUpdatePatientBody) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := o.validateData(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
 	return nil
 }
 
-func (o *SchedulerUpdatePatientBody) validateData(formats strfmt.Registry) error {
-	if swag.IsZero(o.Data) { // not required
-		return nil
-	}
-
-	if o.Data != nil {
-		if err := o.Data.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("body" + "." + "data")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("body" + "." + "data")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-// ContextValidate validate this scheduler update patient body based on the context it is used
+// ContextValidate validates this scheduler update patient body based on context it is used
 func (o *SchedulerUpdatePatientBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := o.contextValidateData(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (o *SchedulerUpdatePatientBody) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
-
-	if o.Data != nil {
-		if err := o.Data.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("body" + "." + "data")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("body" + "." + "data")
-			}
-			return err
-		}
-	}
-
 	return nil
 }
 

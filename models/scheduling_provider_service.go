@@ -11,7 +11,6 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-	"github.com/go-openapi/validate"
 )
 
 // SchedulingProviderService scheduling provider service
@@ -35,7 +34,7 @@ type SchedulingProviderService struct {
 	Durations []int32 `json:"durations"`
 
 	// id
-	ID int32 `json:"id,omitempty"`
+	ID string `json:"id,omitempty"`
 
 	// in person
 	InPerson bool `json:"in_person,omitempty"`
@@ -44,7 +43,7 @@ type SchedulingProviderService struct {
 	Languages []string `json:"languages"`
 
 	// license data
-	LicenseData map[string]ProtobufAny `json:"license_data,omitempty"`
+	LicenseData interface{} `json:"license_data,omitempty"`
 
 	// provider
 	Provider *SchedulingProvider `json:"provider,omitempty"`
@@ -61,6 +60,9 @@ type SchedulingProviderService struct {
 	// states
 	States []string `json:"states"`
 
+	// types
+	Types []string `json:"types"`
+
 	// updated at
 	UpdatedAt string `json:"updated_at,omitempty"`
 
@@ -71,10 +73,6 @@ type SchedulingProviderService struct {
 // Validate validates this scheduling provider service
 func (m *SchedulingProviderService) Validate(formats strfmt.Registry) error {
 	var res []error
-
-	if err := m.validateLicenseData(formats); err != nil {
-		res = append(res, err)
-	}
 
 	if err := m.validateProvider(formats); err != nil {
 		res = append(res, err)
@@ -87,27 +85,6 @@ func (m *SchedulingProviderService) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *SchedulingProviderService) validateLicenseData(formats strfmt.Registry) error {
-	if swag.IsZero(m.LicenseData) { // not required
-		return nil
-	}
-
-	for k := range m.LicenseData {
-
-		if err := validate.Required("license_data"+"."+k, "body", m.LicenseData[k]); err != nil {
-			return err
-		}
-		if val, ok := m.LicenseData[k]; ok {
-			if err := val.Validate(formats); err != nil {
-				return err
-			}
-		}
-
-	}
-
 	return nil
 }
 
@@ -153,10 +130,6 @@ func (m *SchedulingProviderService) validateService(formats strfmt.Registry) err
 func (m *SchedulingProviderService) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateLicenseData(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.contextValidateProvider(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -168,21 +141,6 @@ func (m *SchedulingProviderService) ContextValidate(ctx context.Context, formats
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *SchedulingProviderService) contextValidateLicenseData(ctx context.Context, formats strfmt.Registry) error {
-
-	for k := range m.LicenseData {
-
-		if val, ok := m.LicenseData[k]; ok {
-			if err := val.ContextValidate(ctx, formats); err != nil {
-				return err
-			}
-		}
-
-	}
-
 	return nil
 }
 
