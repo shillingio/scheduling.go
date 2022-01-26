@@ -25,8 +25,12 @@ import (
 type ProtobufNullValue string
 
 func NewProtobufNullValue(value ProtobufNullValue) *ProtobufNullValue {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated ProtobufNullValue.
+func (m ProtobufNullValue) Pointer() *ProtobufNullValue {
+	return &m
 }
 
 const (

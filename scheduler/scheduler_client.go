@@ -28,9 +28,23 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	SchedulerActivateProvider(params *SchedulerActivateProviderParams, opts ...ClientOption) (*SchedulerActivateProviderOK, error)
+
+	SchedulerActivateSchedule(params *SchedulerActivateScheduleParams, opts ...ClientOption) (*SchedulerActivateScheduleOK, error)
+
+	SchedulerAddProviderService(params *SchedulerAddProviderServiceParams, opts ...ClientOption) (*SchedulerAddProviderServiceOK, error)
+
 	SchedulerCreateAppointment(params *SchedulerCreateAppointmentParams, opts ...ClientOption) (*SchedulerCreateAppointmentOK, error)
 
 	SchedulerCreatePatient(params *SchedulerCreatePatientParams, opts ...ClientOption) (*SchedulerCreatePatientOK, error)
+
+	SchedulerCreateProvider(params *SchedulerCreateProviderParams, opts ...ClientOption) (*SchedulerCreateProviderOK, error)
+
+	SchedulerCreateSchedule(params *SchedulerCreateScheduleParams, opts ...ClientOption) (*SchedulerCreateScheduleOK, error)
+
+	SchedulerCreateService(params *SchedulerCreateServiceParams, opts ...ClientOption) (*SchedulerCreateServiceOK, error)
+
+	SchedulerDeactivateProvider(params *SchedulerDeactivateProviderParams, opts ...ClientOption) (*SchedulerDeactivateProviderOK, error)
 
 	SchedulerDeleteAppointment(params *SchedulerDeleteAppointmentParams, opts ...ClientOption) (*SchedulerDeleteAppointmentOK, error)
 
@@ -52,6 +66,8 @@ type ClientService interface {
 
 	SchedulerGetProviders(params *SchedulerGetProvidersParams, opts ...ClientOption) (*SchedulerGetProvidersOK, error)
 
+	SchedulerGetScheduleBlock(params *SchedulerGetScheduleBlockParams, opts ...ClientOption) (*SchedulerGetScheduleBlockOK, error)
+
 	SchedulerGetService(params *SchedulerGetServiceParams, opts ...ClientOption) (*SchedulerGetServiceOK, error)
 
 	SchedulerGetServices(params *SchedulerGetServicesParams, opts ...ClientOption) (*SchedulerGetServicesOK, error)
@@ -60,6 +76,8 @@ type ClientService interface {
 
 	SchedulerInfo(params *SchedulerInfoParams, opts ...ClientOption) (*SchedulerInfoOK, error)
 
+	SchedulerRemoveProviderService(params *SchedulerRemoveProviderServiceParams, opts ...ClientOption) (*SchedulerRemoveProviderServiceOK, error)
+
 	SchedulerSearchAvailability(params *SchedulerSearchAvailabilityParams, opts ...ClientOption) (*SchedulerSearchAvailabilityOK, error)
 
 	SchedulerSearchProviders(params *SchedulerSearchProvidersParams, opts ...ClientOption) (*SchedulerSearchProvidersOK, error)
@@ -67,6 +85,117 @@ type ClientService interface {
 	SchedulerUpdatePatient(params *SchedulerUpdatePatientParams, opts ...ClientOption) (*SchedulerUpdatePatientOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
+}
+
+/*
+  SchedulerActivateProvider scheduler activate provider API
+*/
+func (a *Client) SchedulerActivateProvider(params *SchedulerActivateProviderParams, opts ...ClientOption) (*SchedulerActivateProviderOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSchedulerActivateProviderParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "Scheduler_ActivateProvider",
+		Method:             "PUT",
+		PathPattern:        "/v1/providers/{id}/activate",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SchedulerActivateProviderReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*SchedulerActivateProviderOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*SchedulerActivateProviderDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+}
+
+/*
+  SchedulerActivateSchedule scheduler activate schedule API
+*/
+func (a *Client) SchedulerActivateSchedule(params *SchedulerActivateScheduleParams, opts ...ClientOption) (*SchedulerActivateScheduleOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSchedulerActivateScheduleParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "Scheduler_ActivateSchedule",
+		Method:             "PUT",
+		PathPattern:        "/v1/schedules/{id}/activate",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SchedulerActivateScheduleReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*SchedulerActivateScheduleOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*SchedulerActivateScheduleDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+}
+
+/*
+  SchedulerAddProviderService scheduler add provider service API
+*/
+func (a *Client) SchedulerAddProviderService(params *SchedulerAddProviderServiceParams, opts ...ClientOption) (*SchedulerAddProviderServiceOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSchedulerAddProviderServiceParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "Scheduler_AddProviderService",
+		Method:             "POST",
+		PathPattern:        "/v1/providers/{provider.id}/services",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SchedulerAddProviderServiceReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*SchedulerAddProviderServiceOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*SchedulerAddProviderServiceDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
@@ -140,6 +269,154 @@ func (a *Client) SchedulerCreatePatient(params *SchedulerCreatePatientParams, op
 	}
 	// unexpected success response
 	unexpectedSuccess := result.(*SchedulerCreatePatientDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+}
+
+/*
+  SchedulerCreateProvider scheduler create provider API
+*/
+func (a *Client) SchedulerCreateProvider(params *SchedulerCreateProviderParams, opts ...ClientOption) (*SchedulerCreateProviderOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSchedulerCreateProviderParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "Scheduler_CreateProvider",
+		Method:             "POST",
+		PathPattern:        "/v1/providers",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SchedulerCreateProviderReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*SchedulerCreateProviderOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*SchedulerCreateProviderDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+}
+
+/*
+  SchedulerCreateSchedule scheduler create schedule API
+*/
+func (a *Client) SchedulerCreateSchedule(params *SchedulerCreateScheduleParams, opts ...ClientOption) (*SchedulerCreateScheduleOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSchedulerCreateScheduleParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "Scheduler_CreateSchedule",
+		Method:             "POST",
+		PathPattern:        "/v1/providers/{provider.id}/schedules",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SchedulerCreateScheduleReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*SchedulerCreateScheduleOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*SchedulerCreateScheduleDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+}
+
+/*
+  SchedulerCreateService scheduler create service API
+*/
+func (a *Client) SchedulerCreateService(params *SchedulerCreateServiceParams, opts ...ClientOption) (*SchedulerCreateServiceOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSchedulerCreateServiceParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "Scheduler_CreateService",
+		Method:             "POST",
+		PathPattern:        "/v1/services",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SchedulerCreateServiceReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*SchedulerCreateServiceOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*SchedulerCreateServiceDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+}
+
+/*
+  SchedulerDeactivateProvider scheduler deactivate provider API
+*/
+func (a *Client) SchedulerDeactivateProvider(params *SchedulerDeactivateProviderParams, opts ...ClientOption) (*SchedulerDeactivateProviderOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSchedulerDeactivateProviderParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "Scheduler_DeactivateProvider",
+		Method:             "PUT",
+		PathPattern:        "/v1/providers/{id}/deactivate",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SchedulerDeactivateProviderReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*SchedulerDeactivateProviderOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*SchedulerDeactivateProviderDefault)
 	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
@@ -514,6 +791,43 @@ func (a *Client) SchedulerGetProviders(params *SchedulerGetProvidersParams, opts
 }
 
 /*
+  SchedulerGetScheduleBlock scheduler get schedule block API
+*/
+func (a *Client) SchedulerGetScheduleBlock(params *SchedulerGetScheduleBlockParams, opts ...ClientOption) (*SchedulerGetScheduleBlockOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSchedulerGetScheduleBlockParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "Scheduler_GetScheduleBlock",
+		Method:             "GET",
+		PathPattern:        "/v1/schedules/{schedule.id}/blocks/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SchedulerGetScheduleBlockReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*SchedulerGetScheduleBlockOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*SchedulerGetScheduleBlockDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+}
+
+/*
   SchedulerGetService scheduler get service API
 */
 func (a *Client) SchedulerGetService(params *SchedulerGetServiceParams, opts ...ClientOption) (*SchedulerGetServiceOK, error) {
@@ -658,6 +972,43 @@ func (a *Client) SchedulerInfo(params *SchedulerInfoParams, opts ...ClientOption
 	}
 	// unexpected success response
 	unexpectedSuccess := result.(*SchedulerInfoDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+}
+
+/*
+  SchedulerRemoveProviderService scheduler remove provider service API
+*/
+func (a *Client) SchedulerRemoveProviderService(params *SchedulerRemoveProviderServiceParams, opts ...ClientOption) (*SchedulerRemoveProviderServiceOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSchedulerRemoveProviderServiceParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "Scheduler_RemoveProviderService",
+		Method:             "DELETE",
+		PathPattern:        "/v1/providers/{provider.id}/services/{service.id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SchedulerRemoveProviderServiceReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*SchedulerRemoveProviderServiceOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*SchedulerRemoveProviderServiceDefault)
 	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 

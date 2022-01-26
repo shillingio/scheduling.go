@@ -14,11 +14,11 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// SchedulingProvider scheduling provider
+// SchedulerActivateProviderParamsBody scheduler activate provider params body
 // Example: {}
 //
-// swagger:model schedulingProvider
-type SchedulingProvider struct {
+// swagger:model schedulerActivateProviderParamsBody
+type SchedulerActivateProviderParamsBody struct {
 
 	// active
 	Active bool `json:"active,omitempty"`
@@ -37,9 +37,6 @@ type SchedulingProvider struct {
 
 	// given name
 	GivenName string `json:"given_name,omitempty"`
-
-	// id
-	ID string `json:"id,omitempty"`
 
 	// org id
 	OrgID string `json:"org_id,omitempty"`
@@ -69,8 +66,8 @@ type SchedulingProvider struct {
 	UpdatedBy string `json:"updated_by,omitempty"`
 }
 
-// Validate validates this scheduling provider
-func (m *SchedulingProvider) Validate(formats strfmt.Registry) error {
+// Validate validates this scheduler activate provider params body
+func (m *SchedulerActivateProviderParamsBody) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAppointments(formats); err != nil {
@@ -87,7 +84,7 @@ func (m *SchedulingProvider) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *SchedulingProvider) validateAppointments(formats strfmt.Registry) error {
+func (m *SchedulerActivateProviderParamsBody) validateAppointments(formats strfmt.Registry) error {
 	if swag.IsZero(m.Appointments) { // not required
 		return nil
 	}
@@ -113,7 +110,7 @@ func (m *SchedulingProvider) validateAppointments(formats strfmt.Registry) error
 	return nil
 }
 
-func (m *SchedulingProvider) validateTimezone(formats strfmt.Registry) error {
+func (m *SchedulerActivateProviderParamsBody) validateTimezone(formats strfmt.Registry) error {
 	if swag.IsZero(m.Timezone) { // not required
 		return nil
 	}
@@ -132,8 +129,8 @@ func (m *SchedulingProvider) validateTimezone(formats strfmt.Registry) error {
 	return nil
 }
 
-// ContextValidate validate this scheduling provider based on the context it is used
-func (m *SchedulingProvider) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+// ContextValidate validate this scheduler activate provider params body based on the context it is used
+func (m *SchedulerActivateProviderParamsBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.contextValidateAppointments(ctx, formats); err != nil {
@@ -150,7 +147,7 @@ func (m *SchedulingProvider) ContextValidate(ctx context.Context, formats strfmt
 	return nil
 }
 
-func (m *SchedulingProvider) contextValidateAppointments(ctx context.Context, formats strfmt.Registry) error {
+func (m *SchedulerActivateProviderParamsBody) contextValidateAppointments(ctx context.Context, formats strfmt.Registry) error {
 
 	for k := range m.Appointments {
 
@@ -165,7 +162,7 @@ func (m *SchedulingProvider) contextValidateAppointments(ctx context.Context, fo
 	return nil
 }
 
-func (m *SchedulingProvider) contextValidateTimezone(ctx context.Context, formats strfmt.Registry) error {
+func (m *SchedulerActivateProviderParamsBody) contextValidateTimezone(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Timezone != nil {
 		if err := m.Timezone.ContextValidate(ctx, formats); err != nil {
@@ -182,7 +179,7 @@ func (m *SchedulingProvider) contextValidateTimezone(ctx context.Context, format
 }
 
 // MarshalBinary interface implementation
-func (m *SchedulingProvider) MarshalBinary() ([]byte, error) {
+func (m *SchedulerActivateProviderParamsBody) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -190,8 +187,8 @@ func (m *SchedulingProvider) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *SchedulingProvider) UnmarshalBinary(b []byte) error {
-	var res SchedulingProvider
+func (m *SchedulerActivateProviderParamsBody) UnmarshalBinary(b []byte) error {
+	var res SchedulerActivateProviderParamsBody
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

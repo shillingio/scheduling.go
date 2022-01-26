@@ -65,7 +65,8 @@ type SchedulerAvailabilitySearchRequest struct {
 	RangeTo *string `json:"range_to"`
 
 	// The service UUID requested by the patient
-	ServiceID string `json:"service_id,omitempty"`
+	// Required: true
+	ServiceID *string `json:"service_id"`
 
 	// State the provider is licensed in for the requested service
 	State string `json:"state,omitempty"`
@@ -101,6 +102,10 @@ func (m *SchedulerAvailabilitySearchRequest) Validate(formats strfmt.Registry) e
 	}
 
 	if err := m.validateRangeTo(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateServiceID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -154,6 +159,15 @@ func (m *SchedulerAvailabilitySearchRequest) validateRangeFrom(formats strfmt.Re
 func (m *SchedulerAvailabilitySearchRequest) validateRangeTo(formats strfmt.Registry) error {
 
 	if err := validate.Required("range_to", "body", m.RangeTo); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *SchedulerAvailabilitySearchRequest) validateServiceID(formats strfmt.Registry) error {
+
+	if err := validate.Required("service_id", "body", m.ServiceID); err != nil {
 		return err
 	}
 

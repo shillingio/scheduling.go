@@ -48,14 +48,8 @@ type SchedulingProviderService struct {
 	// provider
 	Provider *SchedulingProvider `json:"provider,omitempty"`
 
-	// provider id
-	ProviderID string `json:"provider_id,omitempty"`
-
 	// service
 	Service *SchedulingService `json:"service,omitempty"`
-
-	// service id
-	ServiceID string `json:"service_id,omitempty"`
 
 	// states
 	States []string `json:"states"`
