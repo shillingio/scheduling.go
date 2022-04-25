@@ -42,7 +42,11 @@ type ClientService interface {
 
 	SchedulerCreateSchedule(params *SchedulerCreateScheduleParams, opts ...ClientOption) (*SchedulerCreateScheduleOK, error)
 
+	SchedulerCreateScheduleBlock(params *SchedulerCreateScheduleBlockParams, opts ...ClientOption) (*SchedulerCreateScheduleBlockOK, error)
+
 	SchedulerCreateService(params *SchedulerCreateServiceParams, opts ...ClientOption) (*SchedulerCreateServiceOK, error)
+
+	SchedulerCreateSessionKey(params *SchedulerCreateSessionKeyParams, opts ...ClientOption) (*SchedulerCreateSessionKeyOK, error)
 
 	SchedulerDeactivateProvider(params *SchedulerDeactivateProviderParams, opts ...ClientOption) (*SchedulerDeactivateProviderOK, error)
 
@@ -71,6 +75,8 @@ type ClientService interface {
 	SchedulerGetService(params *SchedulerGetServiceParams, opts ...ClientOption) (*SchedulerGetServiceOK, error)
 
 	SchedulerGetServices(params *SchedulerGetServicesParams, opts ...ClientOption) (*SchedulerGetServicesOK, error)
+
+	SchedulerGetSessionKey(params *SchedulerGetSessionKeyParams, opts ...ClientOption) (*SchedulerGetSessionKeyOK, error)
 
 	SchedulerGetZipcode(params *SchedulerGetZipcodeParams, opts ...ClientOption) (*SchedulerGetZipcodeOK, error)
 
@@ -347,6 +353,43 @@ func (a *Client) SchedulerCreateSchedule(params *SchedulerCreateScheduleParams, 
 }
 
 /*
+  SchedulerCreateScheduleBlock scheduler create schedule block API
+*/
+func (a *Client) SchedulerCreateScheduleBlock(params *SchedulerCreateScheduleBlockParams, opts ...ClientOption) (*SchedulerCreateScheduleBlockOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSchedulerCreateScheduleBlockParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "Scheduler_CreateScheduleBlock",
+		Method:             "POST",
+		PathPattern:        "/v1/schedules/{schedule.id}/blocks",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SchedulerCreateScheduleBlockReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*SchedulerCreateScheduleBlockOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*SchedulerCreateScheduleBlockDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+}
+
+/*
   SchedulerCreateService scheduler create service API
 */
 func (a *Client) SchedulerCreateService(params *SchedulerCreateServiceParams, opts ...ClientOption) (*SchedulerCreateServiceOK, error) {
@@ -380,6 +423,43 @@ func (a *Client) SchedulerCreateService(params *SchedulerCreateServiceParams, op
 	}
 	// unexpected success response
 	unexpectedSuccess := result.(*SchedulerCreateServiceDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+}
+
+/*
+  SchedulerCreateSessionKey scheduler create session key API
+*/
+func (a *Client) SchedulerCreateSessionKey(params *SchedulerCreateSessionKeyParams, opts ...ClientOption) (*SchedulerCreateSessionKeyOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSchedulerCreateSessionKeyParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "Scheduler_CreateSessionKey",
+		Method:             "POST",
+		PathPattern:        "/v1/sessions/keys",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SchedulerCreateSessionKeyReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*SchedulerCreateSessionKeyOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*SchedulerCreateSessionKeyDefault)
 	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
@@ -898,6 +978,43 @@ func (a *Client) SchedulerGetServices(params *SchedulerGetServicesParams, opts .
 	}
 	// unexpected success response
 	unexpectedSuccess := result.(*SchedulerGetServicesDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+}
+
+/*
+  SchedulerGetSessionKey scheduler get session key API
+*/
+func (a *Client) SchedulerGetSessionKey(params *SchedulerGetSessionKeyParams, opts ...ClientOption) (*SchedulerGetSessionKeyOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSchedulerGetSessionKeyParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "Scheduler_GetSessionKey",
+		Method:             "GET",
+		PathPattern:        "/v1/sessions/keys/{key}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SchedulerGetSessionKeyReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*SchedulerGetSessionKeyOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*SchedulerGetSessionKeyDefault)
 	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
