@@ -74,7 +74,7 @@ type SchedulerGetProviderAppointmentsParams struct {
 
 	/* AppointmentDuration.
 
-	   The duration of the appointment in minutes.
+	   The duration of the appointment in minutes
 
 	   Format: int32
 	*/
@@ -82,19 +82,19 @@ type SchedulerGetProviderAppointmentsParams struct {
 
 	/* AppointmentEndAt.
 
-	   The end time of the appointment (RFC3339).
+	   The end time of the appointment (RFC3339)
 	*/
 	AppointmentEndAt *string
 
 	/* AppointmentID.
 
-	   UUID of the appointment.
+	   UUID of the appointment
 	*/
 	AppointmentID *string
 
 	/* AppointmentInPerson.
 
-	   If the appointment is in-person and not online.
+	   If the appointment is in-person and not online
 	*/
 	AppointmentInPerson *bool
 
@@ -269,7 +269,7 @@ type SchedulerGetProviderAppointmentsParams struct {
 
 	/* AppointmentStartAt.
 
-	   The start time of the appointment (RFC3339).
+	   The start time of the appointment (RFC3339)
 	*/
 	AppointmentStartAt *string
 

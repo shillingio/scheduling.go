@@ -6,11 +6,16 @@ package scheduler
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"fmt"
 	"io"
+	"strconv"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 
 	"github.com/shillingio/scheduling.go/models"
 )
@@ -111,5 +116,422 @@ func (o *SchedulerCreateScheduleDefault) readResponse(response runtime.ClientRes
 		return err
 	}
 
+	return nil
+}
+
+/*SchedulerCreateScheduleBody scheduler create schedule body
+swagger:model SchedulerCreateScheduleBody
+*/
+type SchedulerCreateScheduleBody struct {
+
+	// active
+	Active bool `json:"active,omitempty"`
+
+	// active from
+	ActiveFrom string `json:"active_from,omitempty"`
+
+	// active to
+	ActiveTo string `json:"active_to,omitempty"`
+
+	// blocks
+	Blocks []*models.SchedulingScheduleBlock `json:"blocks"`
+
+	// created at
+	CreatedAt string `json:"created_at,omitempty"`
+
+	// created by
+	CreatedBy string `json:"created_by,omitempty"`
+
+	// default
+	Default bool `json:"default,omitempty"`
+
+	// id
+	ID string `json:"id,omitempty"`
+
+	// include blocks
+	IncludeBlocks bool `json:"include_blocks,omitempty"`
+
+	// max per
+	MaxPer int32 `json:"max_per,omitempty"`
+
+	// max per type
+	MaxPerType string `json:"max_per_type,omitempty"`
+
+	// name
+	Name string `json:"name,omitempty"`
+
+	// provider
+	Provider *SchedulerCreateScheduleParamsBodyProvider `json:"provider,omitempty"`
+
+	// timezone
+	Timezone *models.SchedulingTimezone `json:"timezone,omitempty"`
+
+	// tz
+	Tz string `json:"tz,omitempty"`
+
+	// updated at
+	UpdatedAt string `json:"updated_at,omitempty"`
+
+	// updated by
+	UpdatedBy string `json:"updated_by,omitempty"`
+}
+
+// Validate validates this scheduler create schedule body
+func (o *SchedulerCreateScheduleBody) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := o.validateBlocks(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := o.validateProvider(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := o.validateTimezone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (o *SchedulerCreateScheduleBody) validateBlocks(formats strfmt.Registry) error {
+	if swag.IsZero(o.Blocks) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(o.Blocks); i++ {
+		if swag.IsZero(o.Blocks[i]) { // not required
+			continue
+		}
+
+		if o.Blocks[i] != nil {
+			if err := o.Blocks[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("body" + "." + "blocks" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("body" + "." + "blocks" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (o *SchedulerCreateScheduleBody) validateProvider(formats strfmt.Registry) error {
+	if swag.IsZero(o.Provider) { // not required
+		return nil
+	}
+
+	if o.Provider != nil {
+		if err := o.Provider.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("body" + "." + "provider")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("body" + "." + "provider")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (o *SchedulerCreateScheduleBody) validateTimezone(formats strfmt.Registry) error {
+	if swag.IsZero(o.Timezone) { // not required
+		return nil
+	}
+
+	if o.Timezone != nil {
+		if err := o.Timezone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("body" + "." + "timezone")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("body" + "." + "timezone")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this scheduler create schedule body based on the context it is used
+func (o *SchedulerCreateScheduleBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := o.contextValidateBlocks(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := o.contextValidateProvider(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := o.contextValidateTimezone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (o *SchedulerCreateScheduleBody) contextValidateBlocks(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(o.Blocks); i++ {
+
+		if o.Blocks[i] != nil {
+			if err := o.Blocks[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("body" + "." + "blocks" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("body" + "." + "blocks" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (o *SchedulerCreateScheduleBody) contextValidateProvider(ctx context.Context, formats strfmt.Registry) error {
+
+	if o.Provider != nil {
+		if err := o.Provider.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("body" + "." + "provider")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("body" + "." + "provider")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (o *SchedulerCreateScheduleBody) contextValidateTimezone(ctx context.Context, formats strfmt.Registry) error {
+
+	if o.Timezone != nil {
+		if err := o.Timezone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("body" + "." + "timezone")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("body" + "." + "timezone")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (o *SchedulerCreateScheduleBody) MarshalBinary() ([]byte, error) {
+	if o == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(o)
+}
+
+// UnmarshalBinary interface implementation
+func (o *SchedulerCreateScheduleBody) UnmarshalBinary(b []byte) error {
+	var res SchedulerCreateScheduleBody
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*o = res
+	return nil
+}
+
+/*SchedulerCreateScheduleParamsBodyProvider scheduler create schedule params body provider
+// Example: {}
+swagger:model SchedulerCreateScheduleParamsBodyProvider
+*/
+type SchedulerCreateScheduleParamsBodyProvider struct {
+
+	// active
+	Active bool `json:"active,omitempty"`
+
+	// Available appointments for the provider
+	Appointments map[string]models.SchedulingAppointment `json:"appointments,omitempty"`
+
+	// created at
+	CreatedAt string `json:"created_at,omitempty"`
+
+	// created by
+	CreatedBy string `json:"created_by,omitempty"`
+
+	// gender
+	Gender string `json:"gender,omitempty"`
+
+	// given name
+	GivenName string `json:"given_name,omitempty"`
+
+	// org id
+	OrgID string `json:"org_id,omitempty"`
+
+	// prefix
+	Prefix string `json:"prefix,omitempty"`
+
+	// ref id
+	RefID string `json:"ref_id,omitempty"`
+
+	// role
+	Role string `json:"role,omitempty"`
+
+	// suffix
+	Suffix string `json:"suffix,omitempty"`
+
+	// surname
+	Surname string `json:"surname,omitempty"`
+
+	// timezone
+	Timezone *models.SchedulingTimezone `json:"timezone,omitempty"`
+
+	// updated at
+	UpdatedAt string `json:"updated_at,omitempty"`
+
+	// updated by
+	UpdatedBy string `json:"updated_by,omitempty"`
+}
+
+// Validate validates this scheduler create schedule params body provider
+func (o *SchedulerCreateScheduleParamsBodyProvider) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := o.validateAppointments(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := o.validateTimezone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (o *SchedulerCreateScheduleParamsBodyProvider) validateAppointments(formats strfmt.Registry) error {
+	if swag.IsZero(o.Appointments) { // not required
+		return nil
+	}
+
+	for k := range o.Appointments {
+
+		if err := validate.Required("body"+"."+"provider"+"."+"appointments"+"."+k, "body", o.Appointments[k]); err != nil {
+			return err
+		}
+		if val, ok := o.Appointments[k]; ok {
+			if err := val.Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("body" + "." + "provider" + "." + "appointments" + "." + k)
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("body" + "." + "provider" + "." + "appointments" + "." + k)
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (o *SchedulerCreateScheduleParamsBodyProvider) validateTimezone(formats strfmt.Registry) error {
+	if swag.IsZero(o.Timezone) { // not required
+		return nil
+	}
+
+	if o.Timezone != nil {
+		if err := o.Timezone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("body" + "." + "provider" + "." + "timezone")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("body" + "." + "provider" + "." + "timezone")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this scheduler create schedule params body provider based on the context it is used
+func (o *SchedulerCreateScheduleParamsBodyProvider) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := o.contextValidateAppointments(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := o.contextValidateTimezone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (o *SchedulerCreateScheduleParamsBodyProvider) contextValidateAppointments(ctx context.Context, formats strfmt.Registry) error {
+
+	for k := range o.Appointments {
+
+		if val, ok := o.Appointments[k]; ok {
+			if err := val.ContextValidate(ctx, formats); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (o *SchedulerCreateScheduleParamsBodyProvider) contextValidateTimezone(ctx context.Context, formats strfmt.Registry) error {
+
+	if o.Timezone != nil {
+		if err := o.Timezone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("body" + "." + "provider" + "." + "timezone")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("body" + "." + "provider" + "." + "timezone")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (o *SchedulerCreateScheduleParamsBodyProvider) MarshalBinary() ([]byte, error) {
+	if o == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(o)
+}
+
+// UnmarshalBinary interface implementation
+func (o *SchedulerCreateScheduleParamsBodyProvider) UnmarshalBinary(b []byte) error {
+	var res SchedulerCreateScheduleParamsBodyProvider
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*o = res
 	return nil
 }

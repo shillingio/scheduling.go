@@ -6,11 +6,15 @@ package scheduler
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"fmt"
 	"io"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 
 	"github.com/shillingio/scheduling.go/models"
 )
@@ -111,5 +115,362 @@ func (o *SchedulerAddProviderServiceDefault) readResponse(response runtime.Clien
 		return err
 	}
 
+	return nil
+}
+
+/*SchedulerAddProviderServiceBody scheduler add provider service body
+swagger:model SchedulerAddProviderServiceBody
+*/
+type SchedulerAddProviderServiceBody struct {
+
+	// active
+	Active bool `json:"active,omitempty"`
+
+	// country
+	Country string `json:"country,omitempty"`
+
+	// created at
+	CreatedAt string `json:"created_at,omitempty"`
+
+	// created by
+	CreatedBy string `json:"created_by,omitempty"`
+
+	// durations
+	Durations []int32 `json:"durations"`
+
+	// id
+	ID string `json:"id,omitempty"`
+
+	// in person
+	InPerson bool `json:"in_person,omitempty"`
+
+	// languages
+	Languages []string `json:"languages"`
+
+	// license data
+	LicenseData interface{} `json:"license_data,omitempty"`
+
+	// provider
+	Provider *SchedulerAddProviderServiceParamsBodyProvider `json:"provider,omitempty"`
+
+	// service
+	Service *models.SchedulingService `json:"service,omitempty"`
+
+	// states
+	States []string `json:"states"`
+
+	// types
+	Types []string `json:"types"`
+
+	// updated at
+	UpdatedAt string `json:"updated_at,omitempty"`
+
+	// updated by
+	UpdatedBy string `json:"updated_by,omitempty"`
+}
+
+// Validate validates this scheduler add provider service body
+func (o *SchedulerAddProviderServiceBody) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := o.validateProvider(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := o.validateService(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (o *SchedulerAddProviderServiceBody) validateProvider(formats strfmt.Registry) error {
+	if swag.IsZero(o.Provider) { // not required
+		return nil
+	}
+
+	if o.Provider != nil {
+		if err := o.Provider.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("body" + "." + "provider")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("body" + "." + "provider")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (o *SchedulerAddProviderServiceBody) validateService(formats strfmt.Registry) error {
+	if swag.IsZero(o.Service) { // not required
+		return nil
+	}
+
+	if o.Service != nil {
+		if err := o.Service.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("body" + "." + "service")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("body" + "." + "service")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this scheduler add provider service body based on the context it is used
+func (o *SchedulerAddProviderServiceBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := o.contextValidateProvider(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := o.contextValidateService(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (o *SchedulerAddProviderServiceBody) contextValidateProvider(ctx context.Context, formats strfmt.Registry) error {
+
+	if o.Provider != nil {
+		if err := o.Provider.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("body" + "." + "provider")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("body" + "." + "provider")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (o *SchedulerAddProviderServiceBody) contextValidateService(ctx context.Context, formats strfmt.Registry) error {
+
+	if o.Service != nil {
+		if err := o.Service.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("body" + "." + "service")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("body" + "." + "service")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (o *SchedulerAddProviderServiceBody) MarshalBinary() ([]byte, error) {
+	if o == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(o)
+}
+
+// UnmarshalBinary interface implementation
+func (o *SchedulerAddProviderServiceBody) UnmarshalBinary(b []byte) error {
+	var res SchedulerAddProviderServiceBody
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*o = res
+	return nil
+}
+
+/*SchedulerAddProviderServiceParamsBodyProvider scheduler add provider service params body provider
+// Example: {}
+swagger:model SchedulerAddProviderServiceParamsBodyProvider
+*/
+type SchedulerAddProviderServiceParamsBodyProvider struct {
+
+	// active
+	Active bool `json:"active,omitempty"`
+
+	// Available appointments for the provider
+	Appointments map[string]models.SchedulingAppointment `json:"appointments,omitempty"`
+
+	// created at
+	CreatedAt string `json:"created_at,omitempty"`
+
+	// created by
+	CreatedBy string `json:"created_by,omitempty"`
+
+	// gender
+	Gender string `json:"gender,omitempty"`
+
+	// given name
+	GivenName string `json:"given_name,omitempty"`
+
+	// org id
+	OrgID string `json:"org_id,omitempty"`
+
+	// prefix
+	Prefix string `json:"prefix,omitempty"`
+
+	// ref id
+	RefID string `json:"ref_id,omitempty"`
+
+	// role
+	Role string `json:"role,omitempty"`
+
+	// suffix
+	Suffix string `json:"suffix,omitempty"`
+
+	// surname
+	Surname string `json:"surname,omitempty"`
+
+	// timezone
+	Timezone *models.SchedulingTimezone `json:"timezone,omitempty"`
+
+	// updated at
+	UpdatedAt string `json:"updated_at,omitempty"`
+
+	// updated by
+	UpdatedBy string `json:"updated_by,omitempty"`
+}
+
+// Validate validates this scheduler add provider service params body provider
+func (o *SchedulerAddProviderServiceParamsBodyProvider) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := o.validateAppointments(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := o.validateTimezone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (o *SchedulerAddProviderServiceParamsBodyProvider) validateAppointments(formats strfmt.Registry) error {
+	if swag.IsZero(o.Appointments) { // not required
+		return nil
+	}
+
+	for k := range o.Appointments {
+
+		if err := validate.Required("body"+"."+"provider"+"."+"appointments"+"."+k, "body", o.Appointments[k]); err != nil {
+			return err
+		}
+		if val, ok := o.Appointments[k]; ok {
+			if err := val.Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("body" + "." + "provider" + "." + "appointments" + "." + k)
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("body" + "." + "provider" + "." + "appointments" + "." + k)
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (o *SchedulerAddProviderServiceParamsBodyProvider) validateTimezone(formats strfmt.Registry) error {
+	if swag.IsZero(o.Timezone) { // not required
+		return nil
+	}
+
+	if o.Timezone != nil {
+		if err := o.Timezone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("body" + "." + "provider" + "." + "timezone")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("body" + "." + "provider" + "." + "timezone")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this scheduler add provider service params body provider based on the context it is used
+func (o *SchedulerAddProviderServiceParamsBodyProvider) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := o.contextValidateAppointments(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := o.contextValidateTimezone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (o *SchedulerAddProviderServiceParamsBodyProvider) contextValidateAppointments(ctx context.Context, formats strfmt.Registry) error {
+
+	for k := range o.Appointments {
+
+		if val, ok := o.Appointments[k]; ok {
+			if err := val.ContextValidate(ctx, formats); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (o *SchedulerAddProviderServiceParamsBodyProvider) contextValidateTimezone(ctx context.Context, formats strfmt.Registry) error {
+
+	if o.Timezone != nil {
+		if err := o.Timezone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("body" + "." + "provider" + "." + "timezone")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("body" + "." + "provider" + "." + "timezone")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (o *SchedulerAddProviderServiceParamsBodyProvider) MarshalBinary() ([]byte, error) {
+	if o == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(o)
+}
+
+// UnmarshalBinary interface implementation
+func (o *SchedulerAddProviderServiceParamsBodyProvider) UnmarshalBinary(b []byte) error {
+	var res SchedulerAddProviderServiceParamsBodyProvider
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*o = res
 	return nil
 }

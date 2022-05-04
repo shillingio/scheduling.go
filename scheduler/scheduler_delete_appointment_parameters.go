@@ -74,7 +74,7 @@ type SchedulerDeleteAppointmentParams struct {
 
 	/* Duration.
 
-	   The duration of the appointment in minutes.
+	   The duration of the appointment in minutes
 
 	   Format: int32
 	*/
@@ -82,7 +82,7 @@ type SchedulerDeleteAppointmentParams struct {
 
 	/* EndAt.
 
-	   The end time of the appointment (RFC3339).
+	   The end time of the appointment (RFC3339)
 	*/
 	EndAt *string
 
@@ -94,7 +94,7 @@ type SchedulerDeleteAppointmentParams struct {
 
 	/* InPerson.
 
-	   If the appointment is in-person and not online.
+	   If the appointment is in-person and not online
 	*/
 	InPerson *bool
 
@@ -269,7 +269,7 @@ type SchedulerDeleteAppointmentParams struct {
 
 	/* StartAt.
 
-	   The start time of the appointment (RFC3339).
+	   The start time of the appointment (RFC3339)
 	*/
 	StartAt *string
 

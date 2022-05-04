@@ -62,15 +62,15 @@ func NewSchedulerSearchAvailabilityParamsWithHTTPClient(client *http.Client) *Sc
 */
 type SchedulerSearchAvailabilityParams struct {
 
-	// Body.
-	Body *models.SchedulerAvailabilitySearchRequest
+	// Availability.
+	Availability *models.SchedulerAvailabilitySearchRequest
 
 	// OrganizationID.
 	OrganizationID *string
 
 	/* ProviderDuration.
 
-	   The duration of the appointment in minutes.
+	   The duration of the appointment in minutes
 
 	   Format: int32
 	*/
@@ -79,25 +79,25 @@ type SchedulerSearchAvailabilityParams struct {
 	/* ProviderExclude.
 
 	     The ID of a specific providers to exclude those providers from search
-	results.
+	results
 	*/
 	ProviderExclude []string
 
 	/* ProviderInPerson.
 
-	   Return only in-person providers (default: false).
+	   Return only in-person providers (default: false)
 	*/
 	ProviderInPerson *bool
 
 	/* ProviderInclude.
 
-	   The IDs of specific providers in which to search for availability.
+	   The IDs of specific providers in which to search for availability
 	*/
 	ProviderInclude []string
 
 	/* ProviderLimit.
 
-	   Limit the number of results to return. (default: 10).
+	   Limit the number of results to return. (default: 10)
 
 	   Format: int32
 	*/
@@ -105,7 +105,7 @@ type SchedulerSearchAvailabilityParams struct {
 
 	/* ProviderLocationLatitude.
 
-	   Specific latitude point to use.
+	   Specific latitude point to use
 
 	   Format: float
 	*/
@@ -113,7 +113,7 @@ type SchedulerSearchAvailabilityParams struct {
 
 	/* ProviderLocationLongitude.
 
-	   Specific longitude point to use.
+	   Specific longitude point to use
 
 	   Format: float
 	*/
@@ -121,20 +121,20 @@ type SchedulerSearchAvailabilityParams struct {
 
 	/* ProviderLocationQuery.
 
-	   Address query (ex: 123 Main St., San Diego, CA, 92101, San Diego, CA, etc.).
+	   Address query (ex: 123 Main St., San Diego, CA, 92101, San Diego, CA, etc.)
 	*/
 	ProviderLocationQuery *string
 
 	/* ProviderLocationZip.
 
-	   Zip code.
+	   Zip code
 	*/
 	ProviderLocationZip *string
 
 	/* ProviderOffset.
 
 	     Offset the results count if pagination is necessary based on the limit and
-	total fields in the response.
+	total fields in the response
 
 	     Format: int32
 	*/
@@ -142,31 +142,31 @@ type SchedulerSearchAvailabilityParams struct {
 
 	/* ProviderRangeFrom.
 
-	   The start of the requested date/time range in RFC3339 format.
+	   The start of the requested date/time range in RFC3339 format
 	*/
 	ProviderRangeFrom *string
 
 	/* ProviderRangeTo.
 
-	   The end of the requested date/time range in RFC3339 format.
+	   The end of the requested date/time range in RFC3339 format
 	*/
 	ProviderRangeTo *string
 
 	/* ProviderServiceID.
 
-	   The service UUID requested by the patient.
+	   The service UUID requested by the patient
 	*/
 	ProviderServiceID *string
 
 	/* ProviderState.
 
-	   State the provider is licensed in for the requested service.
+	   State the provider is licensed in for the requested service
 	*/
 	ProviderState *string
 
 	/* ProviderZip.
 
-	   ZIP code the patient resides in.
+	   ZIP code the patient resides in
 	*/
 	ProviderZip *string
 
@@ -223,15 +223,15 @@ func (o *SchedulerSearchAvailabilityParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithBody adds the body to the scheduler search availability params
-func (o *SchedulerSearchAvailabilityParams) WithBody(body *models.SchedulerAvailabilitySearchRequest) *SchedulerSearchAvailabilityParams {
-	o.SetBody(body)
+// WithAvailability adds the availability to the scheduler search availability params
+func (o *SchedulerSearchAvailabilityParams) WithAvailability(availability *models.SchedulerAvailabilitySearchRequest) *SchedulerSearchAvailabilityParams {
+	o.SetAvailability(availability)
 	return o
 }
 
-// SetBody adds the body to the scheduler search availability params
-func (o *SchedulerSearchAvailabilityParams) SetBody(body *models.SchedulerAvailabilitySearchRequest) {
-	o.Body = body
+// SetAvailability adds the availability to the scheduler search availability params
+func (o *SchedulerSearchAvailabilityParams) SetAvailability(availability *models.SchedulerAvailabilitySearchRequest) {
+	o.Availability = availability
 }
 
 // WithOrganizationID adds the organizationID to the scheduler search availability params
@@ -417,8 +417,8 @@ func (o *SchedulerSearchAvailabilityParams) WriteToRequest(r runtime.ClientReque
 		return err
 	}
 	var res []error
-	if o.Body != nil {
-		if err := r.SetBodyParam(o.Body); err != nil {
+	if o.Availability != nil {
+		if err := r.SetBodyParam(o.Availability); err != nil {
 			return err
 		}
 	}

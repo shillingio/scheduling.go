@@ -14,8 +14,6 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
-
-	"github.com/shillingio/scheduling.go/models"
 )
 
 // NewSchedulerAddProviderServiceParams creates a new SchedulerAddProviderServiceParams object,
@@ -62,7 +60,7 @@ func NewSchedulerAddProviderServiceParamsWithHTTPClient(client *http.Client) *Sc
 type SchedulerAddProviderServiceParams struct {
 
 	// Body.
-	Body *models.SchedulingProviderService
+	Body SchedulerAddProviderServiceBody
 
 	// ProviderID.
 	ProviderID string
@@ -121,13 +119,13 @@ func (o *SchedulerAddProviderServiceParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithBody adds the body to the scheduler add provider service params
-func (o *SchedulerAddProviderServiceParams) WithBody(body *models.SchedulingProviderService) *SchedulerAddProviderServiceParams {
+func (o *SchedulerAddProviderServiceParams) WithBody(body SchedulerAddProviderServiceBody) *SchedulerAddProviderServiceParams {
 	o.SetBody(body)
 	return o
 }
 
 // SetBody adds the body to the scheduler add provider service params
-func (o *SchedulerAddProviderServiceParams) SetBody(body *models.SchedulingProviderService) {
+func (o *SchedulerAddProviderServiceParams) SetBody(body SchedulerAddProviderServiceBody) {
 	o.Body = body
 }
 
@@ -149,10 +147,8 @@ func (o *SchedulerAddProviderServiceParams) WriteToRequest(r runtime.ClientReque
 		return err
 	}
 	var res []error
-	if o.Body != nil {
-		if err := r.SetBodyParam(o.Body); err != nil {
-			return err
-		}
+	if err := r.SetBodyParam(o.Body); err != nil {
+		return err
 	}
 
 	// path param provider.id

@@ -46,7 +46,7 @@ type ClientService interface {
 
 	SchedulerCreateService(params *SchedulerCreateServiceParams, opts ...ClientOption) (*SchedulerCreateServiceOK, error)
 
-	SchedulerCreateSessionKey(params *SchedulerCreateSessionKeyParams, opts ...ClientOption) (*SchedulerCreateSessionKeyOK, error)
+	SchedulerCreateSession(params *SchedulerCreateSessionParams, opts ...ClientOption) (*SchedulerCreateSessionOK, error)
 
 	SchedulerDeactivateProvider(params *SchedulerDeactivateProviderParams, opts ...ClientOption) (*SchedulerDeactivateProviderOK, error)
 
@@ -76,7 +76,7 @@ type ClientService interface {
 
 	SchedulerGetServices(params *SchedulerGetServicesParams, opts ...ClientOption) (*SchedulerGetServicesOK, error)
 
-	SchedulerGetSessionKey(params *SchedulerGetSessionKeyParams, opts ...ClientOption) (*SchedulerGetSessionKeyOK, error)
+	SchedulerGetSession(params *SchedulerGetSessionParams, opts ...ClientOption) (*SchedulerGetSessionOK, error)
 
 	SchedulerGetZipcode(params *SchedulerGetZipcodeParams, opts ...ClientOption) (*SchedulerGetZipcodeOK, error)
 
@@ -89,6 +89,8 @@ type ClientService interface {
 	SchedulerSearchProviders(params *SchedulerSearchProvidersParams, opts ...ClientOption) (*SchedulerSearchProvidersOK, error)
 
 	SchedulerUpdatePatient(params *SchedulerUpdatePatientParams, opts ...ClientOption) (*SchedulerUpdatePatientOK, error)
+
+	SchedulerUpdateSession(params *SchedulerUpdateSessionParams, opts ...ClientOption) (*SchedulerUpdateSessionOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -427,22 +429,22 @@ func (a *Client) SchedulerCreateService(params *SchedulerCreateServiceParams, op
 }
 
 /*
-  SchedulerCreateSessionKey scheduler create session key API
+  SchedulerCreateSession scheduler create session API
 */
-func (a *Client) SchedulerCreateSessionKey(params *SchedulerCreateSessionKeyParams, opts ...ClientOption) (*SchedulerCreateSessionKeyOK, error) {
+func (a *Client) SchedulerCreateSession(params *SchedulerCreateSessionParams, opts ...ClientOption) (*SchedulerCreateSessionOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewSchedulerCreateSessionKeyParams()
+		params = NewSchedulerCreateSessionParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "Scheduler_CreateSessionKey",
+		ID:                 "Scheduler_CreateSession",
 		Method:             "POST",
-		PathPattern:        "/v1/sessions/keys",
+		PathPattern:        "/v1/sessions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &SchedulerCreateSessionKeyReader{formats: a.formats},
+		Reader:             &SchedulerCreateSessionReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -454,12 +456,12 @@ func (a *Client) SchedulerCreateSessionKey(params *SchedulerCreateSessionKeyPara
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*SchedulerCreateSessionKeyOK)
+	success, ok := result.(*SchedulerCreateSessionOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
-	unexpectedSuccess := result.(*SchedulerCreateSessionKeyDefault)
+	unexpectedSuccess := result.(*SchedulerCreateSessionDefault)
 	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
@@ -982,22 +984,22 @@ func (a *Client) SchedulerGetServices(params *SchedulerGetServicesParams, opts .
 }
 
 /*
-  SchedulerGetSessionKey scheduler get session key API
+  SchedulerGetSession scheduler get session API
 */
-func (a *Client) SchedulerGetSessionKey(params *SchedulerGetSessionKeyParams, opts ...ClientOption) (*SchedulerGetSessionKeyOK, error) {
+func (a *Client) SchedulerGetSession(params *SchedulerGetSessionParams, opts ...ClientOption) (*SchedulerGetSessionOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewSchedulerGetSessionKeyParams()
+		params = NewSchedulerGetSessionParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "Scheduler_GetSessionKey",
+		ID:                 "Scheduler_GetSession",
 		Method:             "GET",
-		PathPattern:        "/v1/sessions/keys/{key}",
+		PathPattern:        "/v1/sessions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &SchedulerGetSessionKeyReader{formats: a.formats},
+		Reader:             &SchedulerGetSessionReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -1009,12 +1011,12 @@ func (a *Client) SchedulerGetSessionKey(params *SchedulerGetSessionKeyParams, op
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*SchedulerGetSessionKeyOK)
+	success, ok := result.(*SchedulerGetSessionOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
-	unexpectedSuccess := result.(*SchedulerGetSessionKeyDefault)
+	unexpectedSuccess := result.(*SchedulerGetSessionDefault)
 	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
@@ -1237,6 +1239,43 @@ func (a *Client) SchedulerUpdatePatient(params *SchedulerUpdatePatientParams, op
 	}
 	// unexpected success response
 	unexpectedSuccess := result.(*SchedulerUpdatePatientDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+}
+
+/*
+  SchedulerUpdateSession scheduler update session API
+*/
+func (a *Client) SchedulerUpdateSession(params *SchedulerUpdateSessionParams, opts ...ClientOption) (*SchedulerUpdateSessionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSchedulerUpdateSessionParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "Scheduler_UpdateSession",
+		Method:             "PUT",
+		PathPattern:        "/v1/sessions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SchedulerUpdateSessionReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*SchedulerUpdateSessionOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*SchedulerUpdateSessionDefault)
 	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 

@@ -14,8 +14,6 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
-
-	"github.com/shillingio/scheduling.go/models"
 )
 
 // NewSchedulerCreateScheduleBlockParams creates a new SchedulerCreateScheduleBlockParams object,
@@ -62,7 +60,7 @@ func NewSchedulerCreateScheduleBlockParamsWithHTTPClient(client *http.Client) *S
 type SchedulerCreateScheduleBlockParams struct {
 
 	// Body.
-	Body *models.SchedulingScheduleBlock
+	Body SchedulerCreateScheduleBlockBody
 
 	// ScheduleID.
 	ScheduleID string
@@ -121,13 +119,13 @@ func (o *SchedulerCreateScheduleBlockParams) SetHTTPClient(client *http.Client) 
 }
 
 // WithBody adds the body to the scheduler create schedule block params
-func (o *SchedulerCreateScheduleBlockParams) WithBody(body *models.SchedulingScheduleBlock) *SchedulerCreateScheduleBlockParams {
+func (o *SchedulerCreateScheduleBlockParams) WithBody(body SchedulerCreateScheduleBlockBody) *SchedulerCreateScheduleBlockParams {
 	o.SetBody(body)
 	return o
 }
 
 // SetBody adds the body to the scheduler create schedule block params
-func (o *SchedulerCreateScheduleBlockParams) SetBody(body *models.SchedulingScheduleBlock) {
+func (o *SchedulerCreateScheduleBlockParams) SetBody(body SchedulerCreateScheduleBlockBody) {
 	o.Body = body
 }
 
@@ -149,10 +147,8 @@ func (o *SchedulerCreateScheduleBlockParams) WriteToRequest(r runtime.ClientRequ
 		return err
 	}
 	var res []error
-	if o.Body != nil {
-		if err := r.SetBodyParam(o.Body); err != nil {
-			return err
-		}
+	if err := r.SetBodyParam(o.Body); err != nil {
+		return err
 	}
 
 	// path param schedule.id
