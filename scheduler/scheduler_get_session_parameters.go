@@ -404,34 +404,94 @@ type SchedulerGetSessionParams struct {
 	// ProviderUpdatedBy.
 	ProviderUpdatedBy *string
 
-	// RedirectErrorURL.
+	/* RedirectErrorURL.
+
+	   Location to send the user upon failed session (optional)
+	*/
 	RedirectErrorURL *string
 
-	// RedirectURL.
+	/* RedirectURL.
+
+	   Location to send the user upon successful completion (optional)
+	*/
 	RedirectURL *string
 
-	// RedirectWebhookPostURL.
+	/* RedirectWebhookPostURL.
+
+	   POST webhook that is called on session completion (optional) [Support State(s): Alpha, Private-Beta]
+	*/
 	RedirectWebhookPostURL *string
 
-	// SearchDuration.
-	//
-	// Format: int32
+	/* Schedule.
+
+	   Schedule appointment with current slot
+	*/
+	Schedule *bool
+
+	/* SearchDuration.
+
+	   Duration in minutes (15,30,45,60) this may vary based on your configuration
+
+	   Format: int32
+	*/
 	SearchDuration *int32
 
-	// SearchRangeFrom.
+	/* SearchFormat.
+
+	   Appointment format: virutal, in_person (default: virtual)
+	*/
+	SearchFormat *string
+
+	// SearchID.
+	SearchID *string
+
+	/* SearchMaxRangeTo.
+
+	   Maximum range to time UTC (i.e. Do not schedule later than 2 weeks from 'now')
+	*/
+	SearchMaxRangeTo *string
+
+	/* SearchMinRangeFrom.
+
+	   Minimum range from time UTC (i.e. Do not schedule before 24 hours from 'now')
+	*/
+	SearchMinRangeFrom *string
+
+	/* SearchRangeFrom.
+
+	   RFC3339 format (UTC)
+	*/
 	SearchRangeFrom *string
 
-	// SearchRangeTo.
+	/* SearchRangeTo.
+
+	   RFC3339 format (UTC)
+	*/
 	SearchRangeTo *string
 
-	// SearchState.
+	/* SearchServiceID.
+
+	   Service ID to search
+	*/
+	SearchServiceID *string
+
+	/* SearchState.
+
+	   Two letter state abbreviation
+	*/
 	SearchState *string
 
-	// SearchType.
-	SearchType *string
+	/* SearchZipcode.
 
-	// SearchZipcode.
+	   Five digit US postal code
+	*/
 	SearchZipcode *string
+
+	/* SearchZone.
+
+	   IANA Timezone Name (ex: America/Los_Angeles, America/New_York, etc.) reference: https://www.iana.org/time-zones
+	*/
+	SearchZone *string
 
 	// ServiceActive.
 	ServiceActive *bool
@@ -470,6 +530,135 @@ type SchedulerGetSessionParams struct {
 
 	// ServiceUpdatedBy.
 	ServiceUpdatedBy *string
+
+	// SlotDuration.
+	//
+	// Format: int32
+	SlotDuration *int32
+
+	// SlotEndAt.
+	SlotEndAt *string
+
+	// SlotID.
+	SlotID *string
+
+	// SlotProviderActive.
+	SlotProviderActive *bool
+
+	// SlotProviderCreatedAt.
+	SlotProviderCreatedAt *string
+
+	// SlotProviderCreatedBy.
+	SlotProviderCreatedBy *string
+
+	// SlotProviderGender.
+	SlotProviderGender *string
+
+	// SlotProviderGivenName.
+	SlotProviderGivenName *string
+
+	// SlotProviderID.
+	SlotProviderID *string
+
+	// SlotProviderOrgID.
+	SlotProviderOrgID *string
+
+	// SlotProviderPrefix.
+	SlotProviderPrefix *string
+
+	// SlotProviderRefID.
+	SlotProviderRefID *string
+
+	// SlotProviderRole.
+	SlotProviderRole *string
+
+	// SlotProviderSuffix.
+	SlotProviderSuffix *string
+
+	// SlotProviderSurname.
+	SlotProviderSurname *string
+
+	// SlotProviderTimezoneAbbreviation.
+	SlotProviderTimezoneAbbreviation *string
+
+	// SlotProviderTimezoneDst.
+	SlotProviderTimezoneDst *bool
+
+	// SlotProviderTimezoneGmtOffset.
+	//
+	// Format: int32
+	SlotProviderTimezoneGmtOffset *int32
+
+	// SlotProviderTimezoneID.
+	//
+	// Format: int32
+	SlotProviderTimezoneID *int32
+
+	// SlotProviderTimezoneTimeStart.
+	//
+	// Format: int64
+	SlotProviderTimezoneTimeStart *string
+
+	// SlotProviderTimezoneZoneCountryCode.
+	SlotProviderTimezoneZoneCountryCode *string
+
+	// SlotProviderTimezoneZoneID.
+	//
+	// Format: int32
+	SlotProviderTimezoneZoneID *int32
+
+	// SlotProviderTimezoneZoneName.
+	SlotProviderTimezoneZoneName *string
+
+	// SlotProviderUpdatedAt.
+	SlotProviderUpdatedAt *string
+
+	// SlotProviderUpdatedBy.
+	SlotProviderUpdatedBy *string
+
+	// SlotReservationExpiresAt.
+	SlotReservationExpiresAt *string
+
+	// SlotServiceActive.
+	SlotServiceActive *bool
+
+	// SlotServiceConfigDurations.
+	SlotServiceConfigDurations []int32
+
+	// SlotServiceConfigFixedDuration.
+	//
+	// Format: int32
+	SlotServiceConfigFixedDuration *int32
+
+	// SlotServiceCreatedAt.
+	SlotServiceCreatedAt *string
+
+	// SlotServiceCreatedBy.
+	SlotServiceCreatedBy *string
+
+	// SlotServiceDescription.
+	SlotServiceDescription *string
+
+	// SlotServiceID.
+	SlotServiceID *string
+
+	// SlotServiceName.
+	SlotServiceName *string
+
+	// SlotServiceOrgID.
+	SlotServiceOrgID *string
+
+	// SlotServiceRefID.
+	SlotServiceRefID *string
+
+	// SlotServiceUpdatedAt.
+	SlotServiceUpdatedAt *string
+
+	// SlotServiceUpdatedBy.
+	SlotServiceUpdatedBy *string
+
+	// SlotStartAt.
+	SlotStartAt *string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -1690,6 +1879,17 @@ func (o *SchedulerGetSessionParams) SetRedirectWebhookPostURL(redirectWebhookPos
 	o.RedirectWebhookPostURL = redirectWebhookPostURL
 }
 
+// WithSchedule adds the schedule to the scheduler get session params
+func (o *SchedulerGetSessionParams) WithSchedule(schedule *bool) *SchedulerGetSessionParams {
+	o.SetSchedule(schedule)
+	return o
+}
+
+// SetSchedule adds the schedule to the scheduler get session params
+func (o *SchedulerGetSessionParams) SetSchedule(schedule *bool) {
+	o.Schedule = schedule
+}
+
 // WithSearchDuration adds the searchDuration to the scheduler get session params
 func (o *SchedulerGetSessionParams) WithSearchDuration(searchDuration *int32) *SchedulerGetSessionParams {
 	o.SetSearchDuration(searchDuration)
@@ -1699,6 +1899,50 @@ func (o *SchedulerGetSessionParams) WithSearchDuration(searchDuration *int32) *S
 // SetSearchDuration adds the searchDuration to the scheduler get session params
 func (o *SchedulerGetSessionParams) SetSearchDuration(searchDuration *int32) {
 	o.SearchDuration = searchDuration
+}
+
+// WithSearchFormat adds the searchFormat to the scheduler get session params
+func (o *SchedulerGetSessionParams) WithSearchFormat(searchFormat *string) *SchedulerGetSessionParams {
+	o.SetSearchFormat(searchFormat)
+	return o
+}
+
+// SetSearchFormat adds the searchFormat to the scheduler get session params
+func (o *SchedulerGetSessionParams) SetSearchFormat(searchFormat *string) {
+	o.SearchFormat = searchFormat
+}
+
+// WithSearchID adds the searchID to the scheduler get session params
+func (o *SchedulerGetSessionParams) WithSearchID(searchID *string) *SchedulerGetSessionParams {
+	o.SetSearchID(searchID)
+	return o
+}
+
+// SetSearchID adds the searchId to the scheduler get session params
+func (o *SchedulerGetSessionParams) SetSearchID(searchID *string) {
+	o.SearchID = searchID
+}
+
+// WithSearchMaxRangeTo adds the searchMaxRangeTo to the scheduler get session params
+func (o *SchedulerGetSessionParams) WithSearchMaxRangeTo(searchMaxRangeTo *string) *SchedulerGetSessionParams {
+	o.SetSearchMaxRangeTo(searchMaxRangeTo)
+	return o
+}
+
+// SetSearchMaxRangeTo adds the searchMaxRangeTo to the scheduler get session params
+func (o *SchedulerGetSessionParams) SetSearchMaxRangeTo(searchMaxRangeTo *string) {
+	o.SearchMaxRangeTo = searchMaxRangeTo
+}
+
+// WithSearchMinRangeFrom adds the searchMinRangeFrom to the scheduler get session params
+func (o *SchedulerGetSessionParams) WithSearchMinRangeFrom(searchMinRangeFrom *string) *SchedulerGetSessionParams {
+	o.SetSearchMinRangeFrom(searchMinRangeFrom)
+	return o
+}
+
+// SetSearchMinRangeFrom adds the searchMinRangeFrom to the scheduler get session params
+func (o *SchedulerGetSessionParams) SetSearchMinRangeFrom(searchMinRangeFrom *string) {
+	o.SearchMinRangeFrom = searchMinRangeFrom
 }
 
 // WithSearchRangeFrom adds the searchRangeFrom to the scheduler get session params
@@ -1723,6 +1967,17 @@ func (o *SchedulerGetSessionParams) SetSearchRangeTo(searchRangeTo *string) {
 	o.SearchRangeTo = searchRangeTo
 }
 
+// WithSearchServiceID adds the searchServiceID to the scheduler get session params
+func (o *SchedulerGetSessionParams) WithSearchServiceID(searchServiceID *string) *SchedulerGetSessionParams {
+	o.SetSearchServiceID(searchServiceID)
+	return o
+}
+
+// SetSearchServiceID adds the searchServiceId to the scheduler get session params
+func (o *SchedulerGetSessionParams) SetSearchServiceID(searchServiceID *string) {
+	o.SearchServiceID = searchServiceID
+}
+
 // WithSearchState adds the searchState to the scheduler get session params
 func (o *SchedulerGetSessionParams) WithSearchState(searchState *string) *SchedulerGetSessionParams {
 	o.SetSearchState(searchState)
@@ -1734,17 +1989,6 @@ func (o *SchedulerGetSessionParams) SetSearchState(searchState *string) {
 	o.SearchState = searchState
 }
 
-// WithSearchType adds the searchType to the scheduler get session params
-func (o *SchedulerGetSessionParams) WithSearchType(searchType *string) *SchedulerGetSessionParams {
-	o.SetSearchType(searchType)
-	return o
-}
-
-// SetSearchType adds the searchType to the scheduler get session params
-func (o *SchedulerGetSessionParams) SetSearchType(searchType *string) {
-	o.SearchType = searchType
-}
-
 // WithSearchZipcode adds the searchZipcode to the scheduler get session params
 func (o *SchedulerGetSessionParams) WithSearchZipcode(searchZipcode *string) *SchedulerGetSessionParams {
 	o.SetSearchZipcode(searchZipcode)
@@ -1754,6 +1998,17 @@ func (o *SchedulerGetSessionParams) WithSearchZipcode(searchZipcode *string) *Sc
 // SetSearchZipcode adds the searchZipcode to the scheduler get session params
 func (o *SchedulerGetSessionParams) SetSearchZipcode(searchZipcode *string) {
 	o.SearchZipcode = searchZipcode
+}
+
+// WithSearchZone adds the searchZone to the scheduler get session params
+func (o *SchedulerGetSessionParams) WithSearchZone(searchZone *string) *SchedulerGetSessionParams {
+	o.SetSearchZone(searchZone)
+	return o
+}
+
+// SetSearchZone adds the searchZone to the scheduler get session params
+func (o *SchedulerGetSessionParams) SetSearchZone(searchZone *string) {
+	o.SearchZone = searchZone
 }
 
 // WithServiceActive adds the serviceActive to the scheduler get session params
@@ -1886,6 +2141,435 @@ func (o *SchedulerGetSessionParams) WithServiceUpdatedBy(serviceUpdatedBy *strin
 // SetServiceUpdatedBy adds the serviceUpdatedBy to the scheduler get session params
 func (o *SchedulerGetSessionParams) SetServiceUpdatedBy(serviceUpdatedBy *string) {
 	o.ServiceUpdatedBy = serviceUpdatedBy
+}
+
+// WithSlotDuration adds the slotDuration to the scheduler get session params
+func (o *SchedulerGetSessionParams) WithSlotDuration(slotDuration *int32) *SchedulerGetSessionParams {
+	o.SetSlotDuration(slotDuration)
+	return o
+}
+
+// SetSlotDuration adds the slotDuration to the scheduler get session params
+func (o *SchedulerGetSessionParams) SetSlotDuration(slotDuration *int32) {
+	o.SlotDuration = slotDuration
+}
+
+// WithSlotEndAt adds the slotEndAt to the scheduler get session params
+func (o *SchedulerGetSessionParams) WithSlotEndAt(slotEndAt *string) *SchedulerGetSessionParams {
+	o.SetSlotEndAt(slotEndAt)
+	return o
+}
+
+// SetSlotEndAt adds the slotEndAt to the scheduler get session params
+func (o *SchedulerGetSessionParams) SetSlotEndAt(slotEndAt *string) {
+	o.SlotEndAt = slotEndAt
+}
+
+// WithSlotID adds the slotID to the scheduler get session params
+func (o *SchedulerGetSessionParams) WithSlotID(slotID *string) *SchedulerGetSessionParams {
+	o.SetSlotID(slotID)
+	return o
+}
+
+// SetSlotID adds the slotId to the scheduler get session params
+func (o *SchedulerGetSessionParams) SetSlotID(slotID *string) {
+	o.SlotID = slotID
+}
+
+// WithSlotProviderActive adds the slotProviderActive to the scheduler get session params
+func (o *SchedulerGetSessionParams) WithSlotProviderActive(slotProviderActive *bool) *SchedulerGetSessionParams {
+	o.SetSlotProviderActive(slotProviderActive)
+	return o
+}
+
+// SetSlotProviderActive adds the slotProviderActive to the scheduler get session params
+func (o *SchedulerGetSessionParams) SetSlotProviderActive(slotProviderActive *bool) {
+	o.SlotProviderActive = slotProviderActive
+}
+
+// WithSlotProviderCreatedAt adds the slotProviderCreatedAt to the scheduler get session params
+func (o *SchedulerGetSessionParams) WithSlotProviderCreatedAt(slotProviderCreatedAt *string) *SchedulerGetSessionParams {
+	o.SetSlotProviderCreatedAt(slotProviderCreatedAt)
+	return o
+}
+
+// SetSlotProviderCreatedAt adds the slotProviderCreatedAt to the scheduler get session params
+func (o *SchedulerGetSessionParams) SetSlotProviderCreatedAt(slotProviderCreatedAt *string) {
+	o.SlotProviderCreatedAt = slotProviderCreatedAt
+}
+
+// WithSlotProviderCreatedBy adds the slotProviderCreatedBy to the scheduler get session params
+func (o *SchedulerGetSessionParams) WithSlotProviderCreatedBy(slotProviderCreatedBy *string) *SchedulerGetSessionParams {
+	o.SetSlotProviderCreatedBy(slotProviderCreatedBy)
+	return o
+}
+
+// SetSlotProviderCreatedBy adds the slotProviderCreatedBy to the scheduler get session params
+func (o *SchedulerGetSessionParams) SetSlotProviderCreatedBy(slotProviderCreatedBy *string) {
+	o.SlotProviderCreatedBy = slotProviderCreatedBy
+}
+
+// WithSlotProviderGender adds the slotProviderGender to the scheduler get session params
+func (o *SchedulerGetSessionParams) WithSlotProviderGender(slotProviderGender *string) *SchedulerGetSessionParams {
+	o.SetSlotProviderGender(slotProviderGender)
+	return o
+}
+
+// SetSlotProviderGender adds the slotProviderGender to the scheduler get session params
+func (o *SchedulerGetSessionParams) SetSlotProviderGender(slotProviderGender *string) {
+	o.SlotProviderGender = slotProviderGender
+}
+
+// WithSlotProviderGivenName adds the slotProviderGivenName to the scheduler get session params
+func (o *SchedulerGetSessionParams) WithSlotProviderGivenName(slotProviderGivenName *string) *SchedulerGetSessionParams {
+	o.SetSlotProviderGivenName(slotProviderGivenName)
+	return o
+}
+
+// SetSlotProviderGivenName adds the slotProviderGivenName to the scheduler get session params
+func (o *SchedulerGetSessionParams) SetSlotProviderGivenName(slotProviderGivenName *string) {
+	o.SlotProviderGivenName = slotProviderGivenName
+}
+
+// WithSlotProviderID adds the slotProviderID to the scheduler get session params
+func (o *SchedulerGetSessionParams) WithSlotProviderID(slotProviderID *string) *SchedulerGetSessionParams {
+	o.SetSlotProviderID(slotProviderID)
+	return o
+}
+
+// SetSlotProviderID adds the slotProviderId to the scheduler get session params
+func (o *SchedulerGetSessionParams) SetSlotProviderID(slotProviderID *string) {
+	o.SlotProviderID = slotProviderID
+}
+
+// WithSlotProviderOrgID adds the slotProviderOrgID to the scheduler get session params
+func (o *SchedulerGetSessionParams) WithSlotProviderOrgID(slotProviderOrgID *string) *SchedulerGetSessionParams {
+	o.SetSlotProviderOrgID(slotProviderOrgID)
+	return o
+}
+
+// SetSlotProviderOrgID adds the slotProviderOrgId to the scheduler get session params
+func (o *SchedulerGetSessionParams) SetSlotProviderOrgID(slotProviderOrgID *string) {
+	o.SlotProviderOrgID = slotProviderOrgID
+}
+
+// WithSlotProviderPrefix adds the slotProviderPrefix to the scheduler get session params
+func (o *SchedulerGetSessionParams) WithSlotProviderPrefix(slotProviderPrefix *string) *SchedulerGetSessionParams {
+	o.SetSlotProviderPrefix(slotProviderPrefix)
+	return o
+}
+
+// SetSlotProviderPrefix adds the slotProviderPrefix to the scheduler get session params
+func (o *SchedulerGetSessionParams) SetSlotProviderPrefix(slotProviderPrefix *string) {
+	o.SlotProviderPrefix = slotProviderPrefix
+}
+
+// WithSlotProviderRefID adds the slotProviderRefID to the scheduler get session params
+func (o *SchedulerGetSessionParams) WithSlotProviderRefID(slotProviderRefID *string) *SchedulerGetSessionParams {
+	o.SetSlotProviderRefID(slotProviderRefID)
+	return o
+}
+
+// SetSlotProviderRefID adds the slotProviderRefId to the scheduler get session params
+func (o *SchedulerGetSessionParams) SetSlotProviderRefID(slotProviderRefID *string) {
+	o.SlotProviderRefID = slotProviderRefID
+}
+
+// WithSlotProviderRole adds the slotProviderRole to the scheduler get session params
+func (o *SchedulerGetSessionParams) WithSlotProviderRole(slotProviderRole *string) *SchedulerGetSessionParams {
+	o.SetSlotProviderRole(slotProviderRole)
+	return o
+}
+
+// SetSlotProviderRole adds the slotProviderRole to the scheduler get session params
+func (o *SchedulerGetSessionParams) SetSlotProviderRole(slotProviderRole *string) {
+	o.SlotProviderRole = slotProviderRole
+}
+
+// WithSlotProviderSuffix adds the slotProviderSuffix to the scheduler get session params
+func (o *SchedulerGetSessionParams) WithSlotProviderSuffix(slotProviderSuffix *string) *SchedulerGetSessionParams {
+	o.SetSlotProviderSuffix(slotProviderSuffix)
+	return o
+}
+
+// SetSlotProviderSuffix adds the slotProviderSuffix to the scheduler get session params
+func (o *SchedulerGetSessionParams) SetSlotProviderSuffix(slotProviderSuffix *string) {
+	o.SlotProviderSuffix = slotProviderSuffix
+}
+
+// WithSlotProviderSurname adds the slotProviderSurname to the scheduler get session params
+func (o *SchedulerGetSessionParams) WithSlotProviderSurname(slotProviderSurname *string) *SchedulerGetSessionParams {
+	o.SetSlotProviderSurname(slotProviderSurname)
+	return o
+}
+
+// SetSlotProviderSurname adds the slotProviderSurname to the scheduler get session params
+func (o *SchedulerGetSessionParams) SetSlotProviderSurname(slotProviderSurname *string) {
+	o.SlotProviderSurname = slotProviderSurname
+}
+
+// WithSlotProviderTimezoneAbbreviation adds the slotProviderTimezoneAbbreviation to the scheduler get session params
+func (o *SchedulerGetSessionParams) WithSlotProviderTimezoneAbbreviation(slotProviderTimezoneAbbreviation *string) *SchedulerGetSessionParams {
+	o.SetSlotProviderTimezoneAbbreviation(slotProviderTimezoneAbbreviation)
+	return o
+}
+
+// SetSlotProviderTimezoneAbbreviation adds the slotProviderTimezoneAbbreviation to the scheduler get session params
+func (o *SchedulerGetSessionParams) SetSlotProviderTimezoneAbbreviation(slotProviderTimezoneAbbreviation *string) {
+	o.SlotProviderTimezoneAbbreviation = slotProviderTimezoneAbbreviation
+}
+
+// WithSlotProviderTimezoneDst adds the slotProviderTimezoneDst to the scheduler get session params
+func (o *SchedulerGetSessionParams) WithSlotProviderTimezoneDst(slotProviderTimezoneDst *bool) *SchedulerGetSessionParams {
+	o.SetSlotProviderTimezoneDst(slotProviderTimezoneDst)
+	return o
+}
+
+// SetSlotProviderTimezoneDst adds the slotProviderTimezoneDst to the scheduler get session params
+func (o *SchedulerGetSessionParams) SetSlotProviderTimezoneDst(slotProviderTimezoneDst *bool) {
+	o.SlotProviderTimezoneDst = slotProviderTimezoneDst
+}
+
+// WithSlotProviderTimezoneGmtOffset adds the slotProviderTimezoneGmtOffset to the scheduler get session params
+func (o *SchedulerGetSessionParams) WithSlotProviderTimezoneGmtOffset(slotProviderTimezoneGmtOffset *int32) *SchedulerGetSessionParams {
+	o.SetSlotProviderTimezoneGmtOffset(slotProviderTimezoneGmtOffset)
+	return o
+}
+
+// SetSlotProviderTimezoneGmtOffset adds the slotProviderTimezoneGmtOffset to the scheduler get session params
+func (o *SchedulerGetSessionParams) SetSlotProviderTimezoneGmtOffset(slotProviderTimezoneGmtOffset *int32) {
+	o.SlotProviderTimezoneGmtOffset = slotProviderTimezoneGmtOffset
+}
+
+// WithSlotProviderTimezoneID adds the slotProviderTimezoneID to the scheduler get session params
+func (o *SchedulerGetSessionParams) WithSlotProviderTimezoneID(slotProviderTimezoneID *int32) *SchedulerGetSessionParams {
+	o.SetSlotProviderTimezoneID(slotProviderTimezoneID)
+	return o
+}
+
+// SetSlotProviderTimezoneID adds the slotProviderTimezoneId to the scheduler get session params
+func (o *SchedulerGetSessionParams) SetSlotProviderTimezoneID(slotProviderTimezoneID *int32) {
+	o.SlotProviderTimezoneID = slotProviderTimezoneID
+}
+
+// WithSlotProviderTimezoneTimeStart adds the slotProviderTimezoneTimeStart to the scheduler get session params
+func (o *SchedulerGetSessionParams) WithSlotProviderTimezoneTimeStart(slotProviderTimezoneTimeStart *string) *SchedulerGetSessionParams {
+	o.SetSlotProviderTimezoneTimeStart(slotProviderTimezoneTimeStart)
+	return o
+}
+
+// SetSlotProviderTimezoneTimeStart adds the slotProviderTimezoneTimeStart to the scheduler get session params
+func (o *SchedulerGetSessionParams) SetSlotProviderTimezoneTimeStart(slotProviderTimezoneTimeStart *string) {
+	o.SlotProviderTimezoneTimeStart = slotProviderTimezoneTimeStart
+}
+
+// WithSlotProviderTimezoneZoneCountryCode adds the slotProviderTimezoneZoneCountryCode to the scheduler get session params
+func (o *SchedulerGetSessionParams) WithSlotProviderTimezoneZoneCountryCode(slotProviderTimezoneZoneCountryCode *string) *SchedulerGetSessionParams {
+	o.SetSlotProviderTimezoneZoneCountryCode(slotProviderTimezoneZoneCountryCode)
+	return o
+}
+
+// SetSlotProviderTimezoneZoneCountryCode adds the slotProviderTimezoneZoneCountryCode to the scheduler get session params
+func (o *SchedulerGetSessionParams) SetSlotProviderTimezoneZoneCountryCode(slotProviderTimezoneZoneCountryCode *string) {
+	o.SlotProviderTimezoneZoneCountryCode = slotProviderTimezoneZoneCountryCode
+}
+
+// WithSlotProviderTimezoneZoneID adds the slotProviderTimezoneZoneID to the scheduler get session params
+func (o *SchedulerGetSessionParams) WithSlotProviderTimezoneZoneID(slotProviderTimezoneZoneID *int32) *SchedulerGetSessionParams {
+	o.SetSlotProviderTimezoneZoneID(slotProviderTimezoneZoneID)
+	return o
+}
+
+// SetSlotProviderTimezoneZoneID adds the slotProviderTimezoneZoneId to the scheduler get session params
+func (o *SchedulerGetSessionParams) SetSlotProviderTimezoneZoneID(slotProviderTimezoneZoneID *int32) {
+	o.SlotProviderTimezoneZoneID = slotProviderTimezoneZoneID
+}
+
+// WithSlotProviderTimezoneZoneName adds the slotProviderTimezoneZoneName to the scheduler get session params
+func (o *SchedulerGetSessionParams) WithSlotProviderTimezoneZoneName(slotProviderTimezoneZoneName *string) *SchedulerGetSessionParams {
+	o.SetSlotProviderTimezoneZoneName(slotProviderTimezoneZoneName)
+	return o
+}
+
+// SetSlotProviderTimezoneZoneName adds the slotProviderTimezoneZoneName to the scheduler get session params
+func (o *SchedulerGetSessionParams) SetSlotProviderTimezoneZoneName(slotProviderTimezoneZoneName *string) {
+	o.SlotProviderTimezoneZoneName = slotProviderTimezoneZoneName
+}
+
+// WithSlotProviderUpdatedAt adds the slotProviderUpdatedAt to the scheduler get session params
+func (o *SchedulerGetSessionParams) WithSlotProviderUpdatedAt(slotProviderUpdatedAt *string) *SchedulerGetSessionParams {
+	o.SetSlotProviderUpdatedAt(slotProviderUpdatedAt)
+	return o
+}
+
+// SetSlotProviderUpdatedAt adds the slotProviderUpdatedAt to the scheduler get session params
+func (o *SchedulerGetSessionParams) SetSlotProviderUpdatedAt(slotProviderUpdatedAt *string) {
+	o.SlotProviderUpdatedAt = slotProviderUpdatedAt
+}
+
+// WithSlotProviderUpdatedBy adds the slotProviderUpdatedBy to the scheduler get session params
+func (o *SchedulerGetSessionParams) WithSlotProviderUpdatedBy(slotProviderUpdatedBy *string) *SchedulerGetSessionParams {
+	o.SetSlotProviderUpdatedBy(slotProviderUpdatedBy)
+	return o
+}
+
+// SetSlotProviderUpdatedBy adds the slotProviderUpdatedBy to the scheduler get session params
+func (o *SchedulerGetSessionParams) SetSlotProviderUpdatedBy(slotProviderUpdatedBy *string) {
+	o.SlotProviderUpdatedBy = slotProviderUpdatedBy
+}
+
+// WithSlotReservationExpiresAt adds the slotReservationExpiresAt to the scheduler get session params
+func (o *SchedulerGetSessionParams) WithSlotReservationExpiresAt(slotReservationExpiresAt *string) *SchedulerGetSessionParams {
+	o.SetSlotReservationExpiresAt(slotReservationExpiresAt)
+	return o
+}
+
+// SetSlotReservationExpiresAt adds the slotReservationExpiresAt to the scheduler get session params
+func (o *SchedulerGetSessionParams) SetSlotReservationExpiresAt(slotReservationExpiresAt *string) {
+	o.SlotReservationExpiresAt = slotReservationExpiresAt
+}
+
+// WithSlotServiceActive adds the slotServiceActive to the scheduler get session params
+func (o *SchedulerGetSessionParams) WithSlotServiceActive(slotServiceActive *bool) *SchedulerGetSessionParams {
+	o.SetSlotServiceActive(slotServiceActive)
+	return o
+}
+
+// SetSlotServiceActive adds the slotServiceActive to the scheduler get session params
+func (o *SchedulerGetSessionParams) SetSlotServiceActive(slotServiceActive *bool) {
+	o.SlotServiceActive = slotServiceActive
+}
+
+// WithSlotServiceConfigDurations adds the slotServiceConfigDurations to the scheduler get session params
+func (o *SchedulerGetSessionParams) WithSlotServiceConfigDurations(slotServiceConfigDurations []int32) *SchedulerGetSessionParams {
+	o.SetSlotServiceConfigDurations(slotServiceConfigDurations)
+	return o
+}
+
+// SetSlotServiceConfigDurations adds the slotServiceConfigDurations to the scheduler get session params
+func (o *SchedulerGetSessionParams) SetSlotServiceConfigDurations(slotServiceConfigDurations []int32) {
+	o.SlotServiceConfigDurations = slotServiceConfigDurations
+}
+
+// WithSlotServiceConfigFixedDuration adds the slotServiceConfigFixedDuration to the scheduler get session params
+func (o *SchedulerGetSessionParams) WithSlotServiceConfigFixedDuration(slotServiceConfigFixedDuration *int32) *SchedulerGetSessionParams {
+	o.SetSlotServiceConfigFixedDuration(slotServiceConfigFixedDuration)
+	return o
+}
+
+// SetSlotServiceConfigFixedDuration adds the slotServiceConfigFixedDuration to the scheduler get session params
+func (o *SchedulerGetSessionParams) SetSlotServiceConfigFixedDuration(slotServiceConfigFixedDuration *int32) {
+	o.SlotServiceConfigFixedDuration = slotServiceConfigFixedDuration
+}
+
+// WithSlotServiceCreatedAt adds the slotServiceCreatedAt to the scheduler get session params
+func (o *SchedulerGetSessionParams) WithSlotServiceCreatedAt(slotServiceCreatedAt *string) *SchedulerGetSessionParams {
+	o.SetSlotServiceCreatedAt(slotServiceCreatedAt)
+	return o
+}
+
+// SetSlotServiceCreatedAt adds the slotServiceCreatedAt to the scheduler get session params
+func (o *SchedulerGetSessionParams) SetSlotServiceCreatedAt(slotServiceCreatedAt *string) {
+	o.SlotServiceCreatedAt = slotServiceCreatedAt
+}
+
+// WithSlotServiceCreatedBy adds the slotServiceCreatedBy to the scheduler get session params
+func (o *SchedulerGetSessionParams) WithSlotServiceCreatedBy(slotServiceCreatedBy *string) *SchedulerGetSessionParams {
+	o.SetSlotServiceCreatedBy(slotServiceCreatedBy)
+	return o
+}
+
+// SetSlotServiceCreatedBy adds the slotServiceCreatedBy to the scheduler get session params
+func (o *SchedulerGetSessionParams) SetSlotServiceCreatedBy(slotServiceCreatedBy *string) {
+	o.SlotServiceCreatedBy = slotServiceCreatedBy
+}
+
+// WithSlotServiceDescription adds the slotServiceDescription to the scheduler get session params
+func (o *SchedulerGetSessionParams) WithSlotServiceDescription(slotServiceDescription *string) *SchedulerGetSessionParams {
+	o.SetSlotServiceDescription(slotServiceDescription)
+	return o
+}
+
+// SetSlotServiceDescription adds the slotServiceDescription to the scheduler get session params
+func (o *SchedulerGetSessionParams) SetSlotServiceDescription(slotServiceDescription *string) {
+	o.SlotServiceDescription = slotServiceDescription
+}
+
+// WithSlotServiceID adds the slotServiceID to the scheduler get session params
+func (o *SchedulerGetSessionParams) WithSlotServiceID(slotServiceID *string) *SchedulerGetSessionParams {
+	o.SetSlotServiceID(slotServiceID)
+	return o
+}
+
+// SetSlotServiceID adds the slotServiceId to the scheduler get session params
+func (o *SchedulerGetSessionParams) SetSlotServiceID(slotServiceID *string) {
+	o.SlotServiceID = slotServiceID
+}
+
+// WithSlotServiceName adds the slotServiceName to the scheduler get session params
+func (o *SchedulerGetSessionParams) WithSlotServiceName(slotServiceName *string) *SchedulerGetSessionParams {
+	o.SetSlotServiceName(slotServiceName)
+	return o
+}
+
+// SetSlotServiceName adds the slotServiceName to the scheduler get session params
+func (o *SchedulerGetSessionParams) SetSlotServiceName(slotServiceName *string) {
+	o.SlotServiceName = slotServiceName
+}
+
+// WithSlotServiceOrgID adds the slotServiceOrgID to the scheduler get session params
+func (o *SchedulerGetSessionParams) WithSlotServiceOrgID(slotServiceOrgID *string) *SchedulerGetSessionParams {
+	o.SetSlotServiceOrgID(slotServiceOrgID)
+	return o
+}
+
+// SetSlotServiceOrgID adds the slotServiceOrgId to the scheduler get session params
+func (o *SchedulerGetSessionParams) SetSlotServiceOrgID(slotServiceOrgID *string) {
+	o.SlotServiceOrgID = slotServiceOrgID
+}
+
+// WithSlotServiceRefID adds the slotServiceRefID to the scheduler get session params
+func (o *SchedulerGetSessionParams) WithSlotServiceRefID(slotServiceRefID *string) *SchedulerGetSessionParams {
+	o.SetSlotServiceRefID(slotServiceRefID)
+	return o
+}
+
+// SetSlotServiceRefID adds the slotServiceRefId to the scheduler get session params
+func (o *SchedulerGetSessionParams) SetSlotServiceRefID(slotServiceRefID *string) {
+	o.SlotServiceRefID = slotServiceRefID
+}
+
+// WithSlotServiceUpdatedAt adds the slotServiceUpdatedAt to the scheduler get session params
+func (o *SchedulerGetSessionParams) WithSlotServiceUpdatedAt(slotServiceUpdatedAt *string) *SchedulerGetSessionParams {
+	o.SetSlotServiceUpdatedAt(slotServiceUpdatedAt)
+	return o
+}
+
+// SetSlotServiceUpdatedAt adds the slotServiceUpdatedAt to the scheduler get session params
+func (o *SchedulerGetSessionParams) SetSlotServiceUpdatedAt(slotServiceUpdatedAt *string) {
+	o.SlotServiceUpdatedAt = slotServiceUpdatedAt
+}
+
+// WithSlotServiceUpdatedBy adds the slotServiceUpdatedBy to the scheduler get session params
+func (o *SchedulerGetSessionParams) WithSlotServiceUpdatedBy(slotServiceUpdatedBy *string) *SchedulerGetSessionParams {
+	o.SetSlotServiceUpdatedBy(slotServiceUpdatedBy)
+	return o
+}
+
+// SetSlotServiceUpdatedBy adds the slotServiceUpdatedBy to the scheduler get session params
+func (o *SchedulerGetSessionParams) SetSlotServiceUpdatedBy(slotServiceUpdatedBy *string) {
+	o.SlotServiceUpdatedBy = slotServiceUpdatedBy
+}
+
+// WithSlotStartAt adds the slotStartAt to the scheduler get session params
+func (o *SchedulerGetSessionParams) WithSlotStartAt(slotStartAt *string) *SchedulerGetSessionParams {
+	o.SetSlotStartAt(slotStartAt)
+	return o
+}
+
+// SetSlotStartAt adds the slotStartAt to the scheduler get session params
+func (o *SchedulerGetSessionParams) SetSlotStartAt(slotStartAt *string) {
+	o.SlotStartAt = slotStartAt
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -3692,6 +4376,23 @@ func (o *SchedulerGetSessionParams) WriteToRequest(r runtime.ClientRequest, reg 
 		}
 	}
 
+	if o.Schedule != nil {
+
+		// query param schedule
+		var qrSchedule bool
+
+		if o.Schedule != nil {
+			qrSchedule = *o.Schedule
+		}
+		qSchedule := swag.FormatBool(qrSchedule)
+		if qSchedule != "" {
+
+			if err := r.SetQueryParam("schedule", qSchedule); err != nil {
+				return err
+			}
+		}
+	}
+
 	if o.SearchDuration != nil {
 
 		// query param search.duration
@@ -3704,6 +4405,74 @@ func (o *SchedulerGetSessionParams) WriteToRequest(r runtime.ClientRequest, reg 
 		if qSearchDuration != "" {
 
 			if err := r.SetQueryParam("search.duration", qSearchDuration); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SearchFormat != nil {
+
+		// query param search.format
+		var qrSearchFormat string
+
+		if o.SearchFormat != nil {
+			qrSearchFormat = *o.SearchFormat
+		}
+		qSearchFormat := qrSearchFormat
+		if qSearchFormat != "" {
+
+			if err := r.SetQueryParam("search.format", qSearchFormat); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SearchID != nil {
+
+		// query param search.id
+		var qrSearchID string
+
+		if o.SearchID != nil {
+			qrSearchID = *o.SearchID
+		}
+		qSearchID := qrSearchID
+		if qSearchID != "" {
+
+			if err := r.SetQueryParam("search.id", qSearchID); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SearchMaxRangeTo != nil {
+
+		// query param search.max_range_to
+		var qrSearchMaxRangeTo string
+
+		if o.SearchMaxRangeTo != nil {
+			qrSearchMaxRangeTo = *o.SearchMaxRangeTo
+		}
+		qSearchMaxRangeTo := qrSearchMaxRangeTo
+		if qSearchMaxRangeTo != "" {
+
+			if err := r.SetQueryParam("search.max_range_to", qSearchMaxRangeTo); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SearchMinRangeFrom != nil {
+
+		// query param search.min_range_from
+		var qrSearchMinRangeFrom string
+
+		if o.SearchMinRangeFrom != nil {
+			qrSearchMinRangeFrom = *o.SearchMinRangeFrom
+		}
+		qSearchMinRangeFrom := qrSearchMinRangeFrom
+		if qSearchMinRangeFrom != "" {
+
+			if err := r.SetQueryParam("search.min_range_from", qSearchMinRangeFrom); err != nil {
 				return err
 			}
 		}
@@ -3743,6 +4512,23 @@ func (o *SchedulerGetSessionParams) WriteToRequest(r runtime.ClientRequest, reg 
 		}
 	}
 
+	if o.SearchServiceID != nil {
+
+		// query param search.service_id
+		var qrSearchServiceID string
+
+		if o.SearchServiceID != nil {
+			qrSearchServiceID = *o.SearchServiceID
+		}
+		qSearchServiceID := qrSearchServiceID
+		if qSearchServiceID != "" {
+
+			if err := r.SetQueryParam("search.service_id", qSearchServiceID); err != nil {
+				return err
+			}
+		}
+	}
+
 	if o.SearchState != nil {
 
 		// query param search.state
@@ -3760,23 +4546,6 @@ func (o *SchedulerGetSessionParams) WriteToRequest(r runtime.ClientRequest, reg 
 		}
 	}
 
-	if o.SearchType != nil {
-
-		// query param search.type
-		var qrSearchType string
-
-		if o.SearchType != nil {
-			qrSearchType = *o.SearchType
-		}
-		qSearchType := qrSearchType
-		if qSearchType != "" {
-
-			if err := r.SetQueryParam("search.type", qSearchType); err != nil {
-				return err
-			}
-		}
-	}
-
 	if o.SearchZipcode != nil {
 
 		// query param search.zipcode
@@ -3789,6 +4558,23 @@ func (o *SchedulerGetSessionParams) WriteToRequest(r runtime.ClientRequest, reg 
 		if qSearchZipcode != "" {
 
 			if err := r.SetQueryParam("search.zipcode", qSearchZipcode); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SearchZone != nil {
+
+		// query param search.zone
+		var qrSearchZone string
+
+		if o.SearchZone != nil {
+			qrSearchZone = *o.SearchZone
+		}
+		qSearchZone := qrSearchZone
+		if qSearchZone != "" {
+
+			if err := r.SetQueryParam("search.zone", qSearchZone); err != nil {
 				return err
 			}
 		}
@@ -3992,6 +4778,663 @@ func (o *SchedulerGetSessionParams) WriteToRequest(r runtime.ClientRequest, reg 
 		}
 	}
 
+	if o.SlotDuration != nil {
+
+		// query param slot.duration
+		var qrSlotDuration int32
+
+		if o.SlotDuration != nil {
+			qrSlotDuration = *o.SlotDuration
+		}
+		qSlotDuration := swag.FormatInt32(qrSlotDuration)
+		if qSlotDuration != "" {
+
+			if err := r.SetQueryParam("slot.duration", qSlotDuration); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SlotEndAt != nil {
+
+		// query param slot.end_at
+		var qrSlotEndAt string
+
+		if o.SlotEndAt != nil {
+			qrSlotEndAt = *o.SlotEndAt
+		}
+		qSlotEndAt := qrSlotEndAt
+		if qSlotEndAt != "" {
+
+			if err := r.SetQueryParam("slot.end_at", qSlotEndAt); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SlotID != nil {
+
+		// query param slot.id
+		var qrSlotID string
+
+		if o.SlotID != nil {
+			qrSlotID = *o.SlotID
+		}
+		qSlotID := qrSlotID
+		if qSlotID != "" {
+
+			if err := r.SetQueryParam("slot.id", qSlotID); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SlotProviderActive != nil {
+
+		// query param slot.provider.active
+		var qrSlotProviderActive bool
+
+		if o.SlotProviderActive != nil {
+			qrSlotProviderActive = *o.SlotProviderActive
+		}
+		qSlotProviderActive := swag.FormatBool(qrSlotProviderActive)
+		if qSlotProviderActive != "" {
+
+			if err := r.SetQueryParam("slot.provider.active", qSlotProviderActive); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SlotProviderCreatedAt != nil {
+
+		// query param slot.provider.created_at
+		var qrSlotProviderCreatedAt string
+
+		if o.SlotProviderCreatedAt != nil {
+			qrSlotProviderCreatedAt = *o.SlotProviderCreatedAt
+		}
+		qSlotProviderCreatedAt := qrSlotProviderCreatedAt
+		if qSlotProviderCreatedAt != "" {
+
+			if err := r.SetQueryParam("slot.provider.created_at", qSlotProviderCreatedAt); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SlotProviderCreatedBy != nil {
+
+		// query param slot.provider.created_by
+		var qrSlotProviderCreatedBy string
+
+		if o.SlotProviderCreatedBy != nil {
+			qrSlotProviderCreatedBy = *o.SlotProviderCreatedBy
+		}
+		qSlotProviderCreatedBy := qrSlotProviderCreatedBy
+		if qSlotProviderCreatedBy != "" {
+
+			if err := r.SetQueryParam("slot.provider.created_by", qSlotProviderCreatedBy); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SlotProviderGender != nil {
+
+		// query param slot.provider.gender
+		var qrSlotProviderGender string
+
+		if o.SlotProviderGender != nil {
+			qrSlotProviderGender = *o.SlotProviderGender
+		}
+		qSlotProviderGender := qrSlotProviderGender
+		if qSlotProviderGender != "" {
+
+			if err := r.SetQueryParam("slot.provider.gender", qSlotProviderGender); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SlotProviderGivenName != nil {
+
+		// query param slot.provider.given_name
+		var qrSlotProviderGivenName string
+
+		if o.SlotProviderGivenName != nil {
+			qrSlotProviderGivenName = *o.SlotProviderGivenName
+		}
+		qSlotProviderGivenName := qrSlotProviderGivenName
+		if qSlotProviderGivenName != "" {
+
+			if err := r.SetQueryParam("slot.provider.given_name", qSlotProviderGivenName); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SlotProviderID != nil {
+
+		// query param slot.provider.id
+		var qrSlotProviderID string
+
+		if o.SlotProviderID != nil {
+			qrSlotProviderID = *o.SlotProviderID
+		}
+		qSlotProviderID := qrSlotProviderID
+		if qSlotProviderID != "" {
+
+			if err := r.SetQueryParam("slot.provider.id", qSlotProviderID); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SlotProviderOrgID != nil {
+
+		// query param slot.provider.org_id
+		var qrSlotProviderOrgID string
+
+		if o.SlotProviderOrgID != nil {
+			qrSlotProviderOrgID = *o.SlotProviderOrgID
+		}
+		qSlotProviderOrgID := qrSlotProviderOrgID
+		if qSlotProviderOrgID != "" {
+
+			if err := r.SetQueryParam("slot.provider.org_id", qSlotProviderOrgID); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SlotProviderPrefix != nil {
+
+		// query param slot.provider.prefix
+		var qrSlotProviderPrefix string
+
+		if o.SlotProviderPrefix != nil {
+			qrSlotProviderPrefix = *o.SlotProviderPrefix
+		}
+		qSlotProviderPrefix := qrSlotProviderPrefix
+		if qSlotProviderPrefix != "" {
+
+			if err := r.SetQueryParam("slot.provider.prefix", qSlotProviderPrefix); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SlotProviderRefID != nil {
+
+		// query param slot.provider.ref_id
+		var qrSlotProviderRefID string
+
+		if o.SlotProviderRefID != nil {
+			qrSlotProviderRefID = *o.SlotProviderRefID
+		}
+		qSlotProviderRefID := qrSlotProviderRefID
+		if qSlotProviderRefID != "" {
+
+			if err := r.SetQueryParam("slot.provider.ref_id", qSlotProviderRefID); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SlotProviderRole != nil {
+
+		// query param slot.provider.role
+		var qrSlotProviderRole string
+
+		if o.SlotProviderRole != nil {
+			qrSlotProviderRole = *o.SlotProviderRole
+		}
+		qSlotProviderRole := qrSlotProviderRole
+		if qSlotProviderRole != "" {
+
+			if err := r.SetQueryParam("slot.provider.role", qSlotProviderRole); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SlotProviderSuffix != nil {
+
+		// query param slot.provider.suffix
+		var qrSlotProviderSuffix string
+
+		if o.SlotProviderSuffix != nil {
+			qrSlotProviderSuffix = *o.SlotProviderSuffix
+		}
+		qSlotProviderSuffix := qrSlotProviderSuffix
+		if qSlotProviderSuffix != "" {
+
+			if err := r.SetQueryParam("slot.provider.suffix", qSlotProviderSuffix); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SlotProviderSurname != nil {
+
+		// query param slot.provider.surname
+		var qrSlotProviderSurname string
+
+		if o.SlotProviderSurname != nil {
+			qrSlotProviderSurname = *o.SlotProviderSurname
+		}
+		qSlotProviderSurname := qrSlotProviderSurname
+		if qSlotProviderSurname != "" {
+
+			if err := r.SetQueryParam("slot.provider.surname", qSlotProviderSurname); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SlotProviderTimezoneAbbreviation != nil {
+
+		// query param slot.provider.timezone.abbreviation
+		var qrSlotProviderTimezoneAbbreviation string
+
+		if o.SlotProviderTimezoneAbbreviation != nil {
+			qrSlotProviderTimezoneAbbreviation = *o.SlotProviderTimezoneAbbreviation
+		}
+		qSlotProviderTimezoneAbbreviation := qrSlotProviderTimezoneAbbreviation
+		if qSlotProviderTimezoneAbbreviation != "" {
+
+			if err := r.SetQueryParam("slot.provider.timezone.abbreviation", qSlotProviderTimezoneAbbreviation); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SlotProviderTimezoneDst != nil {
+
+		// query param slot.provider.timezone.dst
+		var qrSlotProviderTimezoneDst bool
+
+		if o.SlotProviderTimezoneDst != nil {
+			qrSlotProviderTimezoneDst = *o.SlotProviderTimezoneDst
+		}
+		qSlotProviderTimezoneDst := swag.FormatBool(qrSlotProviderTimezoneDst)
+		if qSlotProviderTimezoneDst != "" {
+
+			if err := r.SetQueryParam("slot.provider.timezone.dst", qSlotProviderTimezoneDst); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SlotProviderTimezoneGmtOffset != nil {
+
+		// query param slot.provider.timezone.gmt_offset
+		var qrSlotProviderTimezoneGmtOffset int32
+
+		if o.SlotProviderTimezoneGmtOffset != nil {
+			qrSlotProviderTimezoneGmtOffset = *o.SlotProviderTimezoneGmtOffset
+		}
+		qSlotProviderTimezoneGmtOffset := swag.FormatInt32(qrSlotProviderTimezoneGmtOffset)
+		if qSlotProviderTimezoneGmtOffset != "" {
+
+			if err := r.SetQueryParam("slot.provider.timezone.gmt_offset", qSlotProviderTimezoneGmtOffset); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SlotProviderTimezoneID != nil {
+
+		// query param slot.provider.timezone.id
+		var qrSlotProviderTimezoneID int32
+
+		if o.SlotProviderTimezoneID != nil {
+			qrSlotProviderTimezoneID = *o.SlotProviderTimezoneID
+		}
+		qSlotProviderTimezoneID := swag.FormatInt32(qrSlotProviderTimezoneID)
+		if qSlotProviderTimezoneID != "" {
+
+			if err := r.SetQueryParam("slot.provider.timezone.id", qSlotProviderTimezoneID); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SlotProviderTimezoneTimeStart != nil {
+
+		// query param slot.provider.timezone.time_start
+		var qrSlotProviderTimezoneTimeStart string
+
+		if o.SlotProviderTimezoneTimeStart != nil {
+			qrSlotProviderTimezoneTimeStart = *o.SlotProviderTimezoneTimeStart
+		}
+		qSlotProviderTimezoneTimeStart := qrSlotProviderTimezoneTimeStart
+		if qSlotProviderTimezoneTimeStart != "" {
+
+			if err := r.SetQueryParam("slot.provider.timezone.time_start", qSlotProviderTimezoneTimeStart); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SlotProviderTimezoneZoneCountryCode != nil {
+
+		// query param slot.provider.timezone.zone.country_code
+		var qrSlotProviderTimezoneZoneCountryCode string
+
+		if o.SlotProviderTimezoneZoneCountryCode != nil {
+			qrSlotProviderTimezoneZoneCountryCode = *o.SlotProviderTimezoneZoneCountryCode
+		}
+		qSlotProviderTimezoneZoneCountryCode := qrSlotProviderTimezoneZoneCountryCode
+		if qSlotProviderTimezoneZoneCountryCode != "" {
+
+			if err := r.SetQueryParam("slot.provider.timezone.zone.country_code", qSlotProviderTimezoneZoneCountryCode); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SlotProviderTimezoneZoneID != nil {
+
+		// query param slot.provider.timezone.zone.id
+		var qrSlotProviderTimezoneZoneID int32
+
+		if o.SlotProviderTimezoneZoneID != nil {
+			qrSlotProviderTimezoneZoneID = *o.SlotProviderTimezoneZoneID
+		}
+		qSlotProviderTimezoneZoneID := swag.FormatInt32(qrSlotProviderTimezoneZoneID)
+		if qSlotProviderTimezoneZoneID != "" {
+
+			if err := r.SetQueryParam("slot.provider.timezone.zone.id", qSlotProviderTimezoneZoneID); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SlotProviderTimezoneZoneName != nil {
+
+		// query param slot.provider.timezone.zone.name
+		var qrSlotProviderTimezoneZoneName string
+
+		if o.SlotProviderTimezoneZoneName != nil {
+			qrSlotProviderTimezoneZoneName = *o.SlotProviderTimezoneZoneName
+		}
+		qSlotProviderTimezoneZoneName := qrSlotProviderTimezoneZoneName
+		if qSlotProviderTimezoneZoneName != "" {
+
+			if err := r.SetQueryParam("slot.provider.timezone.zone.name", qSlotProviderTimezoneZoneName); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SlotProviderUpdatedAt != nil {
+
+		// query param slot.provider.updated_at
+		var qrSlotProviderUpdatedAt string
+
+		if o.SlotProviderUpdatedAt != nil {
+			qrSlotProviderUpdatedAt = *o.SlotProviderUpdatedAt
+		}
+		qSlotProviderUpdatedAt := qrSlotProviderUpdatedAt
+		if qSlotProviderUpdatedAt != "" {
+
+			if err := r.SetQueryParam("slot.provider.updated_at", qSlotProviderUpdatedAt); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SlotProviderUpdatedBy != nil {
+
+		// query param slot.provider.updated_by
+		var qrSlotProviderUpdatedBy string
+
+		if o.SlotProviderUpdatedBy != nil {
+			qrSlotProviderUpdatedBy = *o.SlotProviderUpdatedBy
+		}
+		qSlotProviderUpdatedBy := qrSlotProviderUpdatedBy
+		if qSlotProviderUpdatedBy != "" {
+
+			if err := r.SetQueryParam("slot.provider.updated_by", qSlotProviderUpdatedBy); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SlotReservationExpiresAt != nil {
+
+		// query param slot.reservation_expires_at
+		var qrSlotReservationExpiresAt string
+
+		if o.SlotReservationExpiresAt != nil {
+			qrSlotReservationExpiresAt = *o.SlotReservationExpiresAt
+		}
+		qSlotReservationExpiresAt := qrSlotReservationExpiresAt
+		if qSlotReservationExpiresAt != "" {
+
+			if err := r.SetQueryParam("slot.reservation_expires_at", qSlotReservationExpiresAt); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SlotServiceActive != nil {
+
+		// query param slot.service.active
+		var qrSlotServiceActive bool
+
+		if o.SlotServiceActive != nil {
+			qrSlotServiceActive = *o.SlotServiceActive
+		}
+		qSlotServiceActive := swag.FormatBool(qrSlotServiceActive)
+		if qSlotServiceActive != "" {
+
+			if err := r.SetQueryParam("slot.service.active", qSlotServiceActive); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SlotServiceConfigDurations != nil {
+
+		// binding items for slot.service.config.durations
+		joinedSlotServiceConfigDurations := o.bindParamSlotServiceConfigDurations(reg)
+
+		// query array param slot.service.config.durations
+		if err := r.SetQueryParam("slot.service.config.durations", joinedSlotServiceConfigDurations...); err != nil {
+			return err
+		}
+	}
+
+	if o.SlotServiceConfigFixedDuration != nil {
+
+		// query param slot.service.config.fixed_duration
+		var qrSlotServiceConfigFixedDuration int32
+
+		if o.SlotServiceConfigFixedDuration != nil {
+			qrSlotServiceConfigFixedDuration = *o.SlotServiceConfigFixedDuration
+		}
+		qSlotServiceConfigFixedDuration := swag.FormatInt32(qrSlotServiceConfigFixedDuration)
+		if qSlotServiceConfigFixedDuration != "" {
+
+			if err := r.SetQueryParam("slot.service.config.fixed_duration", qSlotServiceConfigFixedDuration); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SlotServiceCreatedAt != nil {
+
+		// query param slot.service.created_at
+		var qrSlotServiceCreatedAt string
+
+		if o.SlotServiceCreatedAt != nil {
+			qrSlotServiceCreatedAt = *o.SlotServiceCreatedAt
+		}
+		qSlotServiceCreatedAt := qrSlotServiceCreatedAt
+		if qSlotServiceCreatedAt != "" {
+
+			if err := r.SetQueryParam("slot.service.created_at", qSlotServiceCreatedAt); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SlotServiceCreatedBy != nil {
+
+		// query param slot.service.created_by
+		var qrSlotServiceCreatedBy string
+
+		if o.SlotServiceCreatedBy != nil {
+			qrSlotServiceCreatedBy = *o.SlotServiceCreatedBy
+		}
+		qSlotServiceCreatedBy := qrSlotServiceCreatedBy
+		if qSlotServiceCreatedBy != "" {
+
+			if err := r.SetQueryParam("slot.service.created_by", qSlotServiceCreatedBy); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SlotServiceDescription != nil {
+
+		// query param slot.service.description
+		var qrSlotServiceDescription string
+
+		if o.SlotServiceDescription != nil {
+			qrSlotServiceDescription = *o.SlotServiceDescription
+		}
+		qSlotServiceDescription := qrSlotServiceDescription
+		if qSlotServiceDescription != "" {
+
+			if err := r.SetQueryParam("slot.service.description", qSlotServiceDescription); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SlotServiceID != nil {
+
+		// query param slot.service.id
+		var qrSlotServiceID string
+
+		if o.SlotServiceID != nil {
+			qrSlotServiceID = *o.SlotServiceID
+		}
+		qSlotServiceID := qrSlotServiceID
+		if qSlotServiceID != "" {
+
+			if err := r.SetQueryParam("slot.service.id", qSlotServiceID); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SlotServiceName != nil {
+
+		// query param slot.service.name
+		var qrSlotServiceName string
+
+		if o.SlotServiceName != nil {
+			qrSlotServiceName = *o.SlotServiceName
+		}
+		qSlotServiceName := qrSlotServiceName
+		if qSlotServiceName != "" {
+
+			if err := r.SetQueryParam("slot.service.name", qSlotServiceName); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SlotServiceOrgID != nil {
+
+		// query param slot.service.org_id
+		var qrSlotServiceOrgID string
+
+		if o.SlotServiceOrgID != nil {
+			qrSlotServiceOrgID = *o.SlotServiceOrgID
+		}
+		qSlotServiceOrgID := qrSlotServiceOrgID
+		if qSlotServiceOrgID != "" {
+
+			if err := r.SetQueryParam("slot.service.org_id", qSlotServiceOrgID); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SlotServiceRefID != nil {
+
+		// query param slot.service.ref_id
+		var qrSlotServiceRefID string
+
+		if o.SlotServiceRefID != nil {
+			qrSlotServiceRefID = *o.SlotServiceRefID
+		}
+		qSlotServiceRefID := qrSlotServiceRefID
+		if qSlotServiceRefID != "" {
+
+			if err := r.SetQueryParam("slot.service.ref_id", qSlotServiceRefID); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SlotServiceUpdatedAt != nil {
+
+		// query param slot.service.updated_at
+		var qrSlotServiceUpdatedAt string
+
+		if o.SlotServiceUpdatedAt != nil {
+			qrSlotServiceUpdatedAt = *o.SlotServiceUpdatedAt
+		}
+		qSlotServiceUpdatedAt := qrSlotServiceUpdatedAt
+		if qSlotServiceUpdatedAt != "" {
+
+			if err := r.SetQueryParam("slot.service.updated_at", qSlotServiceUpdatedAt); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SlotServiceUpdatedBy != nil {
+
+		// query param slot.service.updated_by
+		var qrSlotServiceUpdatedBy string
+
+		if o.SlotServiceUpdatedBy != nil {
+			qrSlotServiceUpdatedBy = *o.SlotServiceUpdatedBy
+		}
+		qSlotServiceUpdatedBy := qrSlotServiceUpdatedBy
+		if qSlotServiceUpdatedBy != "" {
+
+			if err := r.SetQueryParam("slot.service.updated_by", qSlotServiceUpdatedBy); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SlotStartAt != nil {
+
+		// query param slot.start_at
+		var qrSlotStartAt string
+
+		if o.SlotStartAt != nil {
+			qrSlotStartAt = *o.SlotStartAt
+		}
+		qSlotStartAt := qrSlotStartAt
+		if qSlotStartAt != "" {
+
+			if err := r.SetQueryParam("slot.start_at", qSlotStartAt); err != nil {
+				return err
+			}
+		}
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -4030,4 +5473,21 @@ func (o *SchedulerGetSessionParams) bindParamServiceConfigDurations(formats strf
 	serviceConfigDurationsIS := swag.JoinByFormat(serviceConfigDurationsIC, "multi")
 
 	return serviceConfigDurationsIS
+}
+
+// bindParamSchedulerGetSession binds the parameter slot.service.config.durations
+func (o *SchedulerGetSessionParams) bindParamSlotServiceConfigDurations(formats strfmt.Registry) []string {
+	slotServiceConfigDurationsIR := o.SlotServiceConfigDurations
+
+	var slotServiceConfigDurationsIC []string
+	for _, slotServiceConfigDurationsIIR := range slotServiceConfigDurationsIR { // explode []int32
+
+		slotServiceConfigDurationsIIV := swag.FormatInt32(slotServiceConfigDurationsIIR) // int32 as string
+		slotServiceConfigDurationsIC = append(slotServiceConfigDurationsIC, slotServiceConfigDurationsIIV)
+	}
+
+	// items.CollectionFormat: "multi"
+	slotServiceConfigDurationsIS := swag.JoinByFormat(slotServiceConfigDurationsIC, "multi")
+
+	return slotServiceConfigDurationsIS
 }

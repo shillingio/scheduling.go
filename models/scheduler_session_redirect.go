@@ -17,13 +17,13 @@ import (
 // swagger:model schedulerSessionRedirect
 type SchedulerSessionRedirect struct {
 
-	// error url
+	// Location to send the user upon failed session (optional)
 	ErrorURL string `json:"error_url,omitempty"`
 
-	// url
+	// Location to send the user upon successful completion (optional)
 	URL string `json:"url,omitempty"`
 
-	// webhook post url
+	// POST webhook that is called on session completion (optional) [Support State(s): Alpha, Private-Beta]
 	WebhookPostURL string `json:"webhook_post_url,omitempty"`
 }
 

@@ -18,38 +18,41 @@ import (
 // swagger:model schedulerSessionResponse
 type SchedulerSessionResponse struct {
 
-	// appointment
+	// Current Appointment Info
 	Appointment *SchedulingAppointment `json:"appointment,omitempty"`
 
-	// expires at
+	// Expiration time of the session.  (Once expired creating a new session is required)
 	ExpiresAt string `json:"expires_at,omitempty"`
 
 	// key
 	Key string `json:"key,omitempty"`
 
-	// metadata
+	// Additional Metadata Provided for session
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
 
-	// patient
+	// Current Patient Info (typically only ID and Reference IDs)
 	Patient *SchedulingPatient `json:"patient,omitempty"`
 
-	// provider
+	// Current Provider Info
 	Provider *SchedulingProvider `json:"provider,omitempty"`
 
-	// redirect
+	// Redirect Search Parameters
 	Redirect *SchedulerSessionRedirect `json:"redirect,omitempty"`
 
-	// search
+	// Current Search Parameters
 	Search *SchedulerSessionSearch `json:"search,omitempty"`
 
-	// service
+	// Current Service Info
 	Service *SchedulingService `json:"service,omitempty"`
 
-	// settings
+	// Session Settings (Used for Shilling UIs)
 	Settings map[string]interface{} `json:"settings,omitempty"`
 
-	// short link
+	// Shortened URL for simplicity and commonality in presenting to end-users
 	ShortLink string `json:"short_link,omitempty"`
+
+	// Current Appointment Slot Info
+	Slot *SchedulingAppointmentSlot `json:"slot,omitempty"`
 }
 
 // Validate validates this scheduler session response
@@ -77,6 +80,10 @@ func (m *SchedulerSessionResponse) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateService(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSlot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -200,6 +207,25 @@ func (m *SchedulerSessionResponse) validateService(formats strfmt.Registry) erro
 	return nil
 }
 
+func (m *SchedulerSessionResponse) validateSlot(formats strfmt.Registry) error {
+	if swag.IsZero(m.Slot) { // not required
+		return nil
+	}
+
+	if m.Slot != nil {
+		if err := m.Slot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("slot")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("slot")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 // ContextValidate validate this scheduler session response based on the context it is used
 func (m *SchedulerSessionResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
@@ -225,6 +251,10 @@ func (m *SchedulerSessionResponse) ContextValidate(ctx context.Context, formats 
 	}
 
 	if err := m.contextValidateService(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSlot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -322,6 +352,22 @@ func (m *SchedulerSessionResponse) contextValidateService(ctx context.Context, f
 				return ve.ValidateName("service")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("service")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *SchedulerSessionResponse) contextValidateSlot(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Slot != nil {
+		if err := m.Slot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("slot")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("slot")
 			}
 			return err
 		}

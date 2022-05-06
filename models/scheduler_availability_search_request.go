@@ -33,6 +33,9 @@ type SchedulerAvailabilitySearchRequest struct {
 	// exclude by ref
 	ExcludeByRef bool `json:"exclude_by_ref,omitempty"`
 
+	// Appointment Format (ex: video, telephone, etc.)
+	Format string `json:"format,omitempty"`
+
 	// Return only in-person providers (default: false)
 	InPerson bool `json:"in_person,omitempty"`
 

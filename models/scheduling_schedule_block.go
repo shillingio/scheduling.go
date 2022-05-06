@@ -70,6 +70,9 @@ type SchedulingScheduleBlock struct {
 	// start at
 	StartAt string `json:"start_at,omitempty"`
 
+	// types
+	Types []string `json:"types"`
+
 	// tz
 	Tz string `json:"tz,omitempty"`
 

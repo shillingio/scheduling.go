@@ -261,6 +261,9 @@ type SchedulerGetScheduleBlockParams struct {
 	// StartAt.
 	StartAt *string
 
+	// Types.
+	Types []string
+
 	// Tz.
 	Tz *string
 
@@ -973,6 +976,17 @@ func (o *SchedulerGetScheduleBlockParams) WithStartAt(startAt *string) *Schedule
 // SetStartAt adds the startAt to the scheduler get schedule block params
 func (o *SchedulerGetScheduleBlockParams) SetStartAt(startAt *string) {
 	o.StartAt = startAt
+}
+
+// WithTypes adds the types to the scheduler get schedule block params
+func (o *SchedulerGetScheduleBlockParams) WithTypes(types []string) *SchedulerGetScheduleBlockParams {
+	o.SetTypes(types)
+	return o
+}
+
+// SetTypes adds the types to the scheduler get schedule block params
+func (o *SchedulerGetScheduleBlockParams) SetTypes(types []string) {
+	o.Types = types
 }
 
 // WithTz adds the tz to the scheduler get schedule block params
@@ -2000,6 +2014,17 @@ func (o *SchedulerGetScheduleBlockParams) WriteToRequest(r runtime.ClientRequest
 		}
 	}
 
+	if o.Types != nil {
+
+		// binding items for types
+		joinedTypes := o.bindParamTypes(reg)
+
+		// query array param types
+		if err := r.SetQueryParam("types", joinedTypes...); err != nil {
+			return err
+		}
+	}
+
 	if o.Tz != nil {
 
 		// query param tz
@@ -2089,4 +2114,21 @@ func (o *SchedulerGetScheduleBlockParams) bindParamRepeatWeekDays(formats strfmt
 	repeatWeekDaysIS := swag.JoinByFormat(repeatWeekDaysIC, "multi")
 
 	return repeatWeekDaysIS
+}
+
+// bindParamSchedulerGetScheduleBlock binds the parameter types
+func (o *SchedulerGetScheduleBlockParams) bindParamTypes(formats strfmt.Registry) []string {
+	typesIR := o.Types
+
+	var typesIC []string
+	for _, typesIIR := range typesIR { // explode []string
+
+		typesIIV := typesIIR // string as string
+		typesIC = append(typesIC, typesIIV)
+	}
+
+	// items.CollectionFormat: "multi"
+	typesIS := swag.JoinByFormat(typesIC, "multi")
+
+	return typesIS
 }

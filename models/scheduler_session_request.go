@@ -14,33 +14,40 @@ import (
 )
 
 // SchedulerSessionRequest scheduler session request
+// Example: {"patient":{"id":"e59d0367-2595-4edc-83c6-08edd4fc525a"},"search":{"duration":30,"state":"CA"}}
 //
 // swagger:model schedulerSessionRequest
 type SchedulerSessionRequest struct {
 
-	// appointment
+	// Pre-defined Appointment (only appointment.id or appointment.ref_id) this is only for rescheduling
 	Appointment *SchedulingAppointment `json:"appointment,omitempty"`
 
 	// key
 	Key string `json:"key,omitempty"`
 
-	// metadata
+	// Optional Metadata to apply to the session
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
 
-	// patient
+	// Pre-defined Patient (commonly only patient.id or patient.ref_id)
 	Patient *SchedulingPatient `json:"patient,omitempty"`
 
-	// provider
+	// Pre-defined Provider (commonly only provider.id or provider.ref_id)
 	Provider *SchedulingProvider `json:"provider,omitempty"`
 
-	// redirect
+	// Redirect settings (see SessionRedirect for more info)
 	Redirect *SchedulerSessionRedirect `json:"redirect,omitempty"`
 
-	// search
+	// Schedule appointment with current slot
+	Schedule bool `json:"schedule,omitempty"`
+
+	// Search Parameters (see SessionSearch for more details)
 	Search *SchedulerSessionSearch `json:"search,omitempty"`
 
-	// service
+	// Pre-defined Service (only service.id or service.ref_id)
 	Service *SchedulingService `json:"service,omitempty"`
+
+	// Pre-defined Appointment (only appointment.id or appointment.ref_id) this is only for rescheduling
+	Slot *SchedulingAppointmentSlot `json:"slot,omitempty"`
 }
 
 // Validate validates this scheduler session request
@@ -68,6 +75,10 @@ func (m *SchedulerSessionRequest) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateService(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSlot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -191,6 +202,25 @@ func (m *SchedulerSessionRequest) validateService(formats strfmt.Registry) error
 	return nil
 }
 
+func (m *SchedulerSessionRequest) validateSlot(formats strfmt.Registry) error {
+	if swag.IsZero(m.Slot) { // not required
+		return nil
+	}
+
+	if m.Slot != nil {
+		if err := m.Slot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("slot")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("slot")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 // ContextValidate validate this scheduler session request based on the context it is used
 func (m *SchedulerSessionRequest) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
@@ -216,6 +246,10 @@ func (m *SchedulerSessionRequest) ContextValidate(ctx context.Context, formats s
 	}
 
 	if err := m.contextValidateService(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSlot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -313,6 +347,22 @@ func (m *SchedulerSessionRequest) contextValidateService(ctx context.Context, fo
 				return ve.ValidateName("service")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("service")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *SchedulerSessionRequest) contextValidateSlot(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Slot != nil {
+		if err := m.Slot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("slot")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("slot")
 			}
 			return err
 		}

@@ -65,6 +65,9 @@ type SchedulerSearchAvailabilityParams struct {
 	// Availability.
 	Availability *models.SchedulerAvailabilitySearchRequest
 
+	// ID.
+	ID *string
+
 	// OrganizationID.
 	OrganizationID *string
 
@@ -232,6 +235,17 @@ func (o *SchedulerSearchAvailabilityParams) WithAvailability(availability *model
 // SetAvailability adds the availability to the scheduler search availability params
 func (o *SchedulerSearchAvailabilityParams) SetAvailability(availability *models.SchedulerAvailabilitySearchRequest) {
 	o.Availability = availability
+}
+
+// WithID adds the id to the scheduler search availability params
+func (o *SchedulerSearchAvailabilityParams) WithID(id *string) *SchedulerSearchAvailabilityParams {
+	o.SetID(id)
+	return o
+}
+
+// SetID adds the id to the scheduler search availability params
+func (o *SchedulerSearchAvailabilityParams) SetID(id *string) {
+	o.ID = id
 }
 
 // WithOrganizationID adds the organizationID to the scheduler search availability params
@@ -420,6 +434,23 @@ func (o *SchedulerSearchAvailabilityParams) WriteToRequest(r runtime.ClientReque
 	if o.Availability != nil {
 		if err := r.SetBodyParam(o.Availability); err != nil {
 			return err
+		}
+	}
+
+	if o.ID != nil {
+
+		// query param id
+		var qrID string
+
+		if o.ID != nil {
+			qrID = *o.ID
+		}
+		qID := qrID
+		if qID != "" {
+
+			if err := r.SetQueryParam("id", qID); err != nil {
+				return err
+			}
 		}
 	}
 

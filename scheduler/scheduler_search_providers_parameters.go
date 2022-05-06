@@ -80,6 +80,12 @@ type SchedulerSearchProvidersParams struct {
 	// AvailabilityExcludeByRef.
 	AvailabilityExcludeByRef *bool
 
+	/* AvailabilityFormat.
+
+	   Appointment Format (ex: video, telephone, etc.)
+	*/
+	AvailabilityFormat *string
+
 	/* AvailabilityInPerson.
 
 	   Return only in-person providers (default: false)
@@ -189,6 +195,9 @@ type SchedulerSearchProvidersParams struct {
 	*/
 	AvailabilityZip *string
 
+	// ID.
+	ID *string
+
 	// OrganizationID.
 	OrganizationID *string
 
@@ -279,6 +288,17 @@ func (o *SchedulerSearchProvidersParams) WithAvailabilityExcludeByRef(availabili
 // SetAvailabilityExcludeByRef adds the availabilityExcludeByRef to the scheduler search providers params
 func (o *SchedulerSearchProvidersParams) SetAvailabilityExcludeByRef(availabilityExcludeByRef *bool) {
 	o.AvailabilityExcludeByRef = availabilityExcludeByRef
+}
+
+// WithAvailabilityFormat adds the availabilityFormat to the scheduler search providers params
+func (o *SchedulerSearchProvidersParams) WithAvailabilityFormat(availabilityFormat *string) *SchedulerSearchProvidersParams {
+	o.SetAvailabilityFormat(availabilityFormat)
+	return o
+}
+
+// SetAvailabilityFormat adds the availabilityFormat to the scheduler search providers params
+func (o *SchedulerSearchProvidersParams) SetAvailabilityFormat(availabilityFormat *string) {
+	o.AvailabilityFormat = availabilityFormat
 }
 
 // WithAvailabilityInPerson adds the availabilityInPerson to the scheduler search providers params
@@ -479,6 +499,17 @@ func (o *SchedulerSearchProvidersParams) SetAvailabilityZip(availabilityZip *str
 	o.AvailabilityZip = availabilityZip
 }
 
+// WithID adds the id to the scheduler search providers params
+func (o *SchedulerSearchProvidersParams) WithID(id *string) *SchedulerSearchProvidersParams {
+	o.SetID(id)
+	return o
+}
+
+// SetID adds the id to the scheduler search providers params
+func (o *SchedulerSearchProvidersParams) SetID(id *string) {
+	o.ID = id
+}
+
 // WithOrganizationID adds the organizationID to the scheduler search providers params
 func (o *SchedulerSearchProvidersParams) WithOrganizationID(organizationID *string) *SchedulerSearchProvidersParams {
 	o.SetOrganizationID(organizationID)
@@ -549,6 +580,23 @@ func (o *SchedulerSearchProvidersParams) WriteToRequest(r runtime.ClientRequest,
 		if qAvailabilityExcludeByRef != "" {
 
 			if err := r.SetQueryParam("availability.exclude_by_ref", qAvailabilityExcludeByRef); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.AvailabilityFormat != nil {
+
+		// query param availability.format
+		var qrAvailabilityFormat string
+
+		if o.AvailabilityFormat != nil {
+			qrAvailabilityFormat = *o.AvailabilityFormat
+		}
+		qAvailabilityFormat := qrAvailabilityFormat
+		if qAvailabilityFormat != "" {
+
+			if err := r.SetQueryParam("availability.format", qAvailabilityFormat); err != nil {
 				return err
 			}
 		}
@@ -849,6 +897,23 @@ func (o *SchedulerSearchProvidersParams) WriteToRequest(r runtime.ClientRequest,
 		if qAvailabilityZip != "" {
 
 			if err := r.SetQueryParam("availability.zip", qAvailabilityZip); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.ID != nil {
+
+		// query param id
+		var qrID string
+
+		if o.ID != nil {
+			qrID = *o.ID
+		}
+		qID := qrID
+		if qID != "" {
+
+			if err := r.SetQueryParam("id", qID); err != nil {
 				return err
 			}
 		}

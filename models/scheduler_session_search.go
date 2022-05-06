@@ -17,23 +17,38 @@ import (
 // swagger:model schedulerSessionSearch
 type SchedulerSessionSearch struct {
 
-	// duration
+	// Duration in minutes (15,30,45,60) this may vary based on your configuration
 	Duration int32 `json:"duration,omitempty"`
 
-	// range from
+	// Appointment format: virutal, in_person (default: virtual)
+	Format string `json:"format,omitempty"`
+
+	// id
+	ID string `json:"id,omitempty"`
+
+	// Maximum range to time UTC (i.e. Do not schedule later than 2 weeks from 'now')
+	MaxRangeTo string `json:"max_range_to,omitempty"`
+
+	// Minimum range from time UTC (i.e. Do not schedule before 24 hours from 'now')
+	MinRangeFrom string `json:"min_range_from,omitempty"`
+
+	// RFC3339 format (UTC)
 	RangeFrom string `json:"range_from,omitempty"`
 
-	// range to
+	// RFC3339 format (UTC)
 	RangeTo string `json:"range_to,omitempty"`
 
-	// state
+	// Service ID to search
+	ServiceID string `json:"service_id,omitempty"`
+
+	// Two letter state abbreviation
 	State string `json:"state,omitempty"`
 
-	// type
-	Type string `json:"type,omitempty"`
-
-	// zipcode
+	// Five digit US postal code
 	Zipcode string `json:"zipcode,omitempty"`
+
+	// IANA Timezone Name (ex: America/Los_Angeles, America/New_York, etc.) reference: https://www.iana.org/time-zones
+	Zone string `json:"zone,omitempty"`
 }
 
 // Validate validates this scheduler session search
